@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyNihongo.KanaConverter", "src\MyNihongo.KanaConverter.csproj", "{EF39164E-C382-4520-A844-ECA7970BBF41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNihongo.KanaConverter.Tests", "tests\MyNihongo.KanaConverter.Tests\MyNihongo.KanaConverter.Tests.csproj", "{061E38F2-AEC6-402D-A36C-A2EC8A53A900}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNihongo.KanaConverter.Tests", "tests\MyNihongo.KanaConverter.Tests.csproj", "{061E38F2-AEC6-402D-A36C-A2EC8A53A900}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
