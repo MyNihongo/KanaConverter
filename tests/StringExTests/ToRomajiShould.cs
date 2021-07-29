@@ -18,11 +18,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("あいうえお")]
-		[InlineData("アイウエオ")]
+		[InlineData("あいうえおん")]
+		[InlineData("アイウエオン")]
 		public void ReturnChars(string input)
 		{
-			const string expectedResult = "aiueo";
+			const string expectedResult = "aiueon";
 
 			var result = input.ToRomaji();
 
@@ -46,6 +46,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("がぎぐげご")]
+		[InlineData("ガギグゲゴ")]
+		public void ReturnCharsG(string input)
+		{
+			const string expectedResult = "gagigugego";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
 		[InlineData("さしすせそ")]
 		[InlineData("サシスセソ")]
 		public void ReturnCharsS(string input)
@@ -60,11 +74,39 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("ざじずぜぞ")]
+		[InlineData("ザジズゼゾ")]
+		public void ReturnCharsZ(string input)
+		{
+			const string expectedResult = "zajizuzezo";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
 		[InlineData("たちつてと")]
 		[InlineData("タチツテト")]
 		public void ReturnCharsT(string input)
 		{
 			const string expectedResult = "tachitsuteto";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("だぢづでど")]
+		[InlineData("ダヂヅデド")]
+		public void ReturnCharsD(string input)
+		{
+			const string expectedResult = "dajizudedo";
 
 			var result = input.ToRomaji();
 
@@ -93,6 +135,34 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		public void ReturnCharsH(string input)
 		{
 			const string expectedResult = "hahifuheho";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ばびぶべぼ")]
+		[InlineData("バビブベボ")]
+		public void ReturnCharsB(string input)
+		{
+			const string expectedResult = "babibubebo";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ぱぴぷぺぽ")]
+		[InlineData("パピプペポ")]
+		public void ReturnCharsP(string input)
+		{
+			const string expectedResult = "papipupepo";
 
 			var result = input.ToRomaji();
 
@@ -149,20 +219,6 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		public void ReturnCharsW(string input)
 		{
 			const string expectedResult = "wawo";
-
-			var result = input.ToRomaji();
-
-			result
-				.Should()
-				.Be(expectedResult);
-		}
-
-		[Theory]
-		[InlineData("ん")]
-		[InlineData("ン")]
-		public void ReturnCharsSpecial(string input)
-		{
-			const string expectedResult = "n";
 
 			var result = input.ToRomaji();
 
