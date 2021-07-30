@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
+using MyNihongo.KanaConverter.Exceptions;
 using Xunit;
 
 namespace MyNihongo.KanaConverter.Tests.StringExTests
@@ -32,6 +34,26 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("っあ")]
+		[InlineData("っい")]
+		[InlineData("っう")]
+		[InlineData("っえ")]
+		[InlineData("っお")]
+		[InlineData("ッア")]
+		[InlineData("ッイ")]
+		[InlineData("ッウ")]
+		[InlineData("ッエ")]
+		[InlineData("ッオ")]
+		public void ThrowExceptionForSokuonWithVowels(string input)
+		{
+			Action action = () => input.ToRomaji();
+
+			action
+				.Should()
+				.ThrowExactly<InvalidKanaException>();
+		}
+
+		[Theory]
 		[InlineData("かきくけこ")]
 		[InlineData("カキクケコ")]
 		public void ReturnCharsK(string input)
@@ -51,6 +73,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		public void ReturnCharsYouonK(string input)
 		{
 			const string expectedResult = "kyakyukyo";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("っかっきっくっけっこっきゃっきゅっきょ")]
+		[InlineData("ッカッキックッケッコッキャッキュッキョ")]
+		public void ReturnCharsSokuonK(string input)
+		{
+			const string expectedResult = "kkakkikkukkekkokkyakkyukkyo";
 
 			var result = input.ToRomaji();
 
@@ -88,6 +124,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("っがっぎっぐっげっごっぎゃっぎゅっぎょ")]
+		[InlineData("ッガッギッグッゲッゴッギャッギュッギョ")]
+		public void ReturnCharsSokuonG(string input)
+		{
+			const string expectedResult = "ggaggigguggeggoggyaggyuggyo";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
 		[InlineData("さしすせそ")]
 		[InlineData("サシスセソ")]
 		public void ReturnCharsS(string input)
@@ -116,6 +166,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("っさっしっすっせっそっしゃっしゅっしょ")]
+		[InlineData("ッサッシッスッセッソッシャッシュッショ")]
+		public void ReturnCharsSokuonS(string input)
+		{
+			const string expectedResult = "ssasshissussessosshasshussho";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
 		[InlineData("ざじずぜぞ")]
 		[InlineData("ザジズゼゾ")]
 		public void ReturnCharsZ(string input)
@@ -135,6 +199,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		public void ReturnCharsYouonZ(string input)
 		{
 			const string expectedResult = "jajujo";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("っざっじっずっぜっぞっじゃっじゅっじょ")]
+		[InlineData("ッザッジッズッゼッゾッジャッジュッジョ")]
+		public void ReturnCharsSokuonZ(string input)
+		{
+			const string expectedResult = "zzajjizzuzzezzojjajjujjo";
 
 			var result = input.ToRomaji();
 
