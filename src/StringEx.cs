@@ -25,97 +25,97 @@ namespace MyNihongo.KanaConverter
 				switch (@this[i])
 				{
 					// basic
-					case 'あ' or 'ア': romaji = "a"; break;
-					case 'い' or 'イ': romaji = "i"; break;
-					case 'う' or 'ウ': romaji = "u"; break;
-					case 'え' or 'エ': romaji = "e"; break;
-					case 'お' or 'オ': romaji = "o"; break;
-					case 'ん' or 'ン': romaji = "n"; break;
+					case 'あ': case 'ア': romaji = "a"; break;
+					case 'い': case 'イ': romaji = "i"; break;
+					case 'う': case 'ウ': romaji = "u"; break;
+					case 'え': case 'エ': romaji = "e"; break;
+					case 'お': case 'オ': romaji = "o"; break;
+					case 'ん': case 'ン': romaji = "n"; break;
 					// k
-					case 'か' or 'カ': romaji = "ka"; break;
-					case 'き' or 'キ': romaji = "ki"; break;
-					case 'く' or 'ク': romaji = "ku"; break;
-					case 'け' or 'ケ': romaji = "ke"; break;
-					case 'こ' or 'コ': romaji = "ko"; break;
+					case 'か': case 'カ': romaji = "ka"; break;
+					case 'き': case 'キ': romaji = "ki"; break;
+					case 'く': case 'ク': romaji = "ku"; break;
+					case 'け': case 'ケ': romaji = "ke"; break;
+					case 'こ': case 'コ': romaji = "ko"; break;
 					// g
-					case 'が' or 'ガ': romaji = "ga"; break;
-					case 'ぎ' or 'ギ': romaji = "gi"; break;
-					case 'ぐ' or 'グ': romaji = "gu"; break;
-					case 'げ' or 'ゲ': romaji = "ge"; break;
-					case 'ご' or 'ゴ': romaji = "go"; break;
+					case 'が': case 'ガ': romaji = "ga"; break;
+					case 'ぎ': case 'ギ': romaji = "gi"; break;
+					case 'ぐ': case 'グ': romaji = "gu"; break;
+					case 'げ': case 'ゲ': romaji = "ge"; break;
+					case 'ご': case 'ゴ': romaji = "go"; break;
 					// s
-					case 'さ' or 'サ': romaji = "sa"; break;
-					case 'し' or 'シ': romaji = "shi"; break;
-					case 'す' or 'ス': romaji = "su"; break;
-					case 'せ' or 'セ': romaji = "se"; break;
-					case 'そ' or 'ソ': romaji = "so"; break;
+					case 'さ': case 'サ': romaji = "sa"; break;
+					case 'し': case 'シ': romaji = "shi"; break;
+					case 'す': case 'ス': romaji = "su"; break;
+					case 'せ': case 'セ': romaji = "se"; break;
+					case 'そ': case 'ソ': romaji = "so"; break;
 					// z
-					case 'ざ' or 'ザ': romaji = "za"; break;
-					case 'じ' or 'ジ': romaji = "ji"; break;
-					case 'ず' or 'ズ': romaji = "zu"; break;
-					case 'ぜ' or 'ゼ': romaji = "ze"; break;
-					case 'ぞ' or 'ゾ': romaji = "zo"; break;
+					case 'ざ': case 'ザ': romaji = "za"; break;
+					case 'じ': case 'ジ': romaji = "ji"; break;
+					case 'ず': case 'ズ': romaji = "zu"; break;
+					case 'ぜ': case 'ゼ': romaji = "ze"; break;
+					case 'ぞ': case 'ゾ': romaji = "zo"; break;
 					// t
-					case 'た' or 'タ': romaji = "ta"; break;
-					case 'ち' or 'チ': romaji = "chi"; break;
-					case 'つ' or 'ツ': romaji = "tsu"; break;
-					case 'て' or 'テ': romaji = "te"; break;
-					case 'と' or 'ト': romaji = "to"; break;
+					case 'た': case 'タ': romaji = "ta"; break;
+					case 'ち': case 'チ': romaji = "chi"; break;
+					case 'つ': case 'ツ': romaji = "tsu"; break;
+					case 'て': case 'テ': romaji = "te"; break;
+					case 'と': case 'ト': romaji = "to"; break;
 					// d
-					case 'だ' or 'ダ': romaji = "da"; break;
-					case 'ぢ' or 'ヂ': romaji = "ji"; break;
-					case 'づ' or 'ヅ': romaji = "zu"; break;
-					case 'で' or 'デ': romaji = "de"; break;
-					case 'ど' or 'ド': romaji = "do"; break;
+					case 'だ': case 'ダ': romaji = "da"; break;
+					case 'ぢ': case 'ヂ': romaji = "ji"; break;
+					case 'づ': case 'ヅ': romaji = "zu"; break;
+					case 'で': case 'デ': romaji = "de"; break;
+					case 'ど': case 'ド': romaji = "do"; break;
 					// n
-					case 'な' or 'ナ': romaji = "na"; break;
-					case 'に' or 'ニ': romaji = "ni"; break;
-					case 'ぬ' or 'ヌ': romaji = "nu"; break;
-					case 'ね' or 'ネ': romaji = "ne"; break;
-					case 'の' or 'ノ': romaji = "no"; break;
+					case 'な': case 'ナ': romaji = "na"; break;
+					case 'に': case 'ニ': romaji = "ni"; break;
+					case 'ぬ': case 'ヌ': romaji = "nu"; break;
+					case 'ね': case 'ネ': romaji = "ne"; break;
+					case 'の': case 'ノ': romaji = "no"; break;
 					// h
-					case 'は' or 'ハ': romaji = "ha"; break;
-					case 'ひ' or 'ヒ': romaji = "hi"; break;
-					case 'ふ' or 'フ': romaji = "fu"; break;
-					case 'へ' or 'ヘ': romaji = "he"; break;
-					case 'ほ' or 'ホ': romaji = "ho"; break;
+					case 'は': case 'ハ': romaji = "ha"; break;
+					case 'ひ': case 'ヒ': romaji = "hi"; break;
+					case 'ふ': case 'フ': romaji = "fu"; break;
+					case 'へ': case 'ヘ': romaji = "he"; break;
+					case 'ほ': case 'ホ': romaji = "ho"; break;
 					// b
-					case 'ば' or 'バ': romaji = "ba"; break;
-					case 'び' or 'ビ': romaji = "bi"; break;
-					case 'ぶ' or 'ブ': romaji = "bu"; break;
-					case 'べ' or 'ベ': romaji = "be"; break;
-					case 'ぼ' or 'ボ': romaji = "bo"; break;
+					case 'ば': case 'バ': romaji = "ba"; break;
+					case 'び': case 'ビ': romaji = "bi"; break;
+					case 'ぶ': case 'ブ': romaji = "bu"; break;
+					case 'べ': case 'ベ': romaji = "be"; break;
+					case 'ぼ': case 'ボ': romaji = "bo"; break;
 					// p
-					case 'ぱ' or 'パ': romaji = "pa"; break;
-					case 'ぴ' or 'ピ': romaji = "pi"; break;
-					case 'ぷ' or 'プ': romaji = "pu"; break;
-					case 'ぺ' or 'ペ': romaji = "pe"; break;
-					case 'ぽ' or 'ポ': romaji = "po"; break;
+					case 'ぱ': case 'パ': romaji = "pa"; break;
+					case 'ぴ': case 'ピ': romaji = "pi"; break;
+					case 'ぷ': case 'プ': romaji = "pu"; break;
+					case 'ぺ': case 'ペ': romaji = "pe"; break;
+					case 'ぽ': case 'ポ': romaji = "po"; break;
 					// m
-					case 'ま' or 'マ': romaji = "ma"; break;
-					case 'み' or 'ミ': romaji = "mi"; break;
-					case 'む' or 'ム': romaji = "mu"; break;
-					case 'め' or 'メ': romaji = "me"; break;
-					case 'も' or 'モ': romaji = "mo"; break;
+					case 'ま': case 'マ': romaji = "ma"; break;
+					case 'み': case 'ミ': romaji = "mi"; break;
+					case 'む': case 'ム': romaji = "mu"; break;
+					case 'め': case 'メ': romaji = "me"; break;
+					case 'も': case 'モ': romaji = "mo"; break;
 					// y
-					case 'や' or 'ヤ': romaji = "ya"; break;
-					case 'ゆ' or 'ユ': romaji = "yu"; break;
-					case 'よ' or 'ヨ': romaji = "yo"; break;
+					case 'や': case 'ヤ': romaji = "ya"; break;
+					case 'ゆ': case 'ユ': romaji = "yu"; break;
+					case 'よ': case 'ヨ': romaji = "yo"; break;
 					// r
-					case 'ら' or 'ラ': romaji = "ra"; break;
-					case 'り' or 'リ': romaji = "ri"; break;
-					case 'る' or 'ル': romaji = "ru"; break;
-					case 'れ' or 'レ': romaji = "re"; break;
-					case 'ろ' or 'ロ': romaji = "ro"; break;
+					case 'ら': case 'ラ': romaji = "ra"; break;
+					case 'り': case 'リ': romaji = "ri"; break;
+					case 'る': case 'ル': romaji = "ru"; break;
+					case 'れ': case 'レ': romaji = "re"; break;
+					case 'ろ': case 'ロ': romaji = "ro"; break;
 					// w
-					case 'わ' or 'ワ': romaji = "wa"; break;
-					case 'を' or 'ヲ': romaji = "wo"; break;
+					case 'わ': case 'ワ': romaji = "wa"; break;
+					case 'を': case 'ヲ': romaji = "wo"; break;
 					// special (拗音)
-					case 'ゃ' or 'ャ': youon = Youon.Ya; break;
-					case 'ゅ' or 'ュ': youon = Youon.Yu; break;
-					case 'ょ' or 'ョ': youon = Youon.Yo; break;
+					case 'ゃ': case 'ャ': youon = Youon.Ya; break;
+					case 'ゅ': case 'ュ': youon = Youon.Yu; break;
+					case 'ょ': case 'ョ': youon = Youon.Yo; break;
 					// special (促音)
-					case 'っ' or 'ッ': isSokuon = true; continue;
+					case 'っ': case 'ッ': isSokuon = true; continue;
 					default:
 						throw new InvalidKanaException(@this[i], @this);
 				}
@@ -138,19 +138,34 @@ namespace MyNihongo.KanaConverter
 					var youonChar = youon.Value.GetChar();
 					switch (stringBuilder[consonantIndex])
 					{
-						case 'k': case 'g': case 'n': case 'b': case 'p': case 'm': case 'r':
-							stringBuilder[consonantIndex + 1] = 'y';
-							stringBuilder.Append(youonChar);
-							break;
-						case 's': case 'j':
-							stringBuilder[consonantIndex + 1] = youonChar;
-							break;
+						case 'k':
+						case 'g':
+						case 'n':
+						case 'b':
+						case 'p':
+						case 'm':
+						case 'r':
+							{
+								stringBuilder[consonantIndex + 1] = 'y';
+								stringBuilder.Append(youonChar);
+								break;
+							}
+						case 's':
+						case 'j':
+							{
+								stringBuilder[consonantIndex + 1] = youonChar;
+								break;
+							}
 						case 'h':
-							var checkIndex = consonantIndex - 1;
-							if (checkIndex >= 0 && stringBuilder[checkIndex] is 'c' or 's')
-								goto case 's';
-							else
-								goto case 'k';
+							{
+								var checkIndex = consonantIndex - 1;
+								if (checkIndex >= 0)
+								{
+									if (stringBuilder[checkIndex] == 'c' || stringBuilder[checkIndex] == 's')
+										goto case 'j';
+								}
+								goto case 'r';
+							}
 						default:
 							throw new InvalidKanaException($"Unrecognised yōon (拗音) combination in \"{@this}\"");
 					}
