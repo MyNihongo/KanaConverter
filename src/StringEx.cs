@@ -8,16 +8,20 @@ namespace MyNihongo.KanaConverter
 		/// <summary>
 		/// Converts a kana (hiragana or katakana) string to romaji
 		/// </summary>
+		/// <exception cref="InvalidKanaException"></exception>
 		public static string ToRomaji(this string @this)
 		{
 			if (string.IsNullOrEmpty(@this))
 				return string.Empty;
 
 			var stringBuilder = new StringBuilder(@this.Length);
+			var isSokuon = false;
 
 			for (var i = 0; i < @this.Length; i++)
 			{
 				string? romaji = null;
+				Youon? youon = null;
+
 				switch (@this[i])
 				{
 					// basic
@@ -106,17 +110,51 @@ namespace MyNihongo.KanaConverter
 					// w
 					case 'わ' or 'ワ': romaji = "wa"; break;
 					case 'を' or 'ヲ': romaji = "wo"; break;
-					// special (ようおん)
-					case 'ゃ' or 'ャ':
-					case 'ゅ' or 'ュ':
-					case 'ょ' or 'ョ':
-						romaji = "";
-						break;
+					// special (拗音)
+					case 'ゃ' or 'ャ': youon = Youon.Ya; break;
+					case 'ゅ' or 'ュ': youon = Youon.Yu; break;
+					case 'ょ' or 'ョ': youon = Youon.Yo; break;
+					// special (促音)
+					case 'っ' or 'ッ': isSokuon = true; continue;
 					default:
 						throw new InvalidKanaException(@this[i], @this);
 				}
 
-				stringBuilder.Append(romaji);
+				if (romaji != null)
+				{
+					if (isSokuon)
+					{
+						isSokuon = false;
+					}
+
+					stringBuilder.Append(romaji);
+				}
+				else if (youon.HasValue)
+				{
+					var consonantIndex = stringBuilder.Length - 2;
+					if (consonantIndex < 0)
+						throw new InvalidKanaException($"Yōon (拗音) \"{youon}\" cannot be the first character");
+
+					var youonChar = youon.Value.GetChar();
+					switch (stringBuilder[consonantIndex])
+					{
+						case 'k': case 'g': case 'n': case 'b': case 'p': case 'm': case 'r':
+							stringBuilder[consonantIndex + 1] = 'y';
+							stringBuilder.Append(youonChar);
+							break;
+						case 's': case 'j':
+							stringBuilder[consonantIndex + 1] = youonChar;
+							break;
+						case 'h':
+							var checkIndex = consonantIndex - 1;
+							if (checkIndex >= 0 && stringBuilder[checkIndex] is 'c' or 's')
+								goto case 's';
+							else
+								goto case 'k';
+						default:
+							throw new InvalidKanaException($"Unrecognised yōon (拗音) combination in \"{@this}\"");
+					}
+				}
 			}
 
 			return stringBuilder.ToString();

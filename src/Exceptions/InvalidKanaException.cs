@@ -8,5 +8,11 @@ namespace MyNihongo.KanaConverter.Exceptions
 			: base($"Invalid kana character \"{@char}\" in \"{@string}\"")
 		{
 		}
+
+		internal InvalidKanaException(string message)
+			: base(message)
+		{
+			
+		}
 	}
 }
