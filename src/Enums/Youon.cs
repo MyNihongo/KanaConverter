@@ -4,7 +4,7 @@
 	{
 		Ya,
 		Yu,
-		Ye,
-		Yo
+		Yo,
+		E
 	}
 }
