@@ -125,6 +125,20 @@ namespace MyNihongo.KanaConverter
 					case 'ょ' or 'ョ': youon = Youon.Yo; break;
 					// special (促音)
 					case 'っ' or 'ッ': isSokuon = true; continue;
+					// special (長音符)
+					case 'ー':
+						var vowelIndex = stringBuilder.Length - 1;
+						if (vowelIndex < 0)
+							throw new InvalidKanaException("Chōonpu (長音符) cannot be the first character");
+
+						var vowelChar = stringBuilder[vowelIndex] switch
+						{
+							'a' or 'i' or 'u' or 'e' or 'o' => stringBuilder[vowelIndex],
+							_ => throw new InvalidKanaException($"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"")
+						};
+
+						stringBuilder.Append(vowelChar);
+						continue;
 					default:
 						throw new InvalidKanaException(@this[i], @this);
 				}
