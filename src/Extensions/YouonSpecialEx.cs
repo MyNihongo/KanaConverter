@@ -7,9 +7,10 @@ namespace MyNihongo.KanaConverter
 		public static Youon ToYouon(this YouonSpecial @this) =>
 			@this switch
 			{
-				YouonSpecial.I => Youon.I,
-				YouonSpecial.E => Youon.E,
 				YouonSpecial.A => Youon.A,
+				YouonSpecial.I => Youon.I,
+				YouonSpecial.U => Youon.U,
+				YouonSpecial.E => Youon.E,
 				YouonSpecial.O => Youon.O,
 				_ => throw new ArgumentOutOfRangeException(nameof(@this), $@"Unknown {nameof(YouonSpecial)}: {@this}")
 			};
@@ -17,9 +18,10 @@ namespace MyNihongo.KanaConverter
 		public static char GetChar(this YouonSpecial @this) =>
 			@this switch
 			{
-				YouonSpecial.I => 'i',
-				YouonSpecial.E => 'e',
 				YouonSpecial.A => 'a',
+				YouonSpecial.I => 'i',
+				YouonSpecial.U => 'u',
+				YouonSpecial.E => 'e',
 				YouonSpecial.O => 'o',
 				_ => throw new ArgumentOutOfRangeException(nameof(@this), $@"Unknown {nameof(YouonSpecial)}: {@this}")
 			};

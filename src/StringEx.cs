@@ -126,6 +126,7 @@ namespace MyNihongo.KanaConverter
 					case 'ょ' or 'ョ': youon = Youon.Yo; goto Youon;
 					case 'ぁ' or 'ァ': youonSpecial = YouonSpecial.A; goto YouonSpecial;
 					case 'ぃ' or 'ィ': youonSpecial = YouonSpecial.I; goto YouonSpecial;
+					case 'ぅ' or 'ゥ': youonSpecial = YouonSpecial.U; goto YouonSpecial;
 					case 'ぇ' or 'ェ': youonSpecial = YouonSpecial.E; goto YouonSpecial;
 					case 'ぉ' or 'ォ': youonSpecial = YouonSpecial.O; goto YouonSpecial;
 					// special (促音)
@@ -175,7 +176,7 @@ namespace MyNihongo.KanaConverter
 				switch (stringBuilder[consonantIndex])
 				{
 					case 'k':
-					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r':
+					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r' or 'd':
 						{
 							stringBuilder[consonantIndex + 1] = 'y';
 							stringBuilder.Append(youonChar);
