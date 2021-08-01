@@ -45,17 +45,28 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		[Theory]
 		[InlineData("イー", "ii")]
 		[InlineData("キー", "kii")]
+		[InlineData("キィー", "kyii")]
 		[InlineData("ギー", "gii")]
+		[InlineData("ギィー", "gyii")]
 		[InlineData("シー", "shii")]
+		[InlineData("シィー", "shii")]
 		[InlineData("ジー", "jii")]
+		[InlineData("ジィー", "jii")]
 		[InlineData("チー", "chii")]
+		[InlineData("チィー", "chii")]
 		[InlineData("ヂー", "jii")]
 		[InlineData("ニー", "nii")]
+		[InlineData("ニィー", "nyii")]
 		[InlineData("ヒー", "hii")]
+		[InlineData("ヒィー", "hyii")]
 		[InlineData("ビー", "bii")]
+		[InlineData("ビィー", "byii")]
 		[InlineData("ピー", "pii")]
+		[InlineData("ピィー", "pyii")]
 		[InlineData("ミー", "mii")]
+		[InlineData("ミィー", "myii")]
 		[InlineData("リー", "rii")]
+		[InlineData("リィー", "ryii")]
 		public void ReturnCharsLongVowelI(string input, string expectedResult)
 		{
 			var result = input.ToRomaji();
@@ -103,17 +114,28 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		[Theory]
 		[InlineData("エー", "ee")]
 		[InlineData("ケー", "kee")]
+		[InlineData("キェー", "kyee")]
 		[InlineData("ゲー", "gee")]
+		[InlineData("ギェー", "gyee")]
 		[InlineData("セー", "see")]
+		[InlineData("シェー", "she")]
 		[InlineData("ゼー", "zee")]
+		[InlineData("ジェー", "jee")]
 		[InlineData("テー", "tee")]
+		[InlineData("チェー", "che")]
 		[InlineData("デー", "dee")]
 		[InlineData("ネー", "nee")]
+		[InlineData("ニェー", "nyee")]
 		[InlineData("ヘー", "hee")]
+		[InlineData("ヒェー", "hyee")]
 		[InlineData("ベー", "bee")]
+		[InlineData("ビェー", "byee")]
 		[InlineData("ペー", "pee")]
+		[InlineData("ピェー", "pyee")]
 		[InlineData("メー", "mee")]
+		[InlineData("ミェー", "myee")]
 		[InlineData("レー", "ree")]
+		[InlineData("リェー", "ryee")]
 		public void ReturnCharsLongVowelE(string input, string expectedResult)
 		{
 			var result = input.ToRomaji();
@@ -152,27 +174,6 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		[InlineData("リョー", "ryoo")]
 		[InlineData("ヲー", "woo")]
 		public void ReturnCharsLongVowelO(string input, string expectedResult)
-		{
-			var result = input.ToRomaji();
-
-			result
-				.Should()
-				.Be(expectedResult);
-		}
-
-		[Theory]
-		[InlineData("キェ", "kye")]
-		[InlineData("ギェ", "gye")]
-		[InlineData("シェ", "she")]
-		[InlineData("ジェ", "je")]
-		[InlineData("チェ", "che")]
-		[InlineData("ニェ", "nye")]
-		[InlineData("ヒェ", "hye")]
-		[InlineData("ビェ", "bye")]
-		[InlineData("ピェ", "pye")]
-		[InlineData("ミェ", "mye")]
-		[InlineData("リェ", "rye")]
-		public void ReturnCharsYouonE(string input, string expectedResult)
 		{
 			var result = input.ToRomaji();
 
