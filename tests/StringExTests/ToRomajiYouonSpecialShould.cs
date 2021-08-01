@@ -164,5 +164,131 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 				.Should()
 				.Be(expectedResult);
 		}
+
+		[Theory]
+		[InlineData("つぃつぇ")]
+		[InlineData("ツィツェ")]
+		public void ReturnCharsYouonSpecialT(string input)
+		{
+			const string expectedResult = "tsitse";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("づぃづぇ")]
+		[InlineData("ヅィヅェ")]
+		public void ReturnCharsYouonSpecialD(string input)
+		{
+			const string expectedResult = "zize";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ぬぃぬぇ")]
+		[InlineData("ヌィヌェ")]
+		public void ReturnCharsYouonSpecialN(string input)
+		{
+			const string expectedResult = "nine";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ふぃふぇ")]
+		[InlineData("フィフェ")]
+		public void ReturnCharsYouonSpecialH(string input)
+		{
+			const string expectedResult = "fife";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ぶぃぶぇ")]
+		[InlineData("ブィブェ")]
+		public void ReturnCharsYouonSpecialB(string input)
+		{
+			const string expectedResult = "bibe";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ぷぃぷぇ")]
+		[InlineData("プィプェ")]
+		public void ReturnCharsYouonSpecialP(string input)
+		{
+			const string expectedResult = "pipe";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("むぃむぇ")]
+		[InlineData("ムィムェ")]
+		public void ReturnCharsYouonSpecialM(string input)
+		{
+			const string expectedResult = "mime";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("ゆぃゆぇ")]
+		[InlineData("ユィユェ")]
+		public void ReturnCharsYouonSpecialY(string input)
+		{
+			const string expectedResult = "yiye";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("るぃるぇ")]
+		[InlineData("ルィルェ")]
+		public void ReturnCharsYouonSpecialR(string input)
+		{
+			const string expectedResult = "rire";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
 	}
 }
