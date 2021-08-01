@@ -201,7 +201,6 @@ namespace MyNihongo.KanaConverter
 					default:
 						throw new InvalidKanaException($"Unrecognised yōon (拗音) combination in \"{@this}\"");
 				}
-				continue;
 
 				YouonSpecial:
 				var youonSpecialIndex = stringBuilder.Length - 1;
@@ -214,12 +213,23 @@ namespace MyNihongo.KanaConverter
 						youon = youonSpecial.Value.ToYouon();
 						goto Youon;
 					case 'u':
-						throw new NotImplementedException();
-						break;
-					default:
-						throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
+					{
+						var specialYouonChar = youonSpecial.Value.GetChar();
+						if (@this[i - 1] is 'う' or 'ウ')
+						{
+							stringBuilder[youonSpecialIndex] = 'w';
+							stringBuilder.Append(specialYouonChar);
+						}
+						else
+						{
+							stringBuilder[youonSpecialIndex] = specialYouonChar;
+						}
+						
+						continue;
+					}
 				}
-				continue;
+
+				throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
 			}
 
 			return stringBuilder.ToString();
