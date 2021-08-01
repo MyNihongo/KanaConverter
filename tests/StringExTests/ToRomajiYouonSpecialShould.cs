@@ -85,11 +85,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("くぁくぃくぇけぃ")]
-		[InlineData("クァクィクェケィ")]
+		[InlineData("くぁくぃくぇくぉけぃ")]
+		[InlineData("クァクィクェクォケィ")]
 		public void ReturnCharsYouonSpecialK(string input)
 		{
-			const string expectedResult = "kakikeki";
+			const string expectedResult = "kakikekoki";
 
 			var result = input.ToRomaji();
 
@@ -99,11 +99,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ぐぁぐぃぐぇげぃ")]
-		[InlineData("グァグィグェゲィ")]
+		[InlineData("ぐぁぐぃぐぇぐぉげぃ")]
+		[InlineData("グァグィグェグォゲィ")]
 		public void ReturnCharsYouonSpecialG(string input)
 		{
-			const string expectedResult = "gagigegi";
+			const string expectedResult = "gagigegogi";
 
 			var result = input.ToRomaji();
 
@@ -113,11 +113,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("すぁすぃすぇせぃ")]
-		[InlineData("スァスィスェセィ")]
+		[InlineData("すぁすぃすぇすぉせぃ")]
+		[InlineData("スァスィスェスォセィ")]
 		public void ReturnCharsYouonSpecialS(string input)
 		{
-			const string expectedResult = "sasisesi";
+			const string expectedResult = "sasisesosi";
 
 			var result = input.ToRomaji();
 
@@ -127,11 +127,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ずぁずぃずぇぜぃ")]
-		[InlineData("ズァズィズェゼィ")]
+		[InlineData("ずぁずぃずぇずぉぜぃ")]
+		[InlineData("ズァズィズェズォゼィ")]
 		public void ReturnCharsYouonSpecialZ(string input)
 		{
-			const string expectedResult = "zazizezi";
+			const string expectedResult = "zazizezozi";
 
 			var result = input.ToRomaji();
 
@@ -141,11 +141,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("つぁつぃつぇてぃ")]
-		[InlineData("ツァツィツェティ")]
+		[InlineData("つぁつぃつぇつぉてぃ")]
+		[InlineData("ツァツィツェツォティ")]
 		public void ReturnCharsYouonSpecialT(string input)
 		{
-			const string expectedResult = "tsatsitseti";
+			const string expectedResult = "tsatsitsetsoti";
 
 			var result = input.ToRomaji();
 
@@ -155,11 +155,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("づぁづぃづぇでぃ")]
-		[InlineData("ヅァヅィヅェディ")]
+		[InlineData("づぁづぃづぇづぉでぃ")]
+		[InlineData("ヅァヅィヅェヅォディ")]
 		public void ReturnCharsYouonSpecialD(string input)
 		{
-			const string expectedResult = "zazizedi";
+			const string expectedResult = "zazizezodi";
 
 			var result = input.ToRomaji();
 
@@ -169,11 +169,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ぬぁぬぃぬぇねぃ")]
-		[InlineData("ヌァヌィヌェネィ")]
+		[InlineData("ぬぁぬぃぬぇぬぉねぃ")]
+		[InlineData("ヌァヌィヌェヌォネィ")]
 		public void ReturnCharsYouonSpecialN(string input)
 		{
-			const string expectedResult = "nanineni";
+			const string expectedResult = "naninenoni";
 
 			var result = input.ToRomaji();
 
@@ -183,11 +183,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ふぁふぃふぇへぃ")]
-		[InlineData("ファフィフェヘィ")]
+		[InlineData("ふぁふぃふぇふぉへぃ")]
+		[InlineData("ファフィフェフォヘィ")]
 		public void ReturnCharsYouonSpecialH(string input)
 		{
-			const string expectedResult = "fafifehi";
+			const string expectedResult = "fafifefohi";
 
 			var result = input.ToRomaji();
 
@@ -197,11 +197,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ぶぁぶぃぶぇべぃ")]
-		[InlineData("ブァブィブェベィ")]
+		[InlineData("ぶぁぶぃぶぇぶぉべぃ")]
+		[InlineData("ブァブィブェブォベィ")]
 		public void ReturnCharsYouonSpecialB(string input)
 		{
-			const string expectedResult = "babibebi";
+			const string expectedResult = "babibebobi";
 
 			var result = input.ToRomaji();
 
@@ -211,11 +211,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ぷぁぷぃぷぇぺぃ")]
-		[InlineData("プァプィプェペィ")]
+		[InlineData("ぷぁぷぃぷぇぷぉぺぃ")]
+		[InlineData("プァプィプェプォペィ")]
 		public void ReturnCharsYouonSpecialP(string input)
 		{
-			const string expectedResult = "papipepi";
+			const string expectedResult = "papipepopi";
 
 			var result = input.ToRomaji();
 
@@ -225,11 +225,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("むぁむぃむぇめぃ")]
-		[InlineData("ムァムィムェメィ")]
+		[InlineData("むぁむぃむぇむぉめぃ")]
+		[InlineData("ムァムィムェムォメィ")]
 		public void ReturnCharsYouonSpecialM(string input)
 		{
-			const string expectedResult = "mamimemi";
+			const string expectedResult = "mamimemomi";
 
 			var result = input.ToRomaji();
 
@@ -239,11 +239,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ゆぁゆぃゆぇ")]
-		[InlineData("ユァユィユェ")]
+		[InlineData("ゆぁゆぃゆぇゆぉ")]
+		[InlineData("ユァユィユェユォ")]
 		public void ReturnCharsYouonSpecialY(string input)
 		{
-			const string expectedResult = "yayiye";
+			const string expectedResult = "yayiyeyo";
 
 			var result = input.ToRomaji();
 
@@ -253,11 +253,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("るぁるぃるぇれぃ")]
-		[InlineData("ルァルィルェレィ")]
+		[InlineData("るぁるぃるぇるぉれぃ")]
+		[InlineData("ルァルィルェルォレィ")]
 		public void ReturnCharsYouonSpecialR(string input)
 		{
-			const string expectedResult = "rarireri";
+			const string expectedResult = "rarirerori";
 
 			var result = input.ToRomaji();
 
