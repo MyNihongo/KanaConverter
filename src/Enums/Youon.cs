@@ -5,6 +5,7 @@
 		Ya,
 		Yu,
 		Yo,
+		A,
 		I,
 		E
 	}

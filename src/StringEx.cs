@@ -124,6 +124,7 @@ namespace MyNihongo.KanaConverter
 					case 'ゃ' or 'ャ': youon = Youon.Ya; goto Youon;
 					case 'ゅ' or 'ュ': youon = Youon.Yu; goto Youon;
 					case 'ょ' or 'ョ': youon = Youon.Yo; goto Youon;
+					case 'ぁ' or 'ァ': youonSpecial = YouonSpecial.A; goto YouonSpecial;
 					case 'ぃ' or 'ィ': youonSpecial = YouonSpecial.I; goto YouonSpecial;
 					case 'ぇ' or 'ェ': youonSpecial = YouonSpecial.E; goto YouonSpecial;
 					// special (促音)
