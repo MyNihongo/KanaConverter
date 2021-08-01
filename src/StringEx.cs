@@ -29,8 +29,7 @@ namespace MyNihongo.KanaConverter
 			for (var i = 0; i < @this.Length; i++)
 			{
 				string? romaji;
-				Youon? youon = null;
-				YouonSpecial? youonSpecial;
+				Youon? youon;
 
 				switch (@this[i])
 				{
@@ -124,11 +123,11 @@ namespace MyNihongo.KanaConverter
 					case 'ゃ' or 'ャ': youon = Youon.Ya; goto Youon;
 					case 'ゅ' or 'ュ': youon = Youon.Yu; goto Youon;
 					case 'ょ' or 'ョ': youon = Youon.Yo; goto Youon;
-					case 'ぁ' or 'ァ': youonSpecial = YouonSpecial.A; goto YouonSpecial;
-					case 'ぃ' or 'ィ': youonSpecial = YouonSpecial.I; goto YouonSpecial;
-					case 'ぅ' or 'ゥ': youonSpecial = YouonSpecial.U; goto YouonSpecial;
-					case 'ぇ' or 'ェ': youonSpecial = YouonSpecial.E; goto YouonSpecial;
-					case 'ぉ' or 'ォ': youonSpecial = YouonSpecial.O; goto YouonSpecial;
+					case 'ぁ' or 'ァ': youon = Youon.A; goto YouonSpecial;
+					case 'ぃ' or 'ィ': youon = Youon.I; goto YouonSpecial;
+					case 'ぅ' or 'ゥ': youon = Youon.U; goto YouonSpecial;
+					case 'ぇ' or 'ェ': youon = Youon.E; goto YouonSpecial;
+					case 'ぉ' or 'ォ': youon = Youon.O; goto YouonSpecial;
 					// special (促音)
 					case 'っ' or 'ッ': isSokuon = true; continue;
 					// special (長音符)
@@ -208,13 +207,12 @@ namespace MyNihongo.KanaConverter
 				switch (stringBuilder[youonSpecialIndex])
 				{
 					case 'i':
-						youon = youonSpecial.Value.ToYouon();
 						goto Youon;
 					case 'u':
 						{
 							if (@this[i - 1] is 'う' or 'ウ')
 							{
-								var specialYouonChar = youonSpecial.Value.GetChar();
+								var specialYouonChar = youon.Value.GetChar();
 								stringBuilder[youonSpecialIndex] = 'w';
 								stringBuilder.Append(specialYouonChar);
 								continue;
@@ -224,7 +222,7 @@ namespace MyNihongo.KanaConverter
 						}
 					case 'e':
 						{
-							var specialYouonChar = youonSpecial.Value.GetChar();
+							var specialYouonChar = youon.Value.GetChar();
 							stringBuilder[youonSpecialIndex] = specialYouonChar;
 							continue;
 						}
