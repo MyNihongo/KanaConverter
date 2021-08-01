@@ -1,10 +1,32 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
+using MyNihongo.KanaConverter.Exceptions;
 using Xunit;
 
 namespace MyNihongo.KanaConverter.Tests.StringExTests
 {
 	public sealed class ToRomajiYouonShould
 	{
+		[Theory]
+		[InlineData("きゃ")]
+		[InlineData("きぃ")]
+		[InlineData("きゅ")]
+		[InlineData("きぇ")]
+		[InlineData("きょ")]
+		[InlineData("キャ")]
+		[InlineData("キィ")]
+		[InlineData("キュ")]
+		[InlineData("キェ")]
+		[InlineData("キョ")]
+		public void ThrowExceptionIfStartsWithYouon(string input)
+		{
+			Action action = () => input.ToRomaji();
+
+			action
+				.Should()
+				.ThrowExactly<InvalidKanaException>();
+		}
+
 		[Theory]
 		[InlineData("きゃきぃきゅきぇきょ")]
 		[InlineData("キャキィキュキェキョ")]
