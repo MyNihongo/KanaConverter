@@ -8,16 +8,16 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 	public sealed class ToRomajiYouonShould
 	{
 		[Theory]
-		[InlineData("きゃ")]
-		[InlineData("きぃ")]
-		[InlineData("きゅ")]
-		[InlineData("きぇ")]
-		[InlineData("きょ")]
-		[InlineData("キャ")]
-		[InlineData("キィ")]
-		[InlineData("キュ")]
-		[InlineData("キェ")]
-		[InlineData("キョ")]
+		[InlineData("ゃき")]
+		[InlineData("ぃき")]
+		[InlineData("ゅき")]
+		[InlineData("ぇき")]
+		[InlineData("ょき")]
+		[InlineData("ャキ")]
+		[InlineData("ィキ")]
+		[InlineData("ュキ")]
+		[InlineData("ェキ")]
+		[InlineData("ョキ")]
 		public void ThrowExceptionIfStartsWithYouon(string input)
 		{
 			Action action = () => input.ToRomaji();

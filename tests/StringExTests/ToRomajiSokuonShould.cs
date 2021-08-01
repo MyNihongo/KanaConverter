@@ -43,7 +43,7 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 
 		[Theory]
 		[InlineData("っかっきっくっけっこっきゃっきぃっきゅっきぇっきょ")]
-		[InlineData("ッカッキックッケッコッキャッキィッキュッッキェキョ")]
+		[InlineData("ッカッキックッケッコッキャッキィッキュッキェッキョ")]
 		public void ReturnCharsSokuonK(string input)
 		{
 			const string expectedResult = "kkakkikkukkekkokkyakkyikkyukkyekkyo";
@@ -70,7 +70,7 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("っさっしっすっせっそっしゃっしゅっしぃっしぇっしょ")]
+		[InlineData("っさっしっすっせっそっしゃっしぃっしゅっしぇっしょ")]
 		[InlineData("ッサッシッスッセッソッシャッシィッシュッシェッショ")]
 		public void ReturnCharsSokuonS(string input)
 		{

@@ -11,6 +11,7 @@ namespace MyNihongo.KanaConverter
 				Youon.Yu => 'u',
 				Youon.Yo => 'o',
 				Youon.E => 'e',
+				Youon.I => 'i',
 				_ => throw new ArgumentOutOfRangeException(nameof(@this), @this, $@"Unknown {nameof(Youon)}: {@this}")
 			};
 	}
