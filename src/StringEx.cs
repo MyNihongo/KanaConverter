@@ -174,25 +174,25 @@ namespace MyNihongo.KanaConverter
 				{
 					case 'k':
 					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r':
-					{
-						stringBuilder[consonantIndex + 1] = 'y';
-						stringBuilder.Append(youonChar);
-						continue;
-					}
+						{
+							stringBuilder[consonantIndex + 1] = 'y';
+							stringBuilder.Append(youonChar);
+							continue;
+						}
 					case 's':
 					case 'j':
-					{
-						stringBuilder[consonantIndex + 1] = youonChar;
-						continue;
-					}
+						{
+							stringBuilder[consonantIndex + 1] = youonChar;
+							continue;
+						}
 					case 'h':
-					{
-						var checkIndex = consonantIndex - 1;
-						if (checkIndex >= 0 && stringBuilder[checkIndex] is 'c' or 's')
-							goto case 's';
+						{
+							var checkIndex = consonantIndex - 1;
+							if (checkIndex >= 0 && stringBuilder[checkIndex] is 'c' or 's')
+								goto case 's';
 
-						goto case 'k';
-					}
+							goto case 'k';
+						}
 					default:
 						throw new InvalidKanaException($"Unrecognised yōon (拗音) combination in \"{@this}\"");
 				}
@@ -208,20 +208,23 @@ namespace MyNihongo.KanaConverter
 						youon = youonSpecial.Value.ToYouon();
 						goto Youon;
 					case 'u':
-					{
-						var specialYouonChar = youonSpecial.Value.GetChar();
-						if (@this[i - 1] is 'う' or 'ウ')
 						{
-							stringBuilder[youonSpecialIndex] = 'w';
-							stringBuilder.Append(specialYouonChar);
+							if (@this[i - 1] is 'う' or 'ウ')
+							{
+								var specialYouonChar = youonSpecial.Value.GetChar();
+								stringBuilder[youonSpecialIndex] = 'w';
+								stringBuilder.Append(specialYouonChar);
+								continue;
+							}
+
+							goto case 'e';
 						}
-						else
+					case 'e':
 						{
+							var specialYouonChar = youonSpecial.Value.GetChar();
 							stringBuilder[youonSpecialIndex] = specialYouonChar;
+							continue;
 						}
-						
-						continue;
-					}
 				}
 
 				throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
