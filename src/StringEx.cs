@@ -173,12 +173,7 @@ namespace MyNihongo.KanaConverter
 				switch (stringBuilder[consonantIndex])
 				{
 					case 'k':
-					case 'g':
-					case 'n':
-					case 'b':
-					case 'p':
-					case 'm':
-					case 'r':
+					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r':
 					{
 						stringBuilder[consonantIndex + 1] = 'y';
 						stringBuilder.Append(youonChar);
@@ -194,9 +189,9 @@ namespace MyNihongo.KanaConverter
 					{
 						var checkIndex = consonantIndex - 1;
 						if (checkIndex >= 0 && stringBuilder[checkIndex] is 'c' or 's')
-							goto case 'j';
+							goto case 's';
 
-						goto case 'r';
+						goto case 'k';
 					}
 					default:
 						throw new InvalidKanaException($"Unrecognised yōon (拗音) combination in \"{@this}\"");
