@@ -204,11 +204,11 @@ namespace MyNihongo.KanaConverter
 				continue;
 
 				YouonSpecial:
-				var gachiIndex = stringBuilder.Length - 1;
-				if (gachiIndex < 0)
+				var youonSpecialIndex = stringBuilder.Length - 1;
+				if (youonSpecialIndex < 0)
 					throw new InvalidKanaException($"Yōon (拗音) \"{youon}\" cannot be the first character");
 
-				switch (stringBuilder[gachiIndex])
+				switch (stringBuilder[youonSpecialIndex])
 				{
 					case 'i':
 						youon = youonSpecial.Value.ToYouon();
@@ -217,7 +217,7 @@ namespace MyNihongo.KanaConverter
 						throw new NotImplementedException();
 						break;
 					default:
-						throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[gachiIndex]}\"");
+						throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
 				}
 				continue;
 			}
