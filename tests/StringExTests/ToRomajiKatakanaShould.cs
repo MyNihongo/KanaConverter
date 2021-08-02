@@ -181,5 +181,18 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 				.Should()
 				.Be(expectedResult);
 		}
+
+		[Fact]
+		public void SkipPunctuationMark()
+		{
+			const string input = "ジ・エンド",
+				expectedResult = "jiendo";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
 	}
 }

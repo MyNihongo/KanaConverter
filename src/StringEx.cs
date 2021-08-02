@@ -146,6 +146,8 @@ namespace MyNihongo.KanaConverter
 
 						stringBuilder.Append(vowelChar);
 						continue;
+					// skip
+					case '・': continue;
 					default:
 						throw new InvalidKanaException(@this[i], @this);
 				}
