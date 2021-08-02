@@ -1,49 +1,10 @@
-﻿using System;
-using FluentAssertions;
-using MyNihongo.KanaConverter.Exceptions;
+﻿using FluentAssertions;
 using Xunit;
-// ReSharper disable InconsistentNaming
 
 namespace MyNihongo.KanaConverter.Tests.StringExTests
 {
 	public sealed class ToRomajiYouonSpecialShould
 	{
-		[Theory]
-		[InlineData("あぃ")]
-		[InlineData("かぃ")]
-		[InlineData("がぃ")]
-		[InlineData("さぃ")]
-		[InlineData("ざぃ")]
-		[InlineData("たぃ")]
-		[InlineData("だぃ")]
-		[InlineData("なぃ")]
-		[InlineData("はぃ")]
-		[InlineData("ばぃ")]
-		[InlineData("ぱぃ")]
-		[InlineData("まぃ")]
-		[InlineData("らぃ")]
-		[InlineData("アィ")]
-		[InlineData("カィ")]
-		[InlineData("ガィ")]
-		[InlineData("サィ")]
-		[InlineData("ザィ")]
-		[InlineData("タィ")]
-		[InlineData("ダィ")]
-		[InlineData("ナィ")]
-		[InlineData("ハィ")]
-		[InlineData("バィ")]
-		[InlineData("パィ")]
-		[InlineData("マィ")]
-		[InlineData("ラィ")]
-		public void ThrowExceptionIfNotEndsWithIU(string input)
-		{
-			Action action = () => input.ToRomaji();
-
-			action
-				.Should()
-				.ThrowExactly<InvalidKanaException>();
-		}
-
 		[Theory]
 		[InlineData("いぇ")]
 		[InlineData("イェ")]
@@ -260,6 +221,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		public void ReturnCharsYouonSpecialR(string input)
 		{
 			const string expectedResult = "rarirurerori";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
+		[InlineData("わぁ")]
+		[InlineData("ワァ")]
+		public void ReturnCharsYouonSpecialW(string input)
+		{
+			const string expectedResult = "wa";
 
 			var result = input.ToRomaji();
 

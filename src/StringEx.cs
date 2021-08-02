@@ -229,10 +229,10 @@ namespace MyNihongo.KanaConverter
 								goto VowelYouon;
 							}
 
-							goto case 'e';
+							goto case 'a';
 						}
-					case 'e':
-					case 'o':
+					case 'a':
+					case 'e' or 'o':
 						{
 							stringBuilder[youonSpecialIndex] = youon.Value.GetChar();
 							continue;
