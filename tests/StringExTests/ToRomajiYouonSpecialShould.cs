@@ -10,57 +10,31 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 	{
 		[Theory]
 		[InlineData("あぃ")]
-		[InlineData("おぃ")]
 		[InlineData("かぃ")]
-		[InlineData("こぃ")]
 		[InlineData("がぃ")]
-		[InlineData("ごぃ")]
 		[InlineData("さぃ")]
-		[InlineData("そぃ")]
 		[InlineData("ざぃ")]
-		[InlineData("ぞぃ")]
 		[InlineData("たぃ")]
-		[InlineData("とぃ")]
 		[InlineData("だぃ")]
-		[InlineData("どぃ")]
 		[InlineData("なぃ")]
-		[InlineData("のぃ")]
 		[InlineData("はぃ")]
-		[InlineData("ほぃ")]
 		[InlineData("ばぃ")]
-		[InlineData("ぼぃ")]
 		[InlineData("ぱぃ")]
-		[InlineData("ぽぃ")]
 		[InlineData("まぃ")]
-		[InlineData("もぃ")]
 		[InlineData("らぃ")]
-		[InlineData("ろぃ")]
 		[InlineData("アィ")]
-		[InlineData("オィ")]
 		[InlineData("カィ")]
-		[InlineData("コィ")]
 		[InlineData("ガィ")]
-		[InlineData("ゴィ")]
 		[InlineData("サィ")]
-		[InlineData("ソィ")]
 		[InlineData("ザィ")]
-		[InlineData("ゾィ")]
 		[InlineData("タィ")]
-		[InlineData("トィ")]
 		[InlineData("ダィ")]
-		[InlineData("ドィ")]
 		[InlineData("ナィ")]
-		[InlineData("ノィ")]
 		[InlineData("ハィ")]
-		[InlineData("ホィ")]
 		[InlineData("バィ")]
-		[InlineData("ボィ")]
 		[InlineData("パィ")]
-		[InlineData("ポィ")]
 		[InlineData("マィ")]
-		[InlineData("モィ")]
 		[InlineData("ラィ")]
-		[InlineData("ロィ")]
 		public void ThrowExceptionIfNotEndsWithIU(string input)
 		{
 			Action action = () => input.ToRomaji();
@@ -155,11 +129,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("づぁづぃづぅづぇづぉでぃでゅ")]
-		[InlineData("ヅァヅィヅゥヅェヅォディデュ")]
+		[InlineData("づぁづぃづぅづぇづぉでぃでゅどぅ")]
+		[InlineData("ヅァヅィヅゥヅェヅォディデュドゥ")]
 		public void ReturnCharsYouonSpecialD(string input)
 		{
-			const string expectedResult = "zazizuzezodidyu";
+			const string expectedResult = "zazizuzezodidyudu";
 
 			var result = input.ToRomaji();
 

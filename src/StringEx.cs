@@ -221,6 +221,7 @@ namespace MyNihongo.KanaConverter
 							goto case 'e';
 						}
 					case 'e':
+					case 'o':
 						{
 							var specialYouonChar = youon.Value.GetChar();
 							stringBuilder[youonSpecialIndex] = specialYouonChar;
