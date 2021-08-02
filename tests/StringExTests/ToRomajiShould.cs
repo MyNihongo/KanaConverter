@@ -32,6 +32,20 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("ゔ")]
+		[InlineData("ヴ")]
+		public void ReturnCharsDakuten(string input)
+		{
+			const string expectedResult = "vu";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
 		[InlineData("かきくけこ")]
 		[InlineData("カキクケコ")]
 		public void ReturnCharsK(string input)

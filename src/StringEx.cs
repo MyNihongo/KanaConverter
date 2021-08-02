@@ -40,6 +40,8 @@ namespace MyNihongo.KanaConverter
 					case 'え' or 'エ': romaji = "e"; goto Romaji;
 					case 'お' or 'オ': romaji = "o"; goto Romaji;
 					case 'ん' or 'ン': romaji = "n"; goto Romaji;
+					// basic dakuten
+					case 'ゔ' or 'ヴ': romaji = "vu"; goto Romaji;
 					// k
 					case 'か' or 'カ': romaji = "ka"; goto Romaji;
 					case 'き' or 'キ': romaji = "ki"; goto Romaji;
