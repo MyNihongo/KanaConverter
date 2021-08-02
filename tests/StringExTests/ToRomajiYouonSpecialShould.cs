@@ -115,11 +115,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("つぁつぃつぅつぇつぉてぃ")]
-		[InlineData("ツァツィツゥツェツォティ")]
+		[InlineData("つぁつぃつぅつぇつぉてぃてゅ")]
+		[InlineData("ツァツィツゥツェツォティテュ")]
 		public void ReturnCharsYouonSpecialT(string input)
 		{
-			const string expectedResult = "tsatsitsutsetsoti";
+			const string expectedResult = "tsatsitsutsetsotityu";
 
 			var result = input.ToRomaji();
 
