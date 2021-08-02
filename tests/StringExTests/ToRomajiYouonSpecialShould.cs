@@ -45,9 +45,23 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
+		[InlineData("いぇ")]
+		[InlineData("イェ")]
+		public void ReturnCharsYouonI(string input)
+		{
+			const string expectedResult = "ye";
+
+			var result = input.ToRomaji();
+
+			result
+				.Should()
+				.Be(expectedResult);
+		}
+
+		[Theory]
 		[InlineData("うぃうぇ")]
 		[InlineData("ウィウェ")]
-		public void ReturnCharsYouonSpecial(string input)
+		public void ReturnCharsYouonU(string input)
 		{
 			const string expectedResult = "wiwe";
 
@@ -61,7 +75,7 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		[Theory]
 		[InlineData("ヴァ")]
 		[InlineData("ゔぁ")]
-		public void ReturnCharsYouonSpecialDakuten(string input)
+		public void ReturnCharsYouonV(string input)
 		{
 			const string expectedResult = "va";
 
@@ -171,11 +185,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ふぁふぃふぅふぇふぉへぃ")]
-		[InlineData("ファフィフゥフェフォヘィ")]
+		[InlineData("ふぁふぃふぅふぇふぉふゅへぃ")]
+		[InlineData("ファフィフゥフェフォフュヘィ")]
 		public void ReturnCharsYouonSpecialH(string input)
 		{
-			const string expectedResult = "fafifufefohi";
+			const string expectedResult = "fafifufefofyuhi";
 
 			var result = input.ToRomaji();
 

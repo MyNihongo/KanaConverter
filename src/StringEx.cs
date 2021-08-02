@@ -179,7 +179,7 @@ namespace MyNihongo.KanaConverter
 				switch (stringBuilder[consonantIndex])
 				{
 					case 'k':
-					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r' or 't' or 'd':
+					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r' or 't' or 'd' or 'f':
 						{
 							stringBuilder[consonantIndex + 1] = 'y';
 							stringBuilder.Append(youonChar);
@@ -208,18 +208,25 @@ namespace MyNihongo.KanaConverter
 				if (youonSpecialIndex < 0)
 					throw new InvalidKanaException($"Yōon (拗音) \"{youon}\" cannot be the first character");
 
+				char? youonVowelChar;
 				switch (stringBuilder[youonSpecialIndex])
 				{
 					case 'i':
-						goto Youon;
+						{
+							if (@this[i - 1] is 'い' or 'イ')
+							{
+								youonVowelChar = 'y';
+								goto VowelYouon;
+							}
+
+							goto Youon;
+						}
 					case 'u':
 						{
 							if (@this[i - 1] is 'う' or 'ウ')
 							{
-								var specialYouonChar = youon.Value.GetChar();
-								stringBuilder[youonSpecialIndex] = 'w';
-								stringBuilder.Append(specialYouonChar);
-								continue;
+								youonVowelChar = 'w';
+								goto VowelYouon;
 							}
 
 							goto case 'e';
@@ -227,13 +234,16 @@ namespace MyNihongo.KanaConverter
 					case 'e':
 					case 'o':
 						{
-							var specialYouonChar = youon.Value.GetChar();
-							stringBuilder[youonSpecialIndex] = specialYouonChar;
+							stringBuilder[youonSpecialIndex] = youon.Value.GetChar();
 							continue;
 						}
 				}
 
 				throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
+
+				VowelYouon:
+				stringBuilder[youonSpecialIndex] = youonVowelChar.Value;
+				stringBuilder.Append(youon.Value.GetChar());
 			}
 
 			return stringBuilder.ToString();
