@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Version>1.0.0</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>MyNihongo</Authors>
+		<Product>MyNihongo.KanaConverter</Product>
+		<Copyright>Copyright © 2021 MyNihongo</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/MyNihongo/KanaConverter/</PackageProjectUrl>
+		<Description>Extension methods for conversion of Japanese characters, e.g. hiragana (ひらがな) and katakana (カタカナ).</Description>
+		<PackageTags>hiragana katakana romaji kana japanese conversion</PackageTags>
+		<PackageReleaseNotes>https://github.com/MyNihongo/KanaConverter/releases/</PackageReleaseNotes>
+		<PackageIcon>favico.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\favico.png">
+	    <Pack>True</Pack>
+	    <PackagePath />
+	  </None>
+	</ItemGroup>
+
+</Project>
