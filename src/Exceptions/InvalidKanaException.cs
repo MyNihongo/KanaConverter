@@ -12,7 +12,6 @@ namespace MyNihongo.KanaConverter.Exceptions
 		internal InvalidKanaException(string message)
 			: base(message)
 		{
-			
 		}
 	}
 }
