@@ -188,7 +188,7 @@ namespace MyNihongo.KanaConverter
 					case 's':
 					case 'j':
 						{
-							stringBuilder[consonantIndex + 1] = youonChar;
+							stringBuilder.Set(consonantIndex + 1, youonChar);
 							continue;
 						}
 					case 'h':
@@ -234,7 +234,7 @@ namespace MyNihongo.KanaConverter
 					case 'a':
 					case 'e' or 'o':
 						{
-							stringBuilder[youonSpecialIndex] = youon.Value.GetChar();
+							stringBuilder.Set(youonSpecialIndex, youon.Value.GetChar());
 							continue;
 						}
 				}

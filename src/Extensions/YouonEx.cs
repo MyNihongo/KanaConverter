@@ -4,17 +4,17 @@ namespace MyNihongo.KanaConverter
 {
 	internal static class YouonEx
 	{
-		public static char GetChar(this Youon @this) =>
+		public static YouonChar GetChar(this Youon @this) =>
 			@this switch
 			{
-				Youon.Ya => 'a',
-				Youon.Yu => 'u',
-				Youon.Yo => 'o',
-				Youon.A => 'a',
-				Youon.I => 'i',
-				Youon.U => 'u',
-				Youon.E => 'e',
-				Youon.O => 'o',
+				Youon.Ya => new YouonChar('a'),
+				Youon.Yu => new YouonChar('u'),
+				Youon.Yo => new YouonChar('o'),
+				Youon.A => new YouonChar('a'),
+				Youon.I => new YouonChar('i'),
+				Youon.U => new YouonChar('u'),
+				Youon.E => new YouonChar('e'),
+				Youon.O => new YouonChar('o'),
 				_ => throw new ArgumentOutOfRangeException(nameof(@this), @this, $@"Unknown {nameof(Youon)}: {@this}")
 			};
 	}
