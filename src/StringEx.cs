@@ -158,7 +158,7 @@ namespace MyNihongo.KanaConverter
 					var sokuonChar = romaji[0] switch
 					{
 						'c' => 't',
-						'a' or 'i' or 'u' or 'e' or 'o' or 'w' => throw new InvalidKanaException($"Sokuon (促音) cannot precede a letter \"{romaji[0]}\""),
+						'a' or 'i' or 'u' or 'e' or 'o' => throw new InvalidKanaException($"Sokuon (促音) cannot precede a letter \"{romaji[0]}\""),
 						_ => romaji[0]
 					};
 

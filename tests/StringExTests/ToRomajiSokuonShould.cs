@@ -224,17 +224,17 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("っわ")]
-		[InlineData("っを")]
-		[InlineData("ッワ")]
-		[InlineData("ッヲ")]
-		public void ThrowExceptionForSokuonW(string input)
+		[InlineData("っわっを")]
+		[InlineData("ッワッヲ")]
+		public void ReturnCharsSokuonW(string input)
 		{
-			Action action = () => input.ToRomaji();
+			const string expectedResult = "wwawwo";
 
-			action
+			var result = input.ToRomaji();
+
+			result
 				.Should()
-				.ThrowExactly<InvalidKanaException>();
+				.Be(expectedResult);
 		}
 	}
 }
