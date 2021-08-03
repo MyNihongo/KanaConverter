@@ -130,6 +130,7 @@ namespace MyNihongo.KanaConverter
 					case 'ぅ' or 'ゥ': youon = Youon.U; goto YouonSpecial;
 					case 'ぇ' or 'ェ': youon = Youon.E; goto YouonSpecial;
 					case 'ぉ' or 'ォ': youon = Youon.O; goto YouonSpecial;
+					case 'ゎ' or 'ヮ': youon = Youon.Wa; goto YouonSpecial;
 					// special (促音)
 					case 'っ' or 'ッ': isSokuon = true; continue;
 					// special (長音符)
