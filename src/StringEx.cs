@@ -17,12 +17,9 @@ namespace MyNihongo.KanaConverter
 			if (string.IsNullOrEmpty(@this))
 				return string.Empty;
 
-			StringBuilder stringBuilder;
-			{
-				var capacity = @this.Length * 2;
-				stringBuilder = stringBuilderProvider?.Invoke() ?? new StringBuilder(capacity);
-				stringBuilder.Capacity = capacity;
-			}
+			var capacity = @this.Length * 2;
+			var stringBuilder = stringBuilderProvider?.Invoke() ?? new StringBuilder(capacity);
+			stringBuilder.Capacity = capacity;
 
 			var isSokuon = false;
 
