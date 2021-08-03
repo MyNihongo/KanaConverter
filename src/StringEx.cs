@@ -177,7 +177,7 @@ namespace MyNihongo.KanaConverter
 				switch (stringBuilder[consonantIndex])
 				{
 					case 'k':
-					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r' or 't' or 'd' or 'f':
+					case 'g' or 'n' or 'b' or 'p' or 'm' or 'r' or 't' or 'd' or 'f' or 'v':
 						{
 							stringBuilder[consonantIndex + 1] = 'y';
 							stringBuilder.Append(youonChar);

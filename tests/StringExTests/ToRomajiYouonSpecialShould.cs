@@ -34,11 +34,11 @@ namespace MyNihongo.KanaConverter.Tests.StringExTests
 		}
 
 		[Theory]
-		[InlineData("ヴァ")]
-		[InlineData("ゔぁ")]
+		[InlineData("ゔぁゔゅ")]
+		[InlineData("ヴァヴュ")]
 		public void ReturnCharsYouonV(string input)
 		{
-			const string expectedResult = "va";
+			const string expectedResult = "vavyu";
 
 			var result = input.ToRomaji();
 

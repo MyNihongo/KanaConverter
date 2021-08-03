@@ -14,5 +14,8 @@ namespace MyNihongo.KanaConverter
 		public char Char { get; }
 
 		public char? SecondChar { get; }
+
+		public override string ToString() =>
+			string.Concat(Char, SecondChar);
 	}
 }
