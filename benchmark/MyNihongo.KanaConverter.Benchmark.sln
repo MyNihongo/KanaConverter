@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyNihongo.KanaConverter.Benchmark", "MyNihongo.KanaConverter.Benchmark.csproj", "{FAF3BE8F-263D-46D8-9F6A-9506DA21F261}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyNihongo.KanaConverter", "..\src\MyNihongo.KanaConverter.csproj", "{0B1935A9-EC3E-4758-BADB-AD81CF0F6977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAF3BE8F-263D-46D8-9F6A-9506DA21F261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF3BE8F-263D-46D8-9F6A-9506DA21F261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF3BE8F-263D-46D8-9F6A-9506DA21F261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF3BE8F-263D-46D8-9F6A-9506DA21F261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B1935A9-EC3E-4758-BADB-AD81CF0F6977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B1935A9-EC3E-4758-BADB-AD81CF0F6977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B1935A9-EC3E-4758-BADB-AD81CF0F6977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B1935A9-EC3E-4758-BADB-AD81CF0F6977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F14C0A5E-E311-4BD0-B65E-0CA73F487E13}
+	EndGlobalSection
+EndGlobal
