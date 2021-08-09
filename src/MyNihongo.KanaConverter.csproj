@@ -10,18 +10,18 @@
 		<Copyright>Copyright © 2021 MyNihongo</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/MyNihongo/KanaConverter/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/MyNihongo/KanaConverter/</RepositoryUrl>
+		<PackageReleaseNotes>https://github.com/MyNihongo/KanaConverter/releases/</PackageReleaseNotes>
 		<Description>Extension methods for conversion of Japanese characters, e.g. hiragana (ひらがな) and katakana (カタカナ).</Description>
 		<PackageTags>hiragana katakana romaji kana japanese conversion</PackageTags>
-		<PackageReleaseNotes>https://github.com/MyNihongo/KanaConverter/releases/</PackageReleaseNotes>
 		<PackageIcon>favico.png</PackageIcon>
-		<RepositoryUrl>https://github.com/MyNihongo/KanaConverter/</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\favico.png">
-	    <Pack>True</Pack>
-	    <PackagePath />
-	  </None>
+		<None Include="..\favico.png">
+			<Pack>True</Pack>
+			<PackagePath />
+		</None>
 	</ItemGroup>
 
 </Project>
