@@ -1,17 +1,14 @@
-﻿using System;
+﻿namespace MyNihongo.KanaConverter;
 
-namespace MyNihongo.KanaConverter.Exceptions
+public sealed class InvalidKanaException : Exception
 {
-	public sealed class InvalidKanaException : Exception
+	internal InvalidKanaException(char @char, string @string)
+		: base($"Invalid kana character \"{@char}\" in \"{@string}\"")
 	{
-		internal InvalidKanaException(char @char, string @string)
-			: base($"Invalid kana character \"{@char}\" in \"{@string}\"")
-		{
-		}
+	}
 
-		internal InvalidKanaException(string message)
-			: base(message)
-		{
-		}
+	internal InvalidKanaException(string message)
+		: base(message)
+	{
 	}
 }
