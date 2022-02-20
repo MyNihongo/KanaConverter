@@ -18,6 +18,28 @@ public static class StringEx
 		return result.Value;
 	}
 
+	/// <summary>
+	/// Tries to convert a kana (hiragana or katakana) string to romaji
+	/// </summary>
+	/// <param name="this">Kana string to be converted to romaji</param>
+	/// <param name="value">Romaji string after conversion</param>
+	public static bool TryConvertToRomaji(this string @this, out string value) =>
+		@this.TryConvertToRomaji(null, out value);
+
+	/// <summary>
+	/// Tries to convert a kana (hiragana or katakana) string to romaji
+	/// </summary>
+	/// <param name="this">Kana string to be converted to romaji</param>
+	/// <param name="stringBuilderProvider">Custom function to create a <see cref="StringBuilder"/>. Useful for Microsoft.Extensions.ObjectPool and ObjectPool&lt;StringBuilder&gt;.Get()</param>
+	/// <param name="value">Romaji string after conversion</param>
+	public static bool TryConvertToRomaji(this string @this, Func<StringBuilder>? stringBuilderProvider, out string value)
+	{
+		var result = @this.ConvertToRomaji(stringBuilderProvider);
+		value = result.Value;
+
+		return result.ErrorMessage != null;
+	}
+
 	private static ConversionResult ConvertToRomaji(this string @this, Func<StringBuilder>? stringBuilderProvider = null)
 	{
 		if (string.IsNullOrEmpty(@this))
