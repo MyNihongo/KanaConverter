@@ -37,7 +37,7 @@ public static class StringEx
 		var result = @this.ConvertToRomaji(stringBuilderProvider);
 		value = result.Value;
 
-		return result.ErrorMessage != null;
+		return result.ErrorMessage == null;
 	}
 
 	private static ConversionResult ConvertToRomaji(this string @this, Func<StringBuilder>? stringBuilderProvider = null)
