@@ -10,8 +10,18 @@ public static class StringEx
 	/// <exception cref="InvalidKanaException"></exception>
 	public static string ToRomaji(this string @this, Func<StringBuilder>? stringBuilderProvider = null)
 	{
+		var result = @this.ConvertToRomaji(stringBuilderProvider);
+
+		if (result.ErrorMessage != null)
+			throw new InvalidKanaException(result.ErrorMessage);
+
+		return result.Value;
+	}
+
+	private static ConversionResult ConvertToRomaji(this string @this, Func<StringBuilder>? stringBuilderProvider = null)
+	{
 		if (string.IsNullOrEmpty(@this))
-			return string.Empty;
+			return ConversionResult.FromValue(string.Empty);
 
 		var capacity = @this.Length * 2;
 		var stringBuilder = stringBuilderProvider?.Invoke() ?? new StringBuilder(capacity);
@@ -130,33 +140,51 @@ public static class StringEx
 				case 'ー':
 					var vowelIndex = stringBuilder.Length - 1;
 					if (vowelIndex < 0)
-						throw new InvalidKanaException("Chōonpu (長音符) cannot be the first character");
+						return ConversionResult.FromError("Chōonpu (長音符) cannot be the first character");
 
-					var vowelChar = stringBuilder[vowelIndex] switch
+					char vowelChar;
+					switch (stringBuilder[vowelIndex])
 					{
-						'a' or 'i' or 'u' or 'e' or 'o' => stringBuilder[vowelIndex],
-						_ => throw new InvalidKanaException($"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"")
-					};
+						case 'a':
+						case 'i':
+						case 'u':
+						case 'e':
+						case 'o':
+							vowelChar = stringBuilder[vowelIndex];
+							break;
+						default:
+							return ConversionResult.FromError($"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"");
+					}
 
 					stringBuilder.Append(vowelChar);
 					continue;
 				// skip
 				case '・': continue;
 				default:
-					throw new InvalidKanaException(@this[i], @this);
+					return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
 			}
 
 			Romaji:
 			if (isSokuon)
 			{
 				isSokuon = false;
+				char sokuonChar;
 
-				var sokuonChar = romaji[0] switch
+				switch (romaji[0])
 				{
-					'c' => 't',
-					'a' or 'i' or 'u' or 'e' or 'o' => throw new InvalidKanaException($"Sokuon (促音) cannot precede a letter \"{romaji[0]}\""),
-					_ => romaji[0]
-				};
+					case 'c':
+						sokuonChar = 't';
+						break;
+					case 'a':
+					case 'i':
+					case 'u':
+					case 'e':
+					case 'o':
+						return ConversionResult.FromError($"Sokuon (促音) cannot precede a letter \"{romaji[0]}\"");
+					default:
+						sokuonChar = romaji[0];
+						break;
+				}
 
 				stringBuilder.Append(sokuonChar);
 			}
@@ -167,7 +195,7 @@ public static class StringEx
 			Youon:
 			var consonantIndex = stringBuilder.Length - 2;
 			if (consonantIndex < 0)
-				throw new InvalidKanaException($"Yōon (拗音) \"{youon}\" cannot be the first character");
+				return ConversionResult.FromError($"Yōon (拗音) \"{youon}\" cannot be the first character");
 
 			var youonChar = youon.Value.GetChar();
 			switch (stringBuilder[consonantIndex])
@@ -194,13 +222,13 @@ public static class StringEx
 					goto case 'k';
 				}
 				default:
-					throw new InvalidKanaException($"Unrecognised yōon (拗音) combination in \"{@this}\"");
+					return ConversionResult.FromError($"Unrecognised yōon (拗音) combination in \"{@this}\"");
 			}
 
 			YouonSpecial:
 			var youonSpecialIndex = stringBuilder.Length - 1;
 			if (youonSpecialIndex < 0)
-				throw new InvalidKanaException($"Yōon (拗音) \"{youon}\" cannot be the first character");
+				return ConversionResult.FromError($"Yōon (拗音) \"{youon}\" cannot be the first character");
 
 			char? youonVowelChar;
 			switch (stringBuilder[youonSpecialIndex])
@@ -233,13 +261,13 @@ public static class StringEx
 				}
 			}
 
-			throw new InvalidKanaException($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
+			return ConversionResult.FromError($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
 
 			VowelYouon:
 			stringBuilder[youonSpecialIndex] = youonVowelChar.Value;
 			stringBuilder.Append(youon.Value.GetChar());
 		}
 
-		return stringBuilder.ToString();
+		return ConversionResult.FromValue(stringBuilder.ToString());
 	}
 }
