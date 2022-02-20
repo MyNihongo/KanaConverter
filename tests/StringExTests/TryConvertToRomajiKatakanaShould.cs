@@ -1,6 +1,6 @@
 ﻿namespace MyNihongo.KanaConverter.Tests.StringExTests;
 
-public sealed class ToRomajiKatakanaShould
+public sealed class TryConvertToRomajiKatakanaShould
 {
 	[Theory]
 	[InlineData("アー", "aa")]
@@ -32,9 +32,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ワー", "waa")]
 	public void ReturnCharsLongVowelA(string input, string expected)
 	{
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -66,9 +70,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("リィー", "ryii")]
 	public void ReturnCharsLongVowelI(string input, string expected)
 	{
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -101,9 +109,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("リュー", "ryuu")]
 	public void ReturnCahrsLongVowelU(string input, string expected)
 	{
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -135,9 +147,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("リェー", "ryee")]
 	public void ReturnCharsLongVowelE(string input, string expected)
 	{
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -172,9 +188,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ヲー", "woo")]
 	public void ReturnCharsLongVowelO(string input, string expected)
 	{
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -185,9 +205,13 @@ public sealed class ToRomajiKatakanaShould
 		const string input = "ジ・エンド",
 			expected = "jiendo";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}

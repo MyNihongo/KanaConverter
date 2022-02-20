@@ -1,15 +1,14 @@
-﻿namespace MyNihongo.KanaConverter
+﻿namespace MyNihongo.KanaConverter;
+
+internal enum Youon : byte
 {
-	internal enum Youon : byte
-	{
-		Ya,
-		Yu,
-		Yo,
-		A,
-		I,
-		U,
-		E,
-		O,
-		Wa
-	}
+	Ya,
+	Yu,
+	Yo,
+	A,
+	I,
+	U,
+	E,
+	O,
+	Wa
 }

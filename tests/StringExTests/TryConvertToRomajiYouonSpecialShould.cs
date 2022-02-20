@@ -1,6 +1,6 @@
 ﻿namespace MyNihongo.KanaConverter.Tests.StringExTests;
 
-public sealed class ToRomajiYouonSpecialShould
+public sealed class TryConvertToRomajiYouonSpecialShould
 {
 	[Theory]
 	[InlineData("いぇ")]
@@ -9,9 +9,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "ye";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -23,9 +27,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "wiwe";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -37,9 +45,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "vavyu";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -51,9 +63,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "kakikukekokwaki";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -65,9 +81,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "gagigugegogwagi";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -79,9 +99,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "sasisusesoswasi";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -93,9 +117,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "zazizuzezozwazi";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -107,9 +135,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "tsatsitsutsetsotswatityu";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -121,9 +153,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "zazizuzezozwadidyudu";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -135,9 +171,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "naninunenonwani";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -149,9 +189,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "fafifufefofwafyuhi";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -163,9 +207,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "babibubebobwabi";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -177,9 +225,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "papipupepopwapi";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -191,9 +243,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "mamimumemomwami";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -205,9 +261,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "yayiyuyeyoywa";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -219,9 +279,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "rarirurerorwari";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -233,9 +297,13 @@ public sealed class ToRomajiYouonSpecialShould
 	{
 		const string expected = "wa";
 
-		var result = input.ToRomaji();
+		var result = input.TryConvertToRomaji(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
