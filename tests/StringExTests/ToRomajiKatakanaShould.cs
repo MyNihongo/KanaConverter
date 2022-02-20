@@ -30,13 +30,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ラー", "raa")]
 	[InlineData("リャー", "ryaa")]
 	[InlineData("ワー", "waa")]
-	public void ReturnCharsLongVowelA(string input, string expectedResult)
+	public void ReturnCharsLongVowelA(string input, string expected)
 	{
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -64,13 +64,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ミィー", "myii")]
 	[InlineData("リー", "rii")]
 	[InlineData("リィー", "ryii")]
-	public void ReturnCharsLongVowelI(string input, string expectedResult)
+	public void ReturnCharsLongVowelI(string input, string expected)
 	{
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -99,13 +99,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ユー", "yuu")]
 	[InlineData("ルー", "ruu")]
 	[InlineData("リュー", "ryuu")]
-	public void ReturnCahrsLongVowelU(string input, string expectedResult)
+	public void ReturnCahrsLongVowelU(string input, string expected)
 	{
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -133,13 +133,13 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ミェー", "myee")]
 	[InlineData("レー", "ree")]
 	[InlineData("リェー", "ryee")]
-	public void ReturnCharsLongVowelE(string input, string expectedResult)
+	public void ReturnCharsLongVowelE(string input, string expected)
 	{
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -170,25 +170,25 @@ public sealed class ToRomajiKatakanaShould
 	[InlineData("ロー", "roo")]
 	[InlineData("リョー", "ryoo")]
 	[InlineData("ヲー", "woo")]
-	public void ReturnCharsLongVowelO(string input, string expectedResult)
+	public void ReturnCharsLongVowelO(string input, string expected)
 	{
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Fact]
 	public void SkipPunctuationMark()
 	{
 		const string input = "ジ・エンド",
-			expectedResult = "jiendo";
+			expected = "jiendo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 }

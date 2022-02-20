@@ -27,13 +27,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッン")]
 	public void ReturnCharsSokuon(string input)
 	{
-		const string expectedResult = "nn";
+		const string expected = "nn";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -41,13 +41,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッカッキックッケッコッキャッキィッキュッキェッキョ")]
 	public void ReturnCharsSokuonK(string input)
 	{
-		const string expectedResult = "kkakkikkukkekkokkyakkyikkyukkyekkyo";
+		const string expected = "kkakkikkukkekkokkyakkyikkyukkyekkyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -55,13 +55,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッガッギッグッゲッゴッギャッギィッギュッギェッギョ")]
 	public void ReturnCharsSokuonG(string input)
 	{
-		const string expectedResult = "ggaggigguggeggoggyaggyiggyuggyeggyo";
+		const string expected = "ggaggigguggeggoggyaggyiggyuggyeggyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -69,13 +69,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッサッシッスッセッソッシャッシィッシュッシェッショ")]
 	public void ReturnCharsSokuonS(string input)
 	{
-		const string expectedResult = "ssasshissussessosshasshisshusshessho";
+		const string expected = "ssasshissussessosshasshisshusshessho";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -83,13 +83,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッザッジッズッゼッゾッジャッジィッジュッジェッジョ")]
 	public void ReturnCharsSokuonZ(string input)
 	{
-		const string expectedResult = "zzajjizzuzzezzojjajjijjujjejjo";
+		const string expected = "zzajjizzuzzezzojjajjijjujjejjo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -97,13 +97,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッタッチッツッテットッチャッチィッチュッチェッチョ")]
 	public void ReturnCharsSokuonT(string input)
 	{
-		const string expectedResult = "ttatchittsuttettotchatchitchutchetcho";
+		const string expected = "ttatchittsuttettotchatchitchutchetcho";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -111,13 +111,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッダッヂッヅッデッド")]
 	public void ReturnCharsSokuonD(string input)
 	{
-		const string expectedResult = "ddajjizzuddeddo";
+		const string expected = "ddajjizzuddeddo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -125,13 +125,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッナッニッヌッネッノッニャッニィッニュッニェッニョ")]
 	public void ReturnCharsSokuonN(string input)
 	{
-		const string expectedResult = "nnanninnunnennonnyannyinnyunnyennyo";
+		const string expected = "nnanninnunnennonnyannyinnyunnyennyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -139,13 +139,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッハッヒッフッヘッホッヒャッヒィッヒュッヒェッヒョ")]
 	public void ReturnCharsSokuonH(string input)
 	{
-		const string expectedResult = "hhahhiffuhhehhohhyahhyihhyuhhyehhyo";
+		const string expected = "hhahhiffuhhehhohhyahhyihhyuhhyehhyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -153,13 +153,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッバッビッブッベッボッビャッビィッビュッビェッビョ")]
 	public void ReturnCharsSokuonB(string input)
 	{
-		const string expectedResult = "bbabbibbubbebbobbyabbyibbyubbyebbyo";
+		const string expected = "bbabbibbubbebbobbyabbyibbyubbyebbyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -167,13 +167,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッパッピップッペッポッピャッピィッピュッピェッピョ")]
 	public void ReturnCharsSokuonP(string input)
 	{
-		const string expectedResult = "ppappippuppeppoppyappyippyuppyeppyo";
+		const string expected = "ppappippuppeppoppyappyippyuppyeppyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -181,13 +181,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッマッミッムッメッモッミャッミィッミュッミェッミョ")]
 	public void ReturnCharsSokuonM(string input)
 	{
-		const string expectedResult = "mmammimmummemmommyammyimmyummyemmyo";
+		const string expected = "mmammimmummemmommyammyimmyummyemmyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -195,13 +195,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッヤッユッヨ")]
 	public void ReturnCharsSokuonY(string input)
 	{
-		const string expectedResult = "yyayyuyyo";
+		const string expected = "yyayyuyyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -209,13 +209,13 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッラッリッルッレッロッリャッリィッリュッリェッリョ")]
 	public void ReturnCharsSokuonR(string input)
 	{
-		const string expectedResult = "rrarrirrurrerrorryarryirryurryerryo";
+		const string expected = "rrarrirrurrerrorryarryirryurryerryo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -223,12 +223,12 @@ public sealed class ToRomajiSokuonShould
 	[InlineData("ッワッヲ")]
 	public void ReturnCharsSokuonW(string input)
 	{
-		const string expectedResult = "wwawwo";
+		const string expected = "wwawwo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 }

@@ -7,13 +7,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("イェ")]
 	public void ReturnCharsYouonI(string input)
 	{
-		const string expectedResult = "ye";
+		const string expected = "ye";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -21,13 +21,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ウィウェ")]
 	public void ReturnCharsYouonU(string input)
 	{
-		const string expectedResult = "wiwe";
+		const string expected = "wiwe";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -35,13 +35,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ヴァヴュ")]
 	public void ReturnCharsYouonV(string input)
 	{
-		const string expectedResult = "vavyu";
+		const string expected = "vavyu";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -49,13 +49,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("クァクィクゥクェクォクヮケィ")]
 	public void ReturnCharsYouonSpecialK(string input)
 	{
-		const string expectedResult = "kakikukekokwaki";
+		const string expected = "kakikukekokwaki";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -63,13 +63,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("グァグィグゥグェグォグヮゲィ")]
 	public void ReturnCharsYouonSpecialG(string input)
 	{
-		const string expectedResult = "gagigugegogwagi";
+		const string expected = "gagigugegogwagi";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -77,13 +77,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("スァスィスゥスェスォスヮセィ")]
 	public void ReturnCharsYouonSpecialS(string input)
 	{
-		const string expectedResult = "sasisusesoswasi";
+		const string expected = "sasisusesoswasi";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -91,13 +91,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ズァズィズゥズェズォズヮゼィ")]
 	public void ReturnCharsYouonSpecialZ(string input)
 	{
-		const string expectedResult = "zazizuzezozwazi";
+		const string expected = "zazizuzezozwazi";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -105,13 +105,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ツァツィツゥツェツォツヮティテュ")]
 	public void ReturnCharsYouonSpecialT(string input)
 	{
-		const string expectedResult = "tsatsitsutsetsotswatityu";
+		const string expected = "tsatsitsutsetsotswatityu";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -119,13 +119,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ヅァヅィヅゥヅェヅォヅヮディデュドゥ")]
 	public void ReturnCharsYouonSpecialD(string input)
 	{
-		const string expectedResult = "zazizuzezozwadidyudu";
+		const string expected = "zazizuzezozwadidyudu";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -133,13 +133,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ヌァヌィヌゥヌェヌォヌヮネィ")]
 	public void ReturnCharsYouonSpecialN(string input)
 	{
-		const string expectedResult = "naninunenonwani";
+		const string expected = "naninunenonwani";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -147,13 +147,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ファフィフゥフェフォフヮフュヘィ")]
 	public void ReturnCharsYouonSpecialH(string input)
 	{
-		const string expectedResult = "fafifufefofwafyuhi";
+		const string expected = "fafifufefofwafyuhi";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -161,13 +161,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ブァブィブゥブェブォブヮベィ")]
 	public void ReturnCharsYouonSpecialB(string input)
 	{
-		const string expectedResult = "babibubebobwabi";
+		const string expected = "babibubebobwabi";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -175,13 +175,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("プァプィプゥプェプォプヮペィ")]
 	public void ReturnCharsYouonSpecialP(string input)
 	{
-		const string expectedResult = "papipupepopwapi";
+		const string expected = "papipupepopwapi";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -189,13 +189,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ムァムィムゥムェムォムヮメィ")]
 	public void ReturnCharsYouonSpecialM(string input)
 	{
-		const string expectedResult = "mamimumemomwami";
+		const string expected = "mamimumemomwami";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -203,13 +203,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ユァユィユゥユェユォユヮ")]
 	public void ReturnCharsYouonSpecialY(string input)
 	{
-		const string expectedResult = "yayiyuyeyoywa";
+		const string expected = "yayiyuyeyoywa";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -217,13 +217,13 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ルァルィルゥルェルォルヮレィ")]
 	public void ReturnCharsYouonSpecialR(string input)
 	{
-		const string expectedResult = "rarirurerorwari";
+		const string expected = "rarirurerorwari";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -231,12 +231,12 @@ public sealed class ToRomajiYouonSpecialShould
 	[InlineData("ワァ")]
 	public void ReturnCharsYouonSpecialW(string input)
 	{
-		const string expectedResult = "wa";
+		const string expected = "wa";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 }

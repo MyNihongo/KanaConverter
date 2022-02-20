@@ -19,13 +19,13 @@ public sealed class ToRomajiShould
 	[InlineData("アイウエオン")]
 	public void ReturnChars(string input)
 	{
-		const string expectedResult = "aiueon";
+		const string expected = "aiueon";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -33,13 +33,13 @@ public sealed class ToRomajiShould
 	[InlineData("ヴ")]
 	public void ReturnCharsDakuten(string input)
 	{
-		const string expectedResult = "vu";
+		const string expected = "vu";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -47,13 +47,13 @@ public sealed class ToRomajiShould
 	[InlineData("カキクケコ")]
 	public void ReturnCharsK(string input)
 	{
-		const string expectedResult = "kakikukeko";
+		const string expected = "kakikukeko";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -61,13 +61,13 @@ public sealed class ToRomajiShould
 	[InlineData("ガギグゲゴ")]
 	public void ReturnCharsG(string input)
 	{
-		const string expectedResult = "gagigugego";
+		const string expected = "gagigugego";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -75,13 +75,13 @@ public sealed class ToRomajiShould
 	[InlineData("サシスセソ")]
 	public void ReturnCharsS(string input)
 	{
-		const string expectedResult = "sashisuseso";
+		const string expected = "sashisuseso";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -89,13 +89,13 @@ public sealed class ToRomajiShould
 	[InlineData("ザジズゼゾ")]
 	public void ReturnCharsZ(string input)
 	{
-		const string expectedResult = "zajizuzezo";
+		const string expected = "zajizuzezo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -103,13 +103,13 @@ public sealed class ToRomajiShould
 	[InlineData("タチツテト")]
 	public void ReturnCharsT(string input)
 	{
-		const string expectedResult = "tachitsuteto";
+		const string expected = "tachitsuteto";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -117,13 +117,13 @@ public sealed class ToRomajiShould
 	[InlineData("ダヂヅデド")]
 	public void ReturnCharsD(string input)
 	{
-		const string expectedResult = "dajizudedo";
+		const string expected = "dajizudedo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -131,13 +131,13 @@ public sealed class ToRomajiShould
 	[InlineData("ナニヌネノ")]
 	public void ReturnCharsN(string input)
 	{
-		const string expectedResult = "naninuneno";
+		const string expected = "naninuneno";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -145,13 +145,13 @@ public sealed class ToRomajiShould
 	[InlineData("ハヒフヘホ")]
 	public void ReturnCharsH(string input)
 	{
-		const string expectedResult = "hahifuheho";
+		const string expected = "hahifuheho";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -159,13 +159,13 @@ public sealed class ToRomajiShould
 	[InlineData("バビブベボ")]
 	public void ReturnCharsB(string input)
 	{
-		const string expectedResult = "babibubebo";
+		const string expected = "babibubebo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -173,13 +173,13 @@ public sealed class ToRomajiShould
 	[InlineData("パピプペポ")]
 	public void ReturnCharsP(string input)
 	{
-		const string expectedResult = "papipupepo";
+		const string expected = "papipupepo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -187,13 +187,13 @@ public sealed class ToRomajiShould
 	[InlineData("マミムメモ")]
 	public void ReturnCharsM(string input)
 	{
-		const string expectedResult = "mamimumemo";
+		const string expected = "mamimumemo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -201,13 +201,13 @@ public sealed class ToRomajiShould
 	[InlineData("ヤユヨ")]
 	public void ReturnCharsY(string input)
 	{
-		const string expectedResult = "yayuyo";
+		const string expected = "yayuyo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -215,13 +215,13 @@ public sealed class ToRomajiShould
 	[InlineData("ラリルレロ")]
 	public void ReturnCharsR(string input)
 	{
-		const string expectedResult = "rarirurero";
+		const string expected = "rarirurero";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 
 	[Theory]
@@ -229,12 +229,12 @@ public sealed class ToRomajiShould
 	[InlineData("ワヲ")]
 	public void ReturnCharsW(string input)
 	{
-		const string expectedResult = "wawo";
+		const string expected = "wawo";
 
 		var result = input.ToRomaji();
 
 		result
 			.Should()
-			.Be(expectedResult);
+			.Be(expected);
 	}
 }
