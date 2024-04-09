@@ -8,11 +8,12 @@ public static class StringEx
 	/// Converts a kana (hiragana or katakana) string to romaji
 	/// </summary>
 	/// <param name="this">Kana string to be converted to romaji</param>
+	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated</param>
 	/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted to romaji in a loop</param>
 	/// <exception cref="InvalidKanaException"></exception>
-	public static string ToRomaji(this string @this, ObjectPool<StringBuilder>? stringBuilderPool = null)
+	public static string ToRomaji(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 	{
-		var result = @this.ConvertToRomaji(stringBuilderPool);
+		var result = @this.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
 
 		if (result.ErrorMessage != null)
 			throw new InvalidKanaException(result.ErrorMessage);
@@ -26,23 +27,33 @@ public static class StringEx
 	/// <param name="this">Kana string to be converted to romaji</param>
 	/// <param name="value">Romaji string after conversion</param>
 	public static bool TryConvertToRomaji(this string @this, out string value) =>
-		@this.TryConvertToRomaji(null, out value);
+		@this.TryConvertToRomaji(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+	
+	/// <summary>
+	/// Tries to convert a kana (hiragana or katakana) string to romaji
+	/// </summary>
+	/// <param name="this">Kana string to be converted to romaji</param>
+	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated</param>
+	/// <param name="value">Romaji string after conversion</param>
+	public static bool TryConvertToRomaji(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+		@this.TryConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
 
 	/// <summary>
 	/// Tries to convert a kana (hiragana or katakana) string to romaji
 	/// </summary>
 	/// <param name="this">Kana string to be converted to romaji</param>
+	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated</param>
 	/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted to romaji in a loop</param>
 	/// <param name="value">Romaji string after conversion</param>
-	public static bool TryConvertToRomaji(this string @this, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+	public static bool TryConvertToRomaji(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
 	{
-		var result = @this.ConvertToRomaji(stringBuilderPool);
+		var result = @this.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
 		value = result.Value;
 
 		return result.ErrorMessage == null;
 	}
 
-	private static ConversionResult ConvertToRomaji(this string @this, ObjectPool<StringBuilder>? stringBuilderPool = null)
+	private static ConversionResult ConvertToRomaji(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
 		if (string.IsNullOrEmpty(@this))
 			return ConversionResult.FromValue(string.Empty);
@@ -351,7 +362,18 @@ public static class StringEx
 					// skip
 					case '・': continue;
 					default:
-						return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+					{
+						switch (unrecognisedCharacterPolicy)
+						{
+							case UnrecognisedCharacterPolicy.Skip:
+								continue;
+							case UnrecognisedCharacterPolicy.Append:
+								stringBuilder.Append(@this[i]);
+								continue;
+							default:
+								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+						}
+					}
 				}
 
 				Romaji:
