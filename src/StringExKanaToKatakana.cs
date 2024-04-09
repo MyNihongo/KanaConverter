@@ -157,6 +157,195 @@ public static partial class StringEx
 						stringBuilder.Append('ゾ');
 						continue;
 					// t
+					case 'た':
+						stringBuilder.Append('タ');
+						continue;
+					case 'ち':
+						stringBuilder.Append('チ');
+						continue;
+					case 'つ':
+						stringBuilder.Append('ツ');
+						continue;
+					case 'て':
+						stringBuilder.Append('テ');
+						continue;
+					case 'と':
+						stringBuilder.Append('ト');
+						continue;
+					// d
+					case 'だ':
+						stringBuilder.Append('ダ');
+						continue;
+					case 'ぢ':
+						stringBuilder.Append('ヂ');
+						continue;
+					case 'づ':
+						stringBuilder.Append('ヅ');
+						continue;
+					case 'で':
+						stringBuilder.Append('デ');
+						continue;
+					case 'ど':
+						stringBuilder.Append('ド');
+						continue;
+					// n
+					case 'な':
+						stringBuilder.Append('ナ');
+						continue;
+					case 'に':
+						stringBuilder.Append('ニ');
+						continue;
+					case 'ぬ':
+						stringBuilder.Append('ヌ');
+						continue;
+					case 'ね':
+						stringBuilder.Append('ネ');
+						continue;
+					case 'の':
+						stringBuilder.Append('ノ');
+						continue;
+					// h
+					case 'は':
+						stringBuilder.Append('ハ');
+						continue;
+					case 'ひ':
+						stringBuilder.Append('ヒ');
+						continue;
+					case 'ふ':
+						stringBuilder.Append('フ');
+						continue;
+					case 'へ':
+						stringBuilder.Append('ヘ');
+						continue;
+					case 'ほ':
+						stringBuilder.Append('ホ');
+						continue;
+					// b
+					case 'ば':
+						stringBuilder.Append('バ');
+						continue;
+					case 'び':
+						stringBuilder.Append('ビ');
+						continue;
+					case 'ぶ':
+						stringBuilder.Append('ブ');
+						continue;
+					case 'べ':
+						stringBuilder.Append('ベ');
+						continue;
+					case 'ぼ':
+						stringBuilder.Append('ボ');
+						continue;
+					// p
+					case 'ぱ':
+						stringBuilder.Append('パ');
+						continue;
+					case 'ぴ':
+						stringBuilder.Append('ピ');
+						continue;
+					case 'ぷ':
+						stringBuilder.Append('プ');
+						continue;
+					case 'ぺ':
+						stringBuilder.Append('ペ');
+						continue;
+					case 'ぽ':
+						stringBuilder.Append('ポ');
+						continue;
+					// m
+					case 'ま':
+						stringBuilder.Append('マ');
+						continue;
+					case 'み':
+						stringBuilder.Append('ミ');
+						continue;
+					case 'む':
+						stringBuilder.Append('ム');
+						continue;
+					case 'め':
+						stringBuilder.Append('メ');
+						continue;
+					case 'も':
+						stringBuilder.Append('モ');
+						continue;
+					// y
+					case 'や':
+						stringBuilder.Append('ヤ');
+						continue;
+					case 'ゆ':
+						stringBuilder.Append('ユ');
+						continue;
+					case 'よ':
+						stringBuilder.Append('ヨ');
+						continue;
+					// r
+					case 'ら':
+						stringBuilder.Append('ラ');
+						continue;
+					case 'り':
+						stringBuilder.Append('リ');
+						continue;
+					case 'る':
+						stringBuilder.Append('ル');
+						continue;
+					case 'れ':
+						stringBuilder.Append('レ');
+						continue;
+					case 'ろ':
+						stringBuilder.Append('ロ');
+						continue;
+					// w
+					case 'わ':
+						stringBuilder.Append('ワ');
+						continue;
+					case 'を':
+						stringBuilder.Append('ヲ');
+						continue;
+					// special (拗音)
+					case 'ゃ':
+						stringBuilder.Append('ャ');
+						continue;
+					case 'ゅ':
+						stringBuilder.Append('ュ');
+						continue;
+					case 'ょ':
+						stringBuilder.Append('ョ');
+						continue;
+					case 'ぁ':
+						stringBuilder.Append('ァ');
+						continue;
+					case 'ぃ':
+						stringBuilder.Append('ィ');
+						continue;
+					case 'ぅ':
+						stringBuilder.Append('ゥ');
+						continue;
+					case 'ぇ':
+						stringBuilder.Append('ェ');
+						continue;
+					case 'ぉ':
+						stringBuilder.Append('ォ');
+						continue;
+					case 'ゎ':
+						stringBuilder.Append('ヮ');
+						continue;
+					// special (促音)
+					case 'っ':
+						stringBuilder.Append('ッ');
+						continue;
+					default:
+					{
+						switch (unrecognisedCharacterPolicy)
+						{
+							case UnrecognisedCharacterPolicy.Skip:
+								continue;
+							case UnrecognisedCharacterPolicy.Append:
+								stringBuilder.Append(@this[i]);
+								continue;
+							default:
+								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+						}
+					}
 				}
 			}
 			

@@ -78,4 +78,134 @@ public sealed class KanaToKatakanaShould
 			.Should()
 			.Be(expected);
 	}
+	
+	[Fact]
+	public void ReturnCharsT()
+	{
+		const string input = "たちつてと",
+			expected = "タチツテト";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsD()
+	{
+		const string input = "だぢづでど",
+			expected = "ダヂヅデド";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsN()
+	{
+		const string input = "なにぬねの",
+			expected = "ナニヌネノ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsH()
+	{
+		const string input = "はひふへほ",
+			expected = "ハヒフヘホ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsB()
+	{
+		const string input = "ばびぶべぼ",
+			expected = "バビブベボ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsP()
+	{
+		const string input = "ぱぴぷぺぽ",
+			expected = "パピプペポ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsM()
+	{
+		const string input = "まみむめも",
+			expected = "マミムメモ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsY()
+	{
+		const string input = "やゆよ",
+			expected = "ヤユヨ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsR()
+	{
+		const string input = "らりるれろ",
+			expected = "ラリルレロ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
+	public void ReturnCharsW()
+	{
+		const string input = "わを",
+			expected = "ワヲ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }
