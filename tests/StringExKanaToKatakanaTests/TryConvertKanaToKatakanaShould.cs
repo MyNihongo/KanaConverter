@@ -1,15 +1,19 @@
 ﻿namespace MyNihongo.KanaConverter.Tests.StringExKanaToKatakanaTests;
 
-public sealed class KanaToKatakanaShould
+public sealed class TryConvertKanaToKatakanaShould
 {
 	[Theory]
 	[InlineData(null)]
 	[InlineData("")]
 	public void ReturnEmptyIfNullOrEmpty(string input)
 	{
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.BeEmpty();
 	}
@@ -20,9 +24,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "あいうえおん",
 			expected = "アイウエオン";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -33,9 +41,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "ゔ",
 			expected = "ヴ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -46,9 +58,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "かきくけこ",
 			expected = "カキクケコ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -59,9 +75,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "がぎぐげご",
 			expected = "ガギグゲゴ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -72,9 +92,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "さしすせそ",
 			expected = "サシスセソ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -85,9 +109,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "ざじずぜぞ",
 			expected = "ザジズゼゾ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -98,9 +126,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "たちつてと",
 			expected = "タチツテト";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -111,9 +143,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "だぢづでど",
 			expected = "ダヂヅデド";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -124,9 +160,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "なにぬねの",
 			expected = "ナニヌネノ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -137,9 +177,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "はひふへほ",
 			expected = "ハヒフヘホ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -150,9 +194,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "ばびぶべぼ",
 			expected = "バビブベボ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -163,9 +211,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "ぱぴぷぺぽ",
 			expected = "パピプペポ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -176,9 +228,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "まみむめも",
 			expected = "マミムメモ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -189,9 +245,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "やゆよ",
 			expected = "ヤユヨ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -202,9 +262,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "らりるれろ",
 			expected = "ラリルレロ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -215,9 +279,13 @@ public sealed class KanaToKatakanaShould
 		const string input = "わを",
 			expected = "ワヲ";
 
-		var result = input.KanaToKatakana();
+		var result = input.TryConvertKanaToKatakana(out var valueResult);
 
 		result
+			.Should()
+			.BeTrue();
+
+		valueResult
 			.Should()
 			.Be(expected);
 	}
