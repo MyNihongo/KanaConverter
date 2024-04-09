@@ -10,5 +10,5 @@ internal enum Youon : byte
 	U,
 	E,
 	O,
-	Wa
+	Wa,
 }

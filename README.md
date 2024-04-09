@@ -14,15 +14,17 @@ var stringBuilderPool = new DefaultObjectPoolProvider()
 
 for (var i = 0; i < 1_000_000; i++)
 {
-	var romaji = "ひらがな・カタカナ".ToRomaji(stringBuilderPool.Get);
+	var romaji = "ひらがな・カタカナ".ToRomaji(stringBuilderPool);
 }
 ```
 
 ## Benchmark
 Convert a kana string of 1,000,000 characters to romaji.
-|                 Method |     Mean |    Error |   StdDev |     Gen 0 |    Gen 1 |    Gen 2 | Allocated |
-|----------------------- |---------:|---------:|---------:|----------:|---------:|---------:|----------:|
-|              MyNihongo | 17.61 ms | 0.349 ms | 0.310 ms |  312.5000 | 312.5000 | 312.5000 |      7 MB |
-| WanaKana_Sharp (0.1.1) | 35.95 ms | 0.617 ms | 0.577 ms | 1000.0000 | 714.2857 | 428.5714 |      7 MB |
+| Method                 | Mean         | Error      | StdDev     | Gen0       | Gen1       | Gen2       | Allocated |
+|----------------------- |-------------:|-----------:|-----------:|-----------:|-----------:|-----------:|----------:|
+| MyNihongo              |     9.756 ms |  0.1463 ms |  0.1368 ms |   984.3750 |   984.3750 |   984.3750 |   7.54 MB |
+| MyNihongoMultiple      |   962.581 ms |  7.2602 ms |  6.7912 ms | 99000.0000 | 99000.0000 | 99000.0000 | 754.29 MB |
+| WanaKana_Sharp         |    11.545 ms |  0.1239 ms |  0.1159 ms |   796.8750 |   781.2500 |   484.3750 |   7.62 MB |
+| WanaKana_SharpMultiple | 1,147.683 ms | 14.6285 ms | 12.9678 ms | 80000.0000 | 79000.0000 | 49000.0000 | 761.87 MB |
 
 WanaKana_Net (1.0.0) threw a StackOverflow exception.
