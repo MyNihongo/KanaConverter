@@ -14,7 +14,7 @@ var stringBuilderPool = new DefaultObjectPoolProvider()
 
 for (var i = 0; i < 1_000_000; i++)
 {
-	var romaji = "ひらがな・カタカナ".ToRomaji(stringBuilderPool.Get);
+	var romaji = "ひらがな・カタカナ".ToRomaji(stringBuilderPool);
 }
 ```
 
