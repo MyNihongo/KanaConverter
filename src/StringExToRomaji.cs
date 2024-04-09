@@ -2,7 +2,7 @@
 
 namespace MyNihongo.KanaConverter;
 
-public static class StringEx
+public static partial class StringEx
 {
 	/// <summary>
 	/// Converts a kana (hiragana or katakana) string to romaji
@@ -28,7 +28,7 @@ public static class StringEx
 	/// <param name="value">Romaji string after conversion</param>
 	public static bool TryConvertToRomaji(this string @this, out string value) =>
 		@this.TryConvertToRomaji(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
-	
+
 	/// <summary>
 	/// Tries to convert a kana (hiragana or katakana) string to romaji
 	/// </summary>
