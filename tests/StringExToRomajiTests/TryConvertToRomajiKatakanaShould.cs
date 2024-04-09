@@ -1,4 +1,4 @@
-﻿namespace MyNihongo.KanaConverter.Tests.StringExTests;
+﻿namespace MyNihongo.KanaConverter.Tests.StringExToRomajiTests;
 
 public sealed class TryConvertToRomajiKatakanaShould
 {

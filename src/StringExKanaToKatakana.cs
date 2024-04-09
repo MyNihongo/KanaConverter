@@ -56,5 +56,115 @@ public static partial class StringEx
 
 	private static ConversionResult ConvertKanaToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
+		if (string.IsNullOrEmpty(@this))
+			return ConversionResult.FromValue(string.Empty);
+		
+		var capacity = @this.Length;
+		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
+		stringBuilder.Capacity = capacity;
+
+		try
+		{
+			for (var i = 0; i < @this.Length; i++)
+			{
+				switch (@this[i])
+				{
+					// basic
+					case 'あ':
+						stringBuilder.Append('ア');
+						continue;
+					case 'い':
+						stringBuilder.Append('イ');
+						continue;
+					case 'う':
+						stringBuilder.Append('ウ');
+						continue;
+					case 'え':
+						stringBuilder.Append('エ');
+						continue;
+					case 'お':
+						stringBuilder.Append('オ');
+						continue;
+					case 'ん':
+						stringBuilder.Append('ン');
+						continue;
+					// basic dakuten
+					case 'ゔ':
+						stringBuilder.Append('ヴ');
+						continue;
+					// k
+					case 'か':
+						stringBuilder.Append('カ');
+						continue;
+					case 'き':
+						stringBuilder.Append('キ');
+						continue;
+					case 'く':
+						stringBuilder.Append('ク');
+						continue;
+					case 'け':
+						stringBuilder.Append('ケ');
+						continue;
+					case 'こ':
+						stringBuilder.Append('コ');
+						continue;
+					// g
+					case 'が':
+						stringBuilder.Append('ガ');
+						continue;
+					case 'ぎ':
+						stringBuilder.Append('ギ');
+						continue;
+					case 'ぐ':
+						stringBuilder.Append('グ');
+						continue;
+					case 'ゲ':
+						stringBuilder.Append('ゲ');
+						continue;
+					case 'ご':
+						stringBuilder.Append('ゴ');
+						continue;
+					// s
+					case 'さ':
+						stringBuilder.Append('サ');
+						continue;
+					case 'し':
+						stringBuilder.Append('シ');
+						continue;
+					case 'す':
+						stringBuilder.Append('ス');
+						continue;
+					case 'せ':
+						stringBuilder.Append('セ');
+						continue;
+					case 'そ':
+						stringBuilder.Append('ソ');
+						continue;
+					// z
+					case 'ざ':
+						stringBuilder.Append('ザ');
+						continue;
+					case 'じ':
+						stringBuilder.Append('ジ');
+						continue;
+					case 'ず':
+						stringBuilder.Append('ズ');
+						continue;
+					case 'ぜ':
+						stringBuilder.Append('ゼ');
+						continue;
+					case 'ぞ':
+						stringBuilder.Append('ゾ');
+						continue;
+					// t
+				}
+			}
+			
+			return ConversionResult.FromValue(stringBuilder.ToString());
+		}
+		finally
+		{
+			stringBuilderPool?.Return(stringBuilder);
+		}
 	}
 }

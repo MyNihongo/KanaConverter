@@ -1,6 +1,6 @@
-﻿namespace MyNihongo.KanaConverter.Tests.StringExTests;
+﻿namespace MyNihongo.KanaConverter.Tests.StringExToRomajiTests;
 
-public sealed class TryConvertToRomajiYouonShould
+public sealed class ToRomajiYouonShould
 {
 	[Theory]
 	[InlineData("ゃき")]
@@ -15,15 +15,11 @@ public sealed class TryConvertToRomajiYouonShould
 	[InlineData("ョキ")]
 	public void ThrowExceptionIfStartsWithYouon(string input)
 	{
-		var result = input.TryConvertToRomaji(out var valueResult);
+		Action action = () => input.ToRomaji();
 
-		result
+		action
 			.Should()
-			.BeFalse();
-
-		valueResult
-			.Should()
-			.BeEmpty();
+			.ThrowExactly<InvalidKanaException>();
 	}
 
 	[Theory]
@@ -33,13 +29,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "kyikyukyekyakyukyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -51,13 +43,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "gyigyugyegyagyugyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -69,13 +57,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "shishusheshashusho";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -87,13 +71,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "jijujejajujo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -105,13 +85,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "chichuchechachucho";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -123,13 +99,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "nyinyunyenyanyunyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -141,13 +113,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "hyihyuhyehyahyuhyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -159,13 +127,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "byibyubyebyabyubyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -177,13 +141,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "pyipyupyepyapyupyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -195,13 +155,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "myimyumyemyamyumyo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -213,13 +169,9 @@ public sealed class TryConvertToRomajiYouonShould
 	{
 		const string expected = "ryiryuryeryaryuryo";
 
-		var result = input.TryConvertToRomaji(out var valueResult);
+		var result = input.ToRomaji();
 
 		result
-			.Should()
-			.BeTrue();
-
-		valueResult
 			.Should()
 			.Be(expected);
 	}

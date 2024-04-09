@@ -56,5 +56,6 @@ public static partial class StringEx
 
 	private static ConversionResult ConvertKanaToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
+		throw new NotImplementedException();
 	}
 }
