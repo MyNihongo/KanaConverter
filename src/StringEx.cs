@@ -50,6 +50,9 @@ public static class StringEx
 		var result = @this.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
 		value = result.Value;
 
+		if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+			return result.ErrorMessage == null && value != @this;
+
 		return result.ErrorMessage == null;
 	}
 
