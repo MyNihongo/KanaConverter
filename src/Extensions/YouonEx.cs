@@ -14,6 +14,6 @@ internal static class YouonEx
 			Youon.E => new YouonChar('e'),
 			Youon.O => new YouonChar('o'),
 			Youon.Wa => new YouonChar('w', 'a'),
-			_ => throw new ArgumentOutOfRangeException(nameof(@this), @this, $@"Unknown {nameof(Youon)}: {@this}")
+			_ => throw new ArgumentOutOfRangeException(nameof(@this), @this, $@"Unknown {nameof(Youon)}: {@this}"),
 		};
 }
