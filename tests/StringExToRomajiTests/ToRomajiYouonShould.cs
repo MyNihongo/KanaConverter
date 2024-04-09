@@ -65,7 +65,7 @@ public sealed class ToRomajiYouonShould
 	}
 
 	[Theory]
-	[InlineData("じぃじぅじぇじゃじゅジョ")]
+	[InlineData("じぃじぅじぇじゃじゅじょ")]
 	[InlineData("ジィジゥジェジャジュジョ")]
 	public void ReturnCharsYouonZ(string input)
 	{
@@ -95,7 +95,7 @@ public sealed class ToRomajiYouonShould
 	[Theory]
 	[InlineData("にぃにぅにぇにゃにゅにょ")]
 	[InlineData("ニィニゥニェニャニュニョ")]
-	public void ReturnCharsYouonＮ(string input)
+	public void ReturnCharsYouonN(string input)
 	{
 		const string expected = "nyinyunyenyanyunyo";
 
