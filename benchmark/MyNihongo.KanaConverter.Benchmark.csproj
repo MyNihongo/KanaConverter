@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
 		<PackageReference Include="WanaKana-net" Version="1.0.0" />
-		<PackageReference Include="WanaKanaSharp" Version="0.1.1" />
+		<PackageReference Include="WanaKanaSharp" Version="0.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>

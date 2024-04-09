@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using Microsoft.Extensions.ObjectPool;
 
 namespace MyNihongo.KanaConverter.Benchmark
 {
@@ -16,7 +18,10 @@ namespace MyNihongo.KanaConverter.Benchmark
 	[MemoryDiagnoser]
 	public class RomajiConvertor
 	{
+		private const int InterationCount = 100;
+
 		private readonly string _kanaString;
+		private readonly ObjectPool<StringBuilder> _stringBuilderPool;
 
 		public RomajiConvertor()
 		{
@@ -43,10 +48,22 @@ namespace MyNihongo.KanaConverter.Benchmark
 					span[i] = kana[index];
 				}
 			});
+
+			_stringBuilderPool = new DefaultObjectPoolProvider()
+				.CreateStringBuilderPool();
 		}
 
 		[Benchmark]
 		public string MyNihongo() => _kanaString.ToRomaji();
+
+		[Benchmark]
+		public void MyNihongoMultiple()
+		{
+			for (var i = 0; i < InterationCount; i++)
+			{
+				_kanaString.ToRomaji(_stringBuilderPool);
+			}
+		}
 
 		// STACK OVERFLOW exception
 		//[Benchmark]
@@ -54,5 +71,14 @@ namespace MyNihongo.KanaConverter.Benchmark
 
 		[Benchmark]
 		public string WanaKana_Sharp() => WanaKanaSharp.WanaKana.ToRomaji(_kanaString);
+
+		[Benchmark]
+		public void WanaKana_SharpMultiple()
+		{
+			for (var i = 0; i < InterationCount; i++)
+			{
+				WanaKanaSharp.WanaKana.ToRomaji(_kanaString);
+			}
+		}
 	}
 }
