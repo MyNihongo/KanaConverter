@@ -54,6 +54,19 @@ public sealed class KanaToKatakanaShould
 	}
 	
 	[Fact]
+	public void ReturnCharsG()
+	{
+		const string input = "がぎぐげご",
+			expected = "ガギグゲゴ";
+
+		var result = input.KanaToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+	
+	[Fact]
 	public void ReturnCharsS()
 	{
 		const string input = "さしすせそ",

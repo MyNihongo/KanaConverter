@@ -118,7 +118,7 @@ public static partial class StringEx
 					case 'ぐ':
 						stringBuilder.Append('グ');
 						continue;
-					case 'ゲ':
+					case 'げ':
 						stringBuilder.Append('ゲ');
 						continue;
 					case 'ご':
