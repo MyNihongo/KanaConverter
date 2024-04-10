@@ -5,9 +5,10 @@
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>MyNihongo</Authors>
+		<Title>MyNihongo.KanaConverter</Title>
 		<Product>MyNihongo.KanaConverter</Product>
 		<Copyright>Copyright © 2024 MyNihongo</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,6 +18,7 @@
 		<Description>Extension methods for conversion of Japanese characters, e.g. hiragana (ひらがな) and katakana (カタカナ).</Description>
 		<PackageTags>hiragana katakana romaji kana japanese conversion</PackageTags>
 		<PackageIcon>favico.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,13 +26,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\favico.png">
-			<Pack>True</Pack>
-			<PackagePath />
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
+		<None Include="..\favico.png" Pack="true" PackagePath="\" />
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
 		<None Remove="*.csproj.DotSettings" />
 	</ItemGroup>
 

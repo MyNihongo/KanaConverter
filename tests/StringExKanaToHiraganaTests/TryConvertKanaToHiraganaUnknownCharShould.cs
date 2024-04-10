@@ -1,13 +1,13 @@
-﻿namespace MyNihongo.KanaConverter.Tests.StringExTests;
+﻿namespace MyNihongo.KanaConverter.Tests.StringExKanaToHiraganaTests;
 
-public sealed class TryConvertToRomajiUnknownCharShould
+public sealed class TryConvertKanaToHiraganaUnknownCharShould
 {
 	[Fact]
 	public void ReturnFalseByDefault()
 	{
-		const string input = "かたかaな";
+		const string input = "ヒラガaナ";
 
-		var result = input.TryConvertToRomaji(out var output);
+		var result = input.TryConvertKanaToHiragana(out var output);
 
 		result
 			.Should()
@@ -22,17 +22,17 @@ public sealed class TryConvertToRomajiUnknownCharShould
 	public void ReturnTrueAndSkip()
 	{
 		const UnrecognisedCharacterPolicy policy = UnrecognisedCharacterPolicy.Skip;
-		
-		const string input = "かたかaな",
-			expected = "katakana";
 
-		var result = input.TryConvertToRomaji(policy, out var output);
+		const string input = "ヒラガaナ",
+			expected = "ひらがな";
+
+		var result = input.TryConvertKanaToHiragana(policy, out var valueResult);
 
 		result
 			.Should()
 			.BeTrue();
 
-		output
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -42,16 +42,16 @@ public sealed class TryConvertToRomajiUnknownCharShould
 	{
 		const UnrecognisedCharacterPolicy policy = UnrecognisedCharacterPolicy.Append;
 
-		const string input = "片仮名あるいは平仮名が好き",
-			expected = "片仮名aruiha平仮名ga好ki";
-		
-		var result = input.TryConvertToRomaji(policy, out var output);
+		const string input = "ヒラガナが好キ",
+			expected = "ひらがなが好き";
+
+		var result = input.TryConvertKanaToHiragana(policy, out var valueResult);
 
 		result
 			.Should()
 			.BeTrue();
 
-		output
+		valueResult
 			.Should()
 			.Be(expected);
 	}
@@ -61,8 +61,8 @@ public sealed class TryConvertToRomajiUnknownCharShould
 	{
 		const UnrecognisedCharacterPolicy policy = UnrecognisedCharacterPolicy.Append;
 		const string input = "中野坂上";
-		
-		var result = input.TryConvertToRomaji(policy, out var output);
+
+		var result = input.TryConvertKanaToHiragana(policy, out var output);
 
 		result
 			.Should()

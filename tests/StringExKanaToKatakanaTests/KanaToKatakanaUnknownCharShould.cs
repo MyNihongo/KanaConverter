@@ -1,13 +1,13 @@
-﻿namespace MyNihongo.KanaConverter.Tests.StringExTests;
+﻿namespace MyNihongo.KanaConverter.Tests.StringExKanaToKatakanaTests;
 
-public sealed class ToRomajiUnknownCharShould
+public sealed class KanaToKatakanaUnknownCharShould
 {
 	[Fact]
 	public void ThrowExceptionByDefault()
 	{
 		const string input = "かたかaな";
 
-		var func = () => input.ToRomaji();
+		var func = () => input.KanaToKatakana();
 
 		func
 			.Should()
@@ -20,9 +20,9 @@ public sealed class ToRomajiUnknownCharShould
 		const UnrecognisedCharacterPolicy policy = UnrecognisedCharacterPolicy.Skip;
 
 		const string input = "かbたかaな",
-			expected = "katakana";
+			expected = "カタカナ";
 
-		var result = input.ToRomaji(policy);
+		var result = input.KanaToKatakana(policy);
 
 		result
 			.Should()
@@ -34,10 +34,10 @@ public sealed class ToRomajiUnknownCharShould
 	{
 		const UnrecognisedCharacterPolicy policy = UnrecognisedCharacterPolicy.Append;
 
-		const string input = "片仮名あるいは平仮名が好き",
-			expected = "片仮名aruiha平仮名ga好ki";
+		const string input = "カタカナが好き",
+			expected = "カタカナガ好キ";
 
-		var result = input.ToRomaji(policy);
+		var result = input.KanaToKatakana(policy);
 
 		result
 			.Should()
