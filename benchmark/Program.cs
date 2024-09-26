@@ -61,7 +61,7 @@ namespace MyNihongo.KanaConverter.Benchmark
 		{
 			for (var i = 0; i < InterationCount; i++)
 			{
-				_kanaString.ToRomaji(_stringBuilderPool);
+				_kanaString.ToRomaji(stringBuilderPool: _stringBuilderPool);
 			}
 		}
 
