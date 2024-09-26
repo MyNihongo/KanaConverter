@@ -21,10 +21,10 @@ jobs:
       with:
         fetch-depth: 0
         
-    - name: Install .NET 6
+    - name: Install .NET 8
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
           
     - name: NuGet restore
       run: dotnet restore
@@ -36,7 +36,7 @@ jobs:
       run: dotnet test -c ${{ env.Configuration }} -v m --no-restore --no-build
       
     - name: Create NuGet Artifacts
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v4.4.0
       with:
         name: ${{ env.ArtifactsName }}
         path: '**/*.nupkg'
