@@ -2,6 +2,23 @@
 
 public static class StringExRomajiToKatakana
 {
+	/// <summary>
+	/// Converts a romaji string to katakana.
+	/// </summary>
+	/// <param name="this">Romaji string to be converted to katakana.</param>
+	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+	/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+	/// <exception cref="InvalidCharacterException"></exception>
+	public static string ToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
+	{
+		var result = @this.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+		if (result.ErrorMessage != null)
+			throw new InvalidCharacterException(result.ErrorMessage);
+
+		return result.Value;
+	}
+
 	private static ConversionResult ConvertToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
 		if (string.IsNullOrEmpty(@this))
@@ -13,7 +30,7 @@ public static class StringExRomajiToKatakana
 
 		try
 		{
-			char? prevChar = null;
+			int charBuilder = 0;
 
 			for (var i = 0; i < @this.Length; i++)
 			{
@@ -39,7 +56,6 @@ public static class StringExRomajiToKatakana
 					case 'r':
 					case 'n':
 					case 'w':
-						prevChar = @this[i];
 						continue;
 					// special consonants with possible 拗音
 					case 'y':

@@ -11,7 +11,7 @@ public sealed class ToRomajiUnknownCharShould
 
 		func
 			.Should()
-			.Throw<InvalidKanaException>();
+			.Throw<InvalidCharacterException>();
 	}
 
 	[Fact]

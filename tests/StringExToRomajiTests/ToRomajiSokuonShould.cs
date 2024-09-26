@@ -19,7 +19,7 @@ public sealed class ToRomajiSokuonShould
 
 		action
 			.Should()
-			.ThrowExactly<InvalidKanaException>();
+			.ThrowExactly<InvalidCharacterException>();
 	}
 
 	[Theory]
