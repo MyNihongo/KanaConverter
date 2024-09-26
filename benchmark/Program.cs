@@ -37,7 +37,7 @@ namespace MyNihongo.KanaConverter.Benchmark
 				'ま', 'み', 'む', 'め', 'も',
 				'や', 'ゆ', 'よ',
 				'ら', 'り', 'る', 'れ', 'ろ',
-				'わ', 'を'
+				'わ', 'を',
 			};
 
 			_kanaString = string.Create(1_000_000, true, (span, _) =>
@@ -62,22 +62,6 @@ namespace MyNihongo.KanaConverter.Benchmark
 			for (var i = 0; i < InterationCount; i++)
 			{
 				_kanaString.ToRomaji(stringBuilderPool: _stringBuilderPool);
-			}
-		}
-
-		// STACK OVERFLOW exception
-		//[Benchmark]
-		//public string WanaKana_Net() => WanaKanaNet.WanaKana.ToRomaji(_kanaString);
-
-		[Benchmark]
-		public string WanaKana_Sharp() => WanaKanaSharp.WanaKana.ToRomaji(_kanaString);
-
-		[Benchmark]
-		public void WanaKana_SharpMultiple()
-		{
-			for (var i = 0; i < InterationCount; i++)
-			{
-				WanaKanaSharp.WanaKana.ToRomaji(_kanaString);
 			}
 		}
 	}
