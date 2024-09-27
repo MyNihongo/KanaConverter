@@ -119,15 +119,24 @@ public static class StringExRomajiToKatakana
 					// special consonant `n`
 					case 'n':
 						if (i == lastIndex)
+							goto VowelN;
+
+						switch (@this[i + 1])
 						{
-							charBuilder = 'ン';
-							stepOffset = 0;
-							goto Vowel;
+							case 'a':
+							case 'i':
+							case 'u':
+							case 'e':
+							case 'o':
+								charBuilder = 'ナ';
+								stepMultiplier = 1;
+								continue;
 						}
 
-						charBuilder = 'ナ';
-						stepMultiplier = 1;
-						continue;
+						VowelN:
+						charBuilder = 'ン';
+						stepOffset = 0;
+						goto Vowel;
 					// special consonants with possible 拗音
 					case 'y':
 						continue;
@@ -157,7 +166,6 @@ public static class StringExRomajiToKatakana
 				var character = (char)(charBuilder + stepOffset * stepMultiplier);
 				stringBuilder.Append(character);
 				stepMultiplier = 2;
-				continue;
 			}
 
 			return ConversionResult.FromValue(stringBuilder.ToString());
