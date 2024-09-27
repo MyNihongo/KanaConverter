@@ -57,6 +57,8 @@ public static class StringExRomajiToKatakana
 						charBuilder = 'カ';
 						continue;
 					case 'g':
+						charBuilder = 'ガ';
+						continue;
 					case 's':
 					case 'z':
 					case 't':
