@@ -60,10 +60,19 @@ public static class StringExRomajiToKatakana
 						charBuilder = 'ガ';
 						continue;
 					case 's':
+						charBuilder = 'サ';
+						continue;
 					case 'z':
+						charBuilder = 'ザ';
+						continue;
 					case 't':
 					case 'd':
 					case 'h':
+						if (charBuilder is 'サ' or 'タ' or 'ザ' or 'ダ')
+							continue;
+
+						charBuilder = 'ハ';
+						continue;
 					case 'b':
 					case 'p':
 					case 'r':

@@ -66,6 +66,33 @@ public sealed class ToKatakanaShould
 			.Be(expected);
 	}
 
+	[Fact]
+	public void ReturnCharsS()
+	{
+		const string input = "sashisuseso",
+			expected = "サシスセソ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Theory]
+	[InlineData("zajizuzezo")]
+	[InlineData("zazizuzezo")]
+	public void ReturnCharsZ(string input)
+	{
+		const string expected = "ザジズゼゾ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
 	[Theory]
 	[InlineData("kantan", "カンタン")]
 	public void ReturnCharsWords(string input, string expected)
