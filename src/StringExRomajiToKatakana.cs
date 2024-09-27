@@ -54,6 +54,8 @@ public static class StringExRomajiToKatakana
 						goto Vowel;
 					// consonants
 					case 'k':
+						charBuilder = 'カ';
+						continue;
 					case 'g':
 					case 's':
 					case 'z':
@@ -113,7 +115,6 @@ public static class StringExRomajiToKatakana
 
 				var character = (char)(charBuilder + stepOffset * stepMultiplier);
 				stringBuilder.Append(character);
-				charBuilder = 0;
 				stepMultiplier = 2;
 				continue;
 			}
