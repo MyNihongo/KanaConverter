@@ -175,4 +175,18 @@ public sealed class ToRomajiYouonShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Theory]
+	[InlineData("ゔぁゔぃゔぅゔぇゔぉ")]
+	[InlineData("ヴァヴィヴゥヴェヴォ")]
+	public void ReturnCharsDakuten(string input)
+	{
+		const string expected = "vavivuvevo";
+
+		var result = input.ToRomaji();
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }
