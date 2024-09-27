@@ -95,8 +95,11 @@ public sealed class ToKatakanaShould
 
 	[Theory]
 	[InlineData("tachitsuteto")]
+	[InlineData("tathitsuteto")]
 	[InlineData("tacitsuteto")]
 	[InlineData("tachituteto")]
+	[InlineData("tachicuteto")]
+	[InlineData("tachicsuteto")]
 	public void ReturnCharsT(string input)
 	{
 		const string expected = "タチツテト";

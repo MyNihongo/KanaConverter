@@ -85,6 +85,10 @@ public static class StringExRomajiToKatakana
 								case 'o':
 									charBuilder = 'ト';
 									goto CustomVowel;
+								case 's':
+									// Here we assume that `ts` is the incomplete `tsu`
+									i++;
+									goto case 'u';
 							}
 						}
 
