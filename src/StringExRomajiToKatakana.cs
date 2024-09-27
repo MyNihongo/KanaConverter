@@ -63,6 +63,7 @@ public static class StringExRomajiToKatakana
 						charBuilder = 'サ';
 						continue;
 					case 'z':
+					case 'j':
 						charBuilder = 'ザ';
 						continue;
 					case 't':
