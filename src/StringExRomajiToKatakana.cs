@@ -32,7 +32,7 @@ public static class StringExRomajiToKatakana
 		{
 			int charBuilder = 0, stepMultiplier = 2, stepOffset = 0;
 
-			for (var i = 0; i < @this.Length; i++)
+			for (int i = 0, lastIndex = @this.Length - 1; i < @this.Length; i++)
 			{
 				switch (char.ToLower(@this[i]))
 				{
@@ -60,14 +60,39 @@ public static class StringExRomajiToKatakana
 						charBuilder = 'ガ';
 						continue;
 					case 's':
+						if (charBuilder is 'タ')
+							continue;
+
 						charBuilder = 'サ';
 						continue;
 					case 'z':
 					case 'j':
 						charBuilder = 'ザ';
 						continue;
+					case 'c':
 					case 't':
+						// `ッ` is in the middle of the t-character, so we need some custom offset
+						if (i < lastIndex)
+						{
+							switch (@this[i + 1])
+							{
+								case 'u':
+									charBuilder = 'ツ';
+									goto CustomVowel;
+								case 'e':
+									charBuilder = 'テ';
+									goto CustomVowel;
+								case 'o':
+									charBuilder = 'ト';
+									goto CustomVowel;
+							}
+						}
+
+						charBuilder = 'タ';
+						continue;
 					case 'd':
+						charBuilder = 'ダ';
+						continue;
 					case 'h':
 						if (charBuilder is 'サ' or 'タ' or 'ザ' or 'ダ')
 							continue;
@@ -83,17 +108,13 @@ public static class StringExRomajiToKatakana
 					case 'v':
 						charBuilder = 'ヴ';
 
-						if (i < @this.Length - 1 && @this[i + 1] == 'u')
-						{
-							stepOffset = 0;
-							i++;
-							goto Vowel;
-						}
+						if (i < lastIndex && @this[i + 1] == 'u')
+							goto CustomVowel;
 
 						continue;
 					// special consonant `n`
 					case 'n':
-						if (i == @this.Length - 1)
+						if (i == lastIndex)
 						{
 							charBuilder = 'ン';
 							stepOffset = 0;
@@ -120,6 +141,10 @@ public static class StringExRomajiToKatakana
 						}
 					}
 				}
+
+				CustomVowel:
+				stepOffset = 0;
+				i++;
 
 				Vowel:
 				if (charBuilder == 0)

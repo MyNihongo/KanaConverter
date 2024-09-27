@@ -94,6 +94,21 @@ public sealed class ToKatakanaShould
 	}
 
 	[Theory]
+	[InlineData("tachitsuteto")]
+	[InlineData("tacitsuteto")]
+	[InlineData("tachituteto")]
+	public void ReturnCharsT(string input)
+	{
+		const string expected = "タチツテト";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Theory]
 	[InlineData("kantan", "カンタン")]
 	public void ReturnCharsWords(string input, string expected)
 	{
