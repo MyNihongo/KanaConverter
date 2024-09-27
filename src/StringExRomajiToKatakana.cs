@@ -30,7 +30,7 @@ public static class StringExRomajiToKatakana
 
 		try
 		{
-			int charBuilder = 0;
+			int charBuilder = 0, stepMultiplier = 2, stepOffset = 0;
 
 			for (var i = 0; i < @this.Length; i++)
 			{
@@ -38,11 +38,20 @@ public static class StringExRomajiToKatakana
 				{
 					// basic vowels
 					case 'a':
+						stepOffset = 0;
+						goto Vowel;
 					case 'i':
+						stepOffset = 1;
+						goto Vowel;
 					case 'u':
+						stepOffset = 2;
+						goto Vowel;
 					case 'e':
+						stepOffset = 3;
+						goto Vowel;
 					case 'o':
-						continue;
+						stepOffset = 4;
+						goto Vowel;
 					// consonants
 					case 'k':
 					case 'g':
@@ -54,8 +63,17 @@ public static class StringExRomajiToKatakana
 					case 'b':
 					case 'p':
 					case 'r':
-					case 'n':
 					case 'w':
+						continue;
+					// special consonant `n`
+					case 'n':
+						if (i == @this.Length - 1)
+						{
+							charBuilder = 'ン';
+							stepOffset = 0;
+							goto Vowel;
+						}
+
 						continue;
 					// special consonants with possible 拗音
 					case 'y':
@@ -74,6 +92,15 @@ public static class StringExRomajiToKatakana
 						}
 					}
 				}
+
+				Vowel:
+				if (charBuilder == 0)
+					charBuilder = 'ア';
+
+				var character = (char)(charBuilder + stepOffset * stepMultiplier);
+				stringBuilder.Append(character);
+				charBuilder = 0;
+				continue;
 			}
 
 			return ConversionResult.FromValue(stringBuilder.ToString());
