@@ -26,4 +26,17 @@ public sealed class ToKatakanaShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Fact]
+	public void ReturnDakuten()
+	{
+		const string input = "vu",
+			expected = "ヴ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }
