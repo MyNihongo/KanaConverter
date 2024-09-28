@@ -5,8 +5,8 @@ public sealed class ToKatakanaYouonShould
 	[Fact]
 	public void ReturnCharsYouonK()
 	{
-		const string input = "kyikyukyekyakyukyo",
-			expected = "キィキゥキェキャキュキョ";
+		const string input = "kyakyikyukyekyo",
+			expected = "キャキィキュキェキョ";
 
 		var result = input.ToKatakana();
 

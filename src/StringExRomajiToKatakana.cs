@@ -219,10 +219,19 @@ public static class StringExRomajiToKatakana
 							switch (@this[i + 1])
 							{
 								case 'a':
+									charBuilder = 'ャ';
+									goto CustomVowel;
 								case 'i':
+									charBuilder = 'ィ';
+									goto CustomVowel;
 								case 'u':
+									charBuilder = 'ュ';
+									goto CustomVowel;
 								case 'e':
+									charBuilder = 'ェ';
+									goto CustomVowel;
 								case 'o':
+									charBuilder = 'ョ';
 									goto CustomVowel;
 							}
 						}
