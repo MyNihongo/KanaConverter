@@ -128,7 +128,13 @@ public static class StringExRomajiToKatakana
 						stepMultiplier = 3;
 						continue;
 					case 'b':
+						charBuilder = 'バ';
+						stepMultiplier = 3;
+						continue;
 					case 'p':
+						charBuilder = 'パ';
+						stepMultiplier = 3;
+						continue;
 					case 'r':
 					case 'w':
 						continue;
