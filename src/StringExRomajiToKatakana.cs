@@ -140,6 +140,7 @@ public static class StringExRomajiToKatakana
 						stepMultiplier = 1;
 						continue;
 					case 'r':
+					case 'l':
 						charBuilder = 'ラ';
 						stepMultiplier = 1;
 						continue;
