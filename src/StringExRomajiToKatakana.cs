@@ -95,6 +95,27 @@ public static class StringExRomajiToKatakana
 						charBuilder = 'タ';
 						continue;
 					case 'd':
+						// `ッ` is in the middle of the d-character, so we need some custom offset
+						if (i < lastIndex)
+						{
+							switch (@this[i + 1])
+							{
+								case 'u':
+									charBuilder = 'ヅ';
+									goto CustomVowel;
+								case 'e':
+									charBuilder = 'デ';
+									goto CustomVowel;
+								case 'o':
+									charBuilder = 'ド';
+									goto CustomVowel;
+								case 'z':
+									// Here we assume that `dz` is the incomplete `dzu`
+									i++;
+									goto case 'u';
+							}
+						}
+
 						charBuilder = 'ダ';
 						continue;
 					case 'h':
