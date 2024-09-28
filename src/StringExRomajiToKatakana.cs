@@ -176,6 +176,23 @@ public static class StringExRomajiToKatakana
 						goto Vowel;
 					// special consonants with possible 拗音
 					case 'y':
+						if (i < lastIndex)
+						{
+							switch (@this[i + 1])
+							{
+								case 'a':
+									charBuilder = 'ヤ';
+									goto CustomVowel;
+								case 'u':
+									charBuilder = 'ユ';
+									goto CustomVowel;
+								case 'o':
+									charBuilder = 'ヨ';
+									goto CustomVowel;
+							}
+						}
+
+						charBuilder = 'ヤ';
 						continue;
 					default:
 					{

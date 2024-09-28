@@ -205,6 +205,19 @@ public sealed class ToKatakanaShould
 			.Be(expected);
 	}
 
+	[Fact]
+	public void ReturnCharsY()
+	{
+		const string input = "yayuyo",
+			expected = "ヤユヨ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
 	[Theory]
 	[InlineData("kantan", "カンタン")]
 	[InlineData("banana", "バナナ")]
