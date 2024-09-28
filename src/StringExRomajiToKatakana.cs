@@ -1,4 +1,6 @@
-﻿namespace MyNihongo.KanaConverter;
+﻿using System.Runtime.CompilerServices;
+
+namespace MyNihongo.KanaConverter;
 
 public static class StringExRomajiToKatakana
 {
@@ -210,6 +212,21 @@ public static class StringExRomajiToKatakana
 						goto Vowel;
 					// special consonants with possible 拗音
 					case 'y':
+						if (charBuilder != 0)
+						{
+							AppendChar(stringBuilder, charBuilder, stepOffset: 1, stepMultiplier: 2);
+
+							switch (@this[i + 1])
+							{
+								case 'a':
+								case 'i':
+								case 'u':
+								case 'e':
+								case 'o':
+									goto CustomVowel;
+							}
+						}
+
 						if (i < lastIndex)
 						{
 							switch (@this[i + 1])
@@ -251,8 +268,8 @@ public static class StringExRomajiToKatakana
 				if (charBuilder == 0)
 					charBuilder = 'ア';
 
-				var character = (char)(charBuilder + stepOffset * stepMultiplier);
-				stringBuilder.Append(character);
+				AppendChar(stringBuilder, charBuilder, stepOffset, stepMultiplier);
+				charBuilder = 0;
 				stepMultiplier = 2;
 			}
 
@@ -262,5 +279,12 @@ public static class StringExRomajiToKatakana
 		{
 			stringBuilderPool?.Return(stringBuilder);
 		}
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void AppendChar(in StringBuilder stringBuilder, in int charBuilder, in int stepOffset, in int stepMultiplier)
+	{
+		var character = (char)(charBuilder + stepOffset * stepMultiplier);
+		stringBuilder.Append(character);
 	}
 }
