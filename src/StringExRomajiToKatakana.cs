@@ -163,11 +163,29 @@ public static class StringExRomajiToKatakana
 						continue;
 					// special consonant `v`
 					case 'v':
+						if (i < lastIndex)
+						{
+							switch (@this[i + 1])
+							{
+								case 'a':
+									charBuilder = 'ヷ';
+									goto CustomVowel;
+								case 'i':
+									charBuilder = 'ヸ';
+									goto CustomVowel;
+								case 'u':
+									charBuilder = 'ヴ';
+									goto CustomVowel;
+								case 'e':
+									charBuilder = 'ヹ';
+									goto CustomVowel;
+								case 'o':
+									charBuilder = 'ヺ';
+									goto CustomVowel;
+							}
+						}
+
 						charBuilder = 'ヴ';
-
-						if (i < lastIndex && @this[i + 1] == 'u')
-							goto CustomVowel;
-
 						continue;
 					// special consonant `n`
 					case 'n':

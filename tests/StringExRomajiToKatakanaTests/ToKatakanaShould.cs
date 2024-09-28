@@ -30,8 +30,8 @@ public sealed class ToKatakanaShould
 	[Fact]
 	public void ReturnDakuten()
 	{
-		const string input = "vu",
-			expected = "ヴ";
+		const string input = "vavivuvevo",
+			expected = "ヷヸヴヹヺ";
 
 		var result = input.ToKatakana();
 
