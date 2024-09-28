@@ -135,7 +135,14 @@ public static class StringExRomajiToKatakana
 						charBuilder = 'パ';
 						stepMultiplier = 3;
 						continue;
+					case 'm':
+						charBuilder = 'マ';
+						stepMultiplier = 1;
+						continue;
 					case 'r':
+						charBuilder = 'ラ';
+						stepMultiplier = 1;
+						continue;
 					case 'w':
 						continue;
 					// special consonant `v`
