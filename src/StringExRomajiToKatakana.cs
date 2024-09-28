@@ -145,6 +145,21 @@ public static class StringExRomajiToKatakana
 						stepMultiplier = 1;
 						continue;
 					case 'w':
+						if (i < lastIndex)
+						{
+							switch (@this[i + 1])
+							{
+								case 'e':
+									charBuilder = 'ヱ';
+									goto CustomVowel;
+								case 'o':
+									charBuilder = 'ヲ';
+									goto CustomVowel;
+							}
+						}
+
+						charBuilder = 'ワ';
+						stepMultiplier = 1;
 						continue;
 					// special consonant `v`
 					case 'v':
