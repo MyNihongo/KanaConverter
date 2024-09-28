@@ -122,7 +122,10 @@ public static class StringExRomajiToKatakana
 						if (charBuilder is 'サ' or 'タ' or 'ザ' or 'ダ')
 							continue;
 
+						goto case 'f';
+					case 'f':
 						charBuilder = 'ハ';
+						stepMultiplier = 3;
 						continue;
 					case 'b':
 					case 'p':
