@@ -56,7 +56,7 @@ public static class StringExRomajiToKatakana
 						goto Vowel;
 					// consonants
 					case 'k':
-						charBuilder = 'カ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'カ', charBuilder);
 						continue;
 					case 'g':
 						charBuilder = 'ガ';
@@ -395,9 +395,18 @@ public static class StringExRomajiToKatakana
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AppendChar(in StringBuilder stringBuilder, in int charBuilder, in int stepOffset, in int stepMultiplier)
+	private static void AppendChar(in StringBuilder stringBuilder, in int charBuilder, in int stepOffset, in int stepMultiplier)
 	{
 		var character = (char)(charBuilder + stepOffset * stepMultiplier);
 		stringBuilder.Append(character);
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static char TryAppendSokuon(in StringBuilder stringBuilder, in char character, in int charBuilder)
+	{
+		if (character == charBuilder)
+			stringBuilder.Append('ッ');
+
+		return character;
 	}
 }
