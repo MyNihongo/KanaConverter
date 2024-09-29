@@ -118,4 +118,43 @@ public sealed class ToKatakanaYouonShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Fact]
+	public void ReturnCharsYouonM()
+	{
+		const string input = "myamyimyumyemyo",
+			expected = "ミャミィミュミェミョ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
+	public void ReturnCharsYouonR()
+	{
+		const string input = "ryaryiryuryeryo",
+			expected = "リャリィリュリェリョ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
+	public void ReturnCharsYouonDakuten()
+	{
+		const string input = "vavivuvevo",
+			expected = "ヴァヴィヴヴェヴォ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }

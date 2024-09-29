@@ -28,19 +28,6 @@ public sealed class ToKatakanaShould
 	}
 
 	[Fact]
-	public void ReturnDakuten()
-	{
-		const string input = "vavivuvevo",
-			expected = "ヷヸヴヹヺ";
-
-		var result = input.ToKatakana();
-
-		result
-			.Should()
-			.Be(expected);
-	}
-
-	[Fact]
 	public void ReturnCharsK()
 	{
 		const string input = "kakikukeko",

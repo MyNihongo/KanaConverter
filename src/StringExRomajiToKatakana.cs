@@ -260,26 +260,33 @@ public static class StringExRomajiToKatakana
 						continue;
 					// special consonant `v`
 					case 'v':
+						// TODO: extract maybe
 						if (i < lastIndex)
 						{
 							switch (@this[i + 1])
 							{
 								case 'a':
-									charBuilder = 'ヷ';
-									goto CustomVowel;
+									charBuilder = 'ァ';
+									goto YouonS;
 								case 'i':
-									charBuilder = 'ヸ';
-									goto CustomVowel;
+									charBuilder = 'ィ';
+									goto YouonS;
 								case 'u':
 									charBuilder = 'ヴ';
 									goto CustomVowel;
 								case 'e':
-									charBuilder = 'ヹ';
-									goto CustomVowel;
+									charBuilder = 'ェ';
+									goto YouonS;
 								case 'o':
-									charBuilder = 'ヺ';
-									goto CustomVowel;
+									charBuilder = 'ォ';
+									goto YouonS;
+								default:
+									continue;
 							}
+
+							YouonS:
+							AppendChar(stringBuilder, charBuilder: 'ヴ', stepOffset: 0, stepMultiplier: 0);
+							goto CustomVowel;
 						}
 
 						charBuilder = 'ヴ';
