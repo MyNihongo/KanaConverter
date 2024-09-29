@@ -65,7 +65,7 @@ public static class StringExRomajiToKatakana
 						if (charBuilder is 'タ')
 							continue;
 
-						charBuilder = 'サ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'サ', charBuilder);
 						continue;
 					case 'j':
 						if (i < lastIndex)
