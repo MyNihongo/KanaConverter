@@ -59,7 +59,7 @@ public static class StringExRomajiToKatakana
 						charBuilder = TryAppendSokuon(stringBuilder, 'カ', charBuilder);
 						continue;
 					case 'g':
-						charBuilder = 'ガ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'ガ', charBuilder);
 						continue;
 					case 's':
 						if (charBuilder is 'タ')
