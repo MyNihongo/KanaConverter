@@ -74,22 +74,27 @@ public static class StringExRomajiToKatakana
 							switch (@this[i + 1])
 							{
 								case 'a':
+									TryAppendSokuon(stringBuilder, 'ザ', charBuilder);
 									charBuilder = 'ャ';
 									goto YouonS;
 								case 'i':
+									TryAppendSokuon(stringBuilder, 'ザ', charBuilder);
 									charBuilder = 'ジ';
 									goto CustomVowel;
 								case 'u':
+									TryAppendSokuon(stringBuilder, 'ザ', charBuilder);
 									charBuilder = 'ュ';
 									goto YouonS;
 								case 'e':
+									TryAppendSokuon(stringBuilder, 'ザ', charBuilder);
 									charBuilder = 'ェ';
 									goto YouonS;
 								case 'o':
+									TryAppendSokuon(stringBuilder, 'ザ', charBuilder);
 									charBuilder = 'ョ';
 									goto YouonS;
 								default:
-									continue;
+									goto CaseZ;
 							}
 
 							YouonS:
@@ -97,9 +102,10 @@ public static class StringExRomajiToKatakana
 							goto CustomVowel;
 						}
 
+						CaseZ:
 						goto case 'z';
 					case 'z':
-						charBuilder = 'ザ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'ザ', charBuilder);
 						continue;
 					case 'c':
 					case 't':
