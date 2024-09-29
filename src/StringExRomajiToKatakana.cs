@@ -67,8 +67,38 @@ public static class StringExRomajiToKatakana
 
 						charBuilder = 'サ';
 						continue;
-					case 'z':
 					case 'j':
+						if (i < lastIndex)
+						{
+							// TODO: maybe extract
+							switch (@this[i + 1])
+							{
+								case 'a':
+									charBuilder = 'ャ';
+									goto YouonS;
+								case 'i':
+									charBuilder = 'ジ';
+									goto CustomVowel;
+								case 'u':
+									charBuilder = 'ュ';
+									goto YouonS;
+								case 'e':
+									charBuilder = 'ェ';
+									goto YouonS;
+								case 'o':
+									charBuilder = 'ョ';
+									goto YouonS;
+								default:
+									continue;
+							}
+
+							YouonS:
+							AppendChar(stringBuilder, charBuilder: 'ジ', stepOffset: 0, stepMultiplier: 0);
+							goto CustomVowel;
+						}
+						
+						goto case 'z';
+					case 'z':
 						charBuilder = 'ザ';
 						continue;
 					case 'c':
@@ -123,6 +153,7 @@ public static class StringExRomajiToKatakana
 					case 'h':
 						if (charBuilder is 'サ' or 'ザ')
 						{
+							// TODO: maybe extract
 							if (i < lastIndex)
 							{
 								switch (@this[i + 1])
@@ -150,8 +181,6 @@ public static class StringExRomajiToKatakana
 								AppendChar(stringBuilder, charBuilder: 'シ', stepOffset: 0, stepMultiplier: 0);
 								goto CustomVowel;
 							}
-
-							continue;
 						}
 
 						if (charBuilder is 'タ' or 'ダ')
