@@ -289,6 +289,7 @@ public static class StringExRomajiToKatakana
 						if (i == lastIndex)
 							goto VowelN;
 
+						// TODO: do not check the char again
 						switch (@this[i + 1])
 						{
 							case 'a':
@@ -296,6 +297,7 @@ public static class StringExRomajiToKatakana
 							case 'u':
 							case 'e':
 							case 'o':
+							case 'y':
 								charBuilder = 'ナ';
 								stepMultiplier = 1;
 								continue;
@@ -309,7 +311,7 @@ public static class StringExRomajiToKatakana
 					case 'y':
 						if (charBuilder != 0)
 						{
-							AppendChar(stringBuilder, charBuilder, stepOffset: 1, stepMultiplier: 2);
+							AppendChar(stringBuilder, charBuilder, stepOffset: 1, stepMultiplier);
 
 							switch (@this[i + 1])
 							{
