@@ -121,4 +121,30 @@ public sealed class ToKatakanaSokuonShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Fact]
+	public void ReturnCharsSokuonB()
+	{
+		const string input = "bbabbibbubbebbobbyabbyibbyubbyebbyo",
+			expected = "ッバッビッブッベッボッビャッビィッビュッビェッビョ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
+	public void ReturnCharsSokuonP()
+	{
+		const string input = "ppappippuppeppoppyappyippyuppyeppyo",
+			expected = "ッパッピップッペッポッピャッピィッピュッピェッピョ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }

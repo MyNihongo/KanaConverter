@@ -237,11 +237,11 @@ public static class StringExRomajiToKatakana
 						stepMultiplier = 3;
 						continue;
 					case 'b':
-						charBuilder = 'バ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'バ', charBuilder);
 						stepMultiplier = 3;
 						continue;
 					case 'p':
-						charBuilder = 'パ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'パ', charBuilder);
 						stepMultiplier = 3;
 						continue;
 					case 'm':
