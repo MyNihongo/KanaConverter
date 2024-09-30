@@ -142,12 +142,15 @@ public static class StringExRomajiToKatakana
 							switch (@this[i + 1])
 							{
 								case 'u':
+									TryAppendSokuon(stringBuilder, 'ダ', charBuilder);
 									charBuilder = 'ヅ';
 									goto CustomVowel;
 								case 'e':
+									TryAppendSokuon(stringBuilder, 'ダ', charBuilder);
 									charBuilder = 'デ';
 									goto CustomVowel;
 								case 'o':
+									TryAppendSokuon(stringBuilder, 'ダ', charBuilder);
 									charBuilder = 'ド';
 									goto CustomVowel;
 								case 'z':
@@ -157,7 +160,7 @@ public static class StringExRomajiToKatakana
 							}
 						}
 
-						charBuilder = 'ダ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'ダ', charBuilder);
 						continue;
 					case 'h':
 						if (charBuilder is 'サ' or 'ザ')
