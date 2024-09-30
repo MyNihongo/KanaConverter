@@ -115,12 +115,15 @@ public static class StringExRomajiToKatakana
 							switch (@this[i + 1])
 							{
 								case 'u':
+									TryAppendSokuon(stringBuilder, 'タ', charBuilder);
 									charBuilder = 'ツ';
 									goto CustomVowel;
 								case 'e':
+									TryAppendSokuon(stringBuilder, 'タ', charBuilder);
 									charBuilder = 'テ';
 									goto CustomVowel;
 								case 'o':
+									TryAppendSokuon(stringBuilder, 'タ', charBuilder);
 									charBuilder = 'ト';
 									goto CustomVowel;
 								case 's':
@@ -130,7 +133,7 @@ public static class StringExRomajiToKatakana
 							}
 						}
 
-						charBuilder = 'タ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'タ', charBuilder);
 						continue;
 					case 'd':
 						// `ッ` is in the middle of the d-character, so we need some custom offset

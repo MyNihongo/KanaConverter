@@ -16,7 +16,7 @@ public sealed class ToKatakanaSokuonShould
 	}
 
 	[Fact]
-	public void ReturnKatakanaSokuonK()
+	public void ReturnCharsSokuonK()
 	{
 		const string input = "kkakkikkukkekkokkyakkyikkyukkyekkyo",
 			expected = "ッカッキックッケッコッキャッキィッキュッキェッキョ";
@@ -29,7 +29,7 @@ public sealed class ToKatakanaSokuonShould
 	}
 
 	[Fact]
-	public void ReturnKatakanaSokuonG()
+	public void ReturnCharsSokuonG()
 	{
 		const string input = "ggaggigguggeggoggyaggyiggyuggyeggyo",
 			expected = "ッガッギッグッゲッゴッギャッギィッギュッギェッギョ";
@@ -42,7 +42,7 @@ public sealed class ToKatakanaSokuonShould
 	}
 
 	[Fact]
-	public void ReturnKatakanaSokuonS()
+	public void ReturnCharsSokuonS()
 	{
 		const string input = "ssasshissussessosshyasshyisshyusshyesshyo",
 			expected = "ッサッシッスッセッソッシャッシィッシュッシェッショ";
@@ -57,9 +57,23 @@ public sealed class ToKatakanaSokuonShould
 	[Theory]
 	[InlineData("zzajjizzuzzezzojjajjujjejjo")]
 	[InlineData("zzazzizzuzzezzojjajjujjejjo")]
-	public void ReturnKatakanaSokuonZ(string input)
+	public void ReturnCharsSokuonZ(string input)
 	{
 		const string expected = "ッザッジッズッゼッゾッジャッジュッジェッジョ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Theory]
+	[InlineData("ttatchittsuttettotchatchitchutchetcho")]
+	[InlineData("ccacchiccsucceccocchacchicchuccheccho")]
+	public void ReturnCharsSokuonT(string input)
+	{
+		const string expected = "ッタッチッツッテットッチャッチッチュッチェッチョ";
 
 		var result = input.ToKatakana();
 
