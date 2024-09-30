@@ -94,12 +94,26 @@ public sealed class ToKatakanaSokuonShould
 			.Should()
 			.Be(expected);
 	}
-	
+
 	[Fact]
 	public void ReturnCharsSokuonN()
 	{
 		const string input = "nnanninnunnennonnyannyinnyunnyennyo",
 			expected = "ンナンニンヌンネンノンニャンニィンニュンニェンニョ";
+
+		var result = input.ToKatakana();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Theory]
+	[InlineData("hhahhiffuhhehhohhyahhyihhyuhhyehhyo")]
+	[InlineData("ffaffiffuffeffoffyaffyiffyuffyeffyo")]
+	public void ReturnCharsSokuonH(string input)
+	{
+		const string expected = "ッハッヒッフッヘッホッヒャッヒィッヒュッヒェッヒョ";
 
 		var result = input.ToKatakana();
 

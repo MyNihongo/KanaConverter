@@ -233,7 +233,7 @@ public static class StringExRomajiToKatakana
 
 						goto case 'f';
 					case 'f':
-						charBuilder = 'ハ';
+						charBuilder = TryAppendSokuon(stringBuilder, 'ハ', charBuilder);
 						stepMultiplier = 3;
 						continue;
 					case 'b':
