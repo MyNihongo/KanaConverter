@@ -32,10 +32,11 @@ public static class StringExRomajiToKatakana
 
 		try
 		{
-			int charBuilder = 0, stepMultiplier = 2, stepOffset = 0;
+			int charBuilder = 0, stepMultiplier = 2;
 
 			for (int i = 0, lastIndex = @this.Length - 1; i < @this.Length; i++)
 			{
+				int stepOffset;
 				switch (char.ToLower(@this[i]))
 				{
 					// basic vowels
