@@ -76,23 +76,23 @@ public static class StringExRomajiToHiragana
 							{
 								case 'a':
 									TryAppendSokuon(stringBuilder, 'ざ', charBuilder);
-									charBuilder = 'ャ';
+									charBuilder = 'ゃ';
 									goto YouonS;
 								case 'i':
 									TryAppendSokuon(stringBuilder, 'ざ', charBuilder);
-									charBuilder = 'ジ';
+									charBuilder = 'じ';
 									goto CustomVowel;
 								case 'u':
 									TryAppendSokuon(stringBuilder, 'ざ', charBuilder);
-									charBuilder = 'ュ';
+									charBuilder = 'ゅ';
 									goto YouonS;
 								case 'e':
 									TryAppendSokuon(stringBuilder, 'ざ', charBuilder);
-									charBuilder = 'ェ';
+									charBuilder = 'ぇ';
 									goto YouonS;
 								case 'o':
 									TryAppendSokuon(stringBuilder, 'ざ', charBuilder);
-									charBuilder = 'ョ';
+									charBuilder = 'ょ';
 									goto YouonS;
 								default:
 									goto CaseZ;
@@ -117,15 +117,15 @@ public static class StringExRomajiToHiragana
 							{
 								case 'u':
 									TryAppendSokuon(stringBuilder, 'た', charBuilder);
-									charBuilder = 'ツ';
+									charBuilder = 'つ';
 									goto CustomVowel;
 								case 'e':
 									TryAppendSokuon(stringBuilder, 'た', charBuilder);
-									charBuilder = 'テ';
+									charBuilder = 'て';
 									goto CustomVowel;
 								case 'o':
 									TryAppendSokuon(stringBuilder, 'た', charBuilder);
-									charBuilder = 'ト';
+									charBuilder = 'と';
 									goto CustomVowel;
 								case 's':
 									// Here we assume that `ts` is the incomplete `tsu`
@@ -144,15 +144,15 @@ public static class StringExRomajiToHiragana
 							{
 								case 'u':
 									TryAppendSokuon(stringBuilder, 'だ', charBuilder);
-									charBuilder = 'ヅ';
+									charBuilder = 'づ';
 									goto CustomVowel;
 								case 'e':
 									TryAppendSokuon(stringBuilder, 'だ', charBuilder);
-									charBuilder = 'デ';
+									charBuilder = 'で';
 									goto CustomVowel;
 								case 'o':
 									TryAppendSokuon(stringBuilder, 'だ', charBuilder);
-									charBuilder = 'ド';
+									charBuilder = 'ど';
 									goto CustomVowel;
 								case 'z':
 									// Here we assume that `dz` is the incomplete `dzu`
