@@ -15,6 +15,44 @@ public sealed class ToHiraganaShould
 	}
 
 	[Fact]
+	public void ThrowExceptionIfInvalidChar()
+	{
+		const string input = "aiueonq";
+
+		var func = () => input.ToHiragana();
+
+		func
+			.Should()
+			.ThrowExactly<InvalidCharacterException>();
+	}
+
+	[Fact]
+	public void AppendUnknownChars()
+	{
+		const string input = "aiueonq",
+			expected = "あいうえおんq";
+
+		var result = input.ToHiragana(UnrecognisedCharacterPolicy.Append);
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
+	public void IgnoreUnknownChars()
+	{
+		const string input = "aiueonq",
+			expected = "あいうえおん";
+
+		var result = input.ToHiragana(UnrecognisedCharacterPolicy.Skip);
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
 	public void ReturnChars()
 	{
 		const string input = "aiueon",

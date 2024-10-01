@@ -15,6 +15,44 @@ public sealed class ToKatakanaShould
 	}
 
 	[Fact]
+	public void ThrowExceptionIfInvalidChar()
+	{
+		const string input = "aiueonq";
+
+		var func = () => input.ToKatakana();
+
+		func
+			.Should()
+			.ThrowExactly<InvalidCharacterException>();
+	}
+
+	[Fact]
+	public void AppendUnknownChars()
+	{
+		const string input = "aiueonq",
+			expected = "アイウエオンq";
+
+		var result = input.ToKatakana(UnrecognisedCharacterPolicy.Append);
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
+	public void IgnoreUnknownChars()
+	{
+		const string input = "aiueonq",
+			expected = "アイウエオン";
+
+		var result = input.ToKatakana(UnrecognisedCharacterPolicy.Skip);
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
 	public void ReturnChars()
 	{
 		const string input = "aiueon",
