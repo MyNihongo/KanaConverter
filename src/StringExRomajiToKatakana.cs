@@ -25,7 +25,7 @@ public static class StringExRomajiToKatakana
 	/// Tries to convert a romaji string to katakana.
 	/// </summary>
 	/// <param name="this">Romaji string to be converted to katakana.</param>
-	/// <param name="value">Romaji string after conversion.</param>
+	/// <param name="value">Katakana string after conversion.</param>
 	public static bool TryConvertToKatakana(this string @this, out string value) =>
 		@this.TryConvertToKatakana(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
 
@@ -34,7 +34,7 @@ public static class StringExRomajiToKatakana
 	/// </summary>
 	/// <param name="this">Romaji string to be converted to katakana.</param>
 	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
-	/// <param name="value">Romaji string after conversion.</param>
+	/// <param name="value">Katakana string after conversion.</param>
 	public static bool TryConvertToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
 		@this.TryConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
 
@@ -44,7 +44,7 @@ public static class StringExRomajiToKatakana
 	/// <param name="this">Romaji string to be converted to katakana.</param>
 	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
 	/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
-	/// <param name="value">Romaji string after conversion.</param>
+	/// <param name="value">Katakana string after conversion.</param>
 	public static bool TryConvertToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
 	{
 		var result = @this.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
