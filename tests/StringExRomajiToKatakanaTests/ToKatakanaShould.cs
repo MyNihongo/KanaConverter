@@ -53,6 +53,22 @@ public sealed class ToKatakanaShould
 	}
 
 	[Fact]
+	public void UseStringBuilderPool()
+	{
+		var stringBuilderPool = new DefaultObjectPoolProvider()
+			.CreateStringBuilderPool();
+
+		const string input = "aiueon",
+			expected = "アイウエオン";
+
+		var result = input.ToKatakana(stringBuilderPool: stringBuilderPool);
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
 	public void ReturnChars()
 	{
 		const string input = "aiueon",

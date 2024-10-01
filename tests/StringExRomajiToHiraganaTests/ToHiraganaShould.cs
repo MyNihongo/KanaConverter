@@ -53,6 +53,22 @@ public sealed class ToHiraganaShould
 	}
 
 	[Fact]
+	public void UseStringBuilderPool()
+	{
+		var stringBuilderPool = new DefaultObjectPoolProvider()
+			.CreateStringBuilderPool();
+
+		const string input = "aiueon",
+			expected = "あいうえおん";
+
+		var result = input.ToHiragana(stringBuilderPool: stringBuilderPool);
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Fact]
 	public void ReturnChars()
 	{
 		const string input = "aiueon",

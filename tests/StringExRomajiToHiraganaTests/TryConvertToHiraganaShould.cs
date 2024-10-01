@@ -67,4 +67,24 @@ public sealed class TryConvertToHiraganaShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Fact]
+	public void ConvertWithStringBuilderPool()
+	{
+		var stringBuilderPool = new DefaultObjectPoolProvider()
+			.CreateStringBuilderPool();
+
+		const string input = "aiueonq",
+			expected = "あいうえおん";
+
+		var result = input.TryConvertToHiragana(UnrecognisedCharacterPolicy.Skip, stringBuilderPool, out var convertResult);
+
+		result
+			.Should()
+			.BeTrue();
+
+		convertResult
+			.Should()
+			.Be(expected);
+	}
 }

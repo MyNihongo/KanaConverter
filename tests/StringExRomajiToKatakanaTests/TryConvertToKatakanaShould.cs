@@ -67,4 +67,24 @@ public sealed class TryConvertToKatakanaShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Fact]
+	public void ConvertWithStringBuilderPool()
+	{
+		var stringBuilderPool = new DefaultObjectPoolProvider()
+			.CreateStringBuilderPool();
+
+		const string input = "aiueonq",
+			expected = "アイウエオン";
+
+		var result = input.TryConvertToKatakana(UnrecognisedCharacterPolicy.Skip, stringBuilderPool, out var convertResult);
+
+		result
+			.Should()
+			.BeTrue();
+
+		convertResult
+			.Should()
+			.Be(expected);
+	}
 }
