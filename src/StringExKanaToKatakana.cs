@@ -8,13 +8,13 @@ public static partial class StringEx
 	/// <param name="this">Kana string to be converted to katakana.</param>
 	/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
 	/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
-	/// <exception cref="InvalidKanaException"></exception>
+	/// <exception cref="InvalidCharacterException"></exception>
 	public static string KanaToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 	{
 		var result = @this.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
 
 		if (result.ErrorMessage != null)
-			throw new InvalidKanaException(result.ErrorMessage);
+			throw new InvalidCharacterException(result.ErrorMessage);
 
 		return result.Value;
 	}

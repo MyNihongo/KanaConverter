@@ -11,7 +11,7 @@ public sealed class KanaToKatakanaUnknownCharShould
 
 		func
 			.Should()
-			.Throw<InvalidKanaException>();
+			.Throw<InvalidCharacterException>();
 	}
 
 	[Fact]
