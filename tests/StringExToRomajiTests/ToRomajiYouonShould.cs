@@ -19,7 +19,7 @@ public sealed class ToRomajiYouonShould
 
 		action
 			.Should()
-			.ThrowExactly<InvalidKanaException>();
+			.ThrowExactly<InvalidCharacterException>();
 	}
 
 	[Theory]
@@ -168,6 +168,20 @@ public sealed class ToRomajiYouonShould
 	public void ReturnCharsYouonR(string input)
 	{
 		const string expected = "ryiryuryeryaryuryo";
+
+		var result = input.ToRomaji();
+
+		result
+			.Should()
+			.Be(expected);
+	}
+
+	[Theory]
+	[InlineData("ゔぁゔぃゔぅゔぇゔぉ")]
+	[InlineData("ヴァヴィヴゥヴェヴォ")]
+	public void ReturnCharsDakuten(string input)
+	{
+		const string expected = "vavivuvevo";
 
 		var result = input.ToRomaji();
 
