@@ -11,7 +11,8 @@ public static partial class StringEx
 	/// <exception cref="InvalidCharacterException"></exception>
 	public static string KanaToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 	{
-		var result = @this.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
 
 		if (result.ErrorMessage != null)
 			throw new InvalidCharacterException(result.ErrorMessage);
@@ -45,7 +46,9 @@ public static partial class StringEx
 	/// <param name="value">Romaji string after conversion.</param>
 	public static bool TryConvertKanaToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
 	{
-		var result = @this.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+
 		value = result.Value;
 
 		if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
@@ -54,9 +57,9 @@ public static partial class StringEx
 		return result.ErrorMessage == null;
 	}
 
-	private static ConversionResult ConvertKanaToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	private static ConversionResult ConvertKanaToHiragana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
-		if (string.IsNullOrEmpty(@this))
+		if (@this.IsEmpty)
 			return ConversionResult.FromValue(string.Empty);
 
 		var capacity = @this.Length;
