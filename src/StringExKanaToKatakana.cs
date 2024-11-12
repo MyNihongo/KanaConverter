@@ -11,7 +11,8 @@ public static partial class StringEx
 	/// <exception cref="InvalidCharacterException"></exception>
 	public static string KanaToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 	{
-		var result = @this.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
 
 		if (result.ErrorMessage != null)
 			throw new InvalidCharacterException(result.ErrorMessage);
@@ -45,7 +46,9 @@ public static partial class StringEx
 	/// <param name="value">Romaji string after conversion.</param>
 	public static bool TryConvertKanaToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
 	{
-		var result = @this.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
 		value = result.Value;
 
 		if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
@@ -54,11 +57,11 @@ public static partial class StringEx
 		return result.ErrorMessage == null;
 	}
 
-	private static ConversionResult ConvertKanaToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	private static ConversionResult ConvertKanaToKatakana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
-		if (string.IsNullOrEmpty(@this))
+		if (@this.IsEmpty)
 			return ConversionResult.FromValue(string.Empty);
-		
+
 		var capacity = @this.Length;
 		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
 		stringBuilder.Capacity = capacity;
@@ -348,7 +351,7 @@ public static partial class StringEx
 					}
 				}
 			}
-			
+
 			return ConversionResult.FromValue(stringBuilder.ToString());
 		}
 		finally

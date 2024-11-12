@@ -13,14 +13,15 @@ public static class StringExRomajiToHiragana
 	/// <exception cref="InvalidCharacterException"></exception>
 	public static string ToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 	{
-		var result = @this.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
 
 		if (result.ErrorMessage != null)
 			throw new InvalidCharacterException(result.ErrorMessage);
 
 		return result.Value;
 	}
-	
+
 	/// <summary>
 	/// Tries to convert a romaji string to hiragana.
 	/// </summary>
@@ -47,7 +48,9 @@ public static class StringExRomajiToHiragana
 	/// <param name="value">Hiragana string after conversion.</param>
 	public static bool TryConvertToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
 	{
-		var result = @this.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+
 		value = result.Value;
 
 		if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
@@ -56,9 +59,9 @@ public static class StringExRomajiToHiragana
 		return result.ErrorMessage == null;
 	}
 
-	private static ConversionResult ConvertToHiragana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	private static ConversionResult ConvertToHiragana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
-		if (string.IsNullOrEmpty(@this))
+		if (@this.IsEmpty)
 			return ConversionResult.FromValue(string.Empty);
 
 		var capacity = @this.Length / 2;

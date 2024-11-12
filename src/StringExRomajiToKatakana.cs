@@ -13,7 +13,8 @@ public static class StringExRomajiToKatakana
 	/// <exception cref="InvalidCharacterException"></exception>
 	public static string ToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 	{
-		var result = @this.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
 
 		if (result.ErrorMessage != null)
 			throw new InvalidCharacterException(result.ErrorMessage);
@@ -47,7 +48,9 @@ public static class StringExRomajiToKatakana
 	/// <param name="value">Katakana string after conversion.</param>
 	public static bool TryConvertToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
 	{
-		var result = @this.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+		var result = new StringTextContainer(@this)
+			.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
 		value = result.Value;
 
 		if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
@@ -56,9 +59,9 @@ public static class StringExRomajiToKatakana
 		return result.ErrorMessage == null;
 	}
 
-	private static ConversionResult ConvertToKatakana(this string @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	private static ConversionResult ConvertToKatakana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
-		if (string.IsNullOrEmpty(@this))
+		if (@this.IsEmpty)
 			return ConversionResult.FromValue(string.Empty);
 
 		var capacity = @this.Length / 2;
