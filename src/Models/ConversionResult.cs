@@ -1,20 +1,25 @@
 ﻿namespace MyNihongo.KanaConverter;
 
+/// <summary>
+/// This model is created for try-convert methods so that expensive operations of throwing and catching exceptions are avoided.
+/// </summary>
 internal readonly ref struct ConversionResult
 {
-	private ConversionResult(string value, string? errorMessage)
+	private readonly StringBuilder? _stringBuilder;
+	public readonly string? ErrorMessage;
+
+	private ConversionResult(StringBuilder? stringBuilder, string? errorMessage)
 	{
-		Value = value;
+		_stringBuilder = stringBuilder;
 		ErrorMessage = errorMessage;
 	}
 
-	public string Value { get; }
+	public string GetValue() =>
+		_stringBuilder?.ToString() ?? string.Empty;
 
-	public string? ErrorMessage { get; }
-
-	public static ConversionResult FromValue(string value) =>
-		new(value, null);
+	public static ConversionResult FromValue(StringBuilder? value) =>
+		new(value, errorMessage: null);
 
 	public static ConversionResult FromError(string errorMessage) =>
-		new(string.Empty, errorMessage);
+		new(stringBuilder: null, errorMessage);
 }

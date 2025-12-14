@@ -16,10 +16,10 @@ public static class KanaToHiraganaEx
 			var result = new StringBuilderTextContainer(@this)
 				.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
 
-			if (result.ErrorMessage != null)
+			if (result.ErrorMessage is not null)
 				throw new InvalidCharacterException(result.ErrorMessage);
 
-			return result.Value;
+			return result.GetValue();
 		}
 
 		/// <summary>
@@ -48,12 +48,23 @@ public static class KanaToHiraganaEx
 			var result = new StringBuilderTextContainer(@this)
 				.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
 
-			value = result.Value;
+			value = result.GetValue();
 
 			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
 				return result.ErrorMessage == null && !@this.IsEqual(value);
 
 			return result.ErrorMessage == null;
+		}
+
+		public StringBuilder AppendKanaToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default)
+		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertKanaToHiragana(unrecognisedCharacterPolicy, @this);
+
+			if (result.ErrorMessage is not null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return @this;
 		}
 	}
 
@@ -74,7 +85,7 @@ public static class KanaToHiraganaEx
 			if (result.ErrorMessage != null)
 				throw new InvalidCharacterException(result.ErrorMessage);
 
-			return result.Value;
+			return result.GetValue();
 		}
 
 		/// <summary>
@@ -103,7 +114,7 @@ public static class KanaToHiraganaEx
 			var result = new StringTextContainer(@this)
 				.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
 
-			value = result.Value;
+			value = result.GetValue();
 
 			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
 				return result.ErrorMessage == null && value != @this;
@@ -112,17 +123,30 @@ public static class KanaToHiraganaEx
 		}
 	}
 
-	private static ConversionResult ConvertKanaToHiragana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	extension(ITextContainer @this)
 	{
-		if (@this.IsEmpty)
-			return ConversionResult.FromValue(string.Empty);
-
-		var capacity = @this.Length;
-		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
-		stringBuilder.Capacity = capacity;
-
-		try
+		private ConversionResult ConvertKanaToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 		{
+			var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(@this.Length);
+
+			try
+			{
+				return @this.ConvertKanaToHiragana(unrecognisedCharacterPolicy, stringBuilder);
+			}
+			finally
+			{
+				stringBuilderPool?.Return(stringBuilder);
+			}
+		}
+
+		private ConversionResult ConvertKanaToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		{
+			if (@this.IsEmpty)
+				return ConversionResult.FromValue(null);
+
+			var capacity = @this.Length;
+			stringBuilder.Capacity = capacity;
+
 			for (var i = 0; i < @this.Length; i++)
 			{
 				switch (@this[i])
@@ -407,11 +431,7 @@ public static class KanaToHiraganaEx
 				}
 			}
 
-			return ConversionResult.FromValue(stringBuilder.ToString());
-		}
-		finally
-		{
-			stringBuilderPool?.Return(stringBuilder);
+			return ConversionResult.FromValue(stringBuilder);
 		}
 	}
 }
