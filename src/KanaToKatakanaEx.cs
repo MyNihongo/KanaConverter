@@ -1,8 +1,118 @@
 ﻿namespace MyNihongo.KanaConverter;
 
-internal static class KanaToKatakanaTextContainerEx
+public static class KanaToKatakanaEx
 {
-	public static ConversionResult ConvertKanaToKatakana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	/// <param name="this">Kana string to be converted to katakana.</param>
+	extension(StringBuilder @this)
+	{
+		/// <summary>
+		/// Converts a kana (hiragana or katakana) string builder to katakana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <exception cref="InvalidCharacterException"></exception>
+		public string KanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
+		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			if (result.ErrorMessage != null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return result.Value;
+		}
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string builder to katakana.
+		/// </summary>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertKanaToKatakana(out string value) =>
+			@this.TryConvertKanaToKatakana(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string builder to katakana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertKanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+			@this.TryConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string builder to katakana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertKanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			value = result.Value;
+
+			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+				return result.ErrorMessage == null && !@this.IsEqual(value);
+
+			return result.ErrorMessage == null;
+		}
+	}
+
+	/// <param name="this">Kana string to be converted to katakana.</param>
+	extension(string @this)
+	{
+		/// <summary>
+		/// Converts a kana (hiragana or katakana) string to katakana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <exception cref="InvalidCharacterException"></exception>
+		public string KanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
+		{
+			var result = new StringTextContainer(@this)
+				.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			if (result.ErrorMessage != null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return result.Value;
+		}
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string to katakana.
+		/// </summary>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertKanaToKatakana(out string value) =>
+			@this.TryConvertKanaToKatakana(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string to katakana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertKanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+			@this.TryConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string to katakana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertKanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+		{
+			var result = new StringTextContainer(@this)
+				.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			value = result.Value;
+
+			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+				return result.ErrorMessage == null && value != @this;
+
+			return result.ErrorMessage == null;
+		}
+	}
+
+	private static ConversionResult ConvertKanaToKatakana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 	{
 		if (@this.IsEmpty)
 			return ConversionResult.FromValue(string.Empty);
