@@ -2,19 +2,163 @@
 
 namespace MyNihongo.KanaConverter;
 
-internal static class RomajiToHiraganaTextContainerEx
+public static class RomajiToHiraganaEx
 {
-	public static ConversionResult ConvertToHiragana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	/// <param name="this">Romaji string to be converted to hiragana.</param>
+	extension(StringBuilder @this)
 	{
-		if (@this.IsEmpty)
-			return ConversionResult.FromValue(string.Empty);
-
-		var capacity = @this.Length / 2;
-		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
-		stringBuilder.Capacity = capacity;
-
-		try
+		/// <summary>
+		/// Converts a romaji string builder to hiragana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <exception cref="InvalidCharacterException"></exception>
+		public string ToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			if (result.ErrorMessage != null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return result.Value;
+		}
+
+		/// <summary>
+		/// Tries to convert a romaji string builder to hiragana.
+		/// </summary>
+		/// <param name="value">Hiragana string after conversion.</param>
+		public bool TryConvertToHiragana(out string value) =>
+			@this.TryConvertToHiragana(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a romaji string builder to hiragana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="value">Hiragana string after conversion.</param>
+		public bool TryConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+			@this.TryConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a romaji string builder to hiragana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <param name="value">Hiragana string after conversion.</param>
+		public bool TryConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			value = result.Value;
+
+			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+				return result.ErrorMessage == null && !@this.IsEqual(value);
+
+			return result.ErrorMessage == null;
+		}
+
+		/// <summary>
+		/// Converts a romaji string to hiragana and appends it to the string builder.
+		/// </summary>
+		/// <param name="value">Value to convert to hiragana.</param>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <returns>String builder instance</returns>
+		public StringBuilder AppendToHiragana(string? value, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default)
+		{
+			var errorMessage = new StringTextContainer(value)
+				.AppendConvertToHiragana(unrecognisedCharacterPolicy, @this);
+
+			if (!string.IsNullOrEmpty(errorMessage))
+				throw new InvalidCharacterException(errorMessage!);
+
+			return @this;
+		}
+	}
+
+	/// <param name="this">Romaji string to be converted to hiragana.</param>
+	extension(string @this)
+	{
+		/// <summary>
+		/// Converts a romaji string to hiragana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <exception cref="InvalidCharacterException"></exception>
+		public string ToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
+		{
+			var result = new StringTextContainer(@this)
+				.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			if (result.ErrorMessage != null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return result.Value;
+		}
+
+		/// <summary>
+		/// Tries to convert a romaji string to hiragana.
+		/// </summary>
+		/// <param name="value">Hiragana string after conversion.</param>
+		public bool TryConvertToHiragana(out string value) =>
+			@this.TryConvertToHiragana(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a romaji string to hiragana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="value">Hiragana string after conversion.</param>
+		public bool TryConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+			@this.TryConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a romaji string to hiragana.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <param name="value">Hiragana string after conversion.</param>
+		public bool TryConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+		{
+			var result = new StringTextContainer(@this)
+				.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			value = result.Value;
+
+			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+				return result.ErrorMessage == null && value != @this;
+
+			return result.ErrorMessage == null;
+		}
+	}
+
+	extension(ITextContainer @this)
+	{
+		private ConversionResult ConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+		{
+			if (@this.IsEmpty)
+				return ConversionResult.FromValue(string.Empty);
+
+			var capacity = @this.Length / 2;
+			var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
+			stringBuilder.Capacity = capacity;
+
+			try
+			{
+				var errorMessage = @this.AppendConvertToHiragana(unrecognisedCharacterPolicy, stringBuilder);
+				return ConversionResult.Create(stringBuilder, errorMessage);
+			}
+			finally
+			{
+				stringBuilderPool?.Return(stringBuilder);
+			}
+		}
+
+		/// <returns>Error message</returns>
+		private string? AppendConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		{
+			if (@this.IsEmpty)
+				return null;
+
 			int charBuilder = 0, stepMultiplier = 2;
 
 			for (int i = 0, lastIndex = @this.Length - 1; i < @this.Length; i++)
@@ -364,7 +508,7 @@ internal static class RomajiToHiraganaTextContainerEx
 								stringBuilder.Append(@this[i]);
 								continue;
 							default:
-								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+								return $"Invalid kana character \"{@this[i]}\" in \"{@this}\"";
 						}
 					}
 				}
@@ -382,11 +526,7 @@ internal static class RomajiToHiraganaTextContainerEx
 				stepMultiplier = 2;
 			}
 
-			return ConversionResult.FromValue(stringBuilder.ToString());
-		}
-		finally
-		{
-			stringBuilderPool?.Return(stringBuilder);
+			return null;
 		}
 	}
 

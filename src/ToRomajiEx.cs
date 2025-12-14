@@ -1,20 +1,162 @@
 ﻿namespace MyNihongo.KanaConverter;
 
-internal static class ToRomajiTextContainerEx
+public static class ToRomajiEx
 {
-	public static ConversionResult ConvertToRomaji(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	/// <param name="this">Kana string to be converted to romaji.</param>
+	extension(StringBuilder @this)
 	{
-		if (@this.IsEmpty)
-			return ConversionResult.FromValue(string.Empty);
-
-		var capacity = @this.Length * 2;
-		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
-		stringBuilder.Capacity = capacity;
-
-		var isSokuon = false;
-
-		try
+		/// <summary>
+		/// Converts a kana (hiragana or katakana) string builder to romaji.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <exception cref="InvalidCharacterException"></exception>
+		public string ToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
 		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			if (result.ErrorMessage != null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return result.Value;
+		}
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string builder to romaji.
+		/// </summary>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertToRomaji(out string value) =>
+			@this.TryConvertToRomaji(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string builder to romaji.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+			@this.TryConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string builder to romaji.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+		{
+			var result = new StringBuilderTextContainer(@this)
+				.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			value = result.Value;
+
+			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+				return result.ErrorMessage == null && !@this.IsEqual(value);
+
+			return result.ErrorMessage == null;
+		}
+
+		/// <summary>
+		/// Converts a kana (hiragana or katakana) string to romaji and appends it to the string builder.
+		/// </summary>
+		/// <param name="value">Value to convert to hiragana.</param>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <returns>String builder instance</returns>
+		public StringBuilder AppendToRomaji(string? value, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default)
+		{
+			var errorMessage = new StringTextContainer(value)
+				.AppendConvertToRomaji(unrecognisedCharacterPolicy, @this);
+
+			if (!string.IsNullOrEmpty(errorMessage))
+				throw new InvalidCharacterException(errorMessage!);
+
+			return @this;
+		}
+	}
+
+	/// <param name="this">Kana string to be converted to romaji.</param>
+	extension(string @this)
+	{
+		/// <summary>
+		/// Converts a kana (hiragana or katakana) string to romaji.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <exception cref="InvalidCharacterException"></exception>
+		public string ToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default, ObjectPool<StringBuilder>? stringBuilderPool = null)
+		{
+			var result = new StringTextContainer(@this)
+				.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			if (result.ErrorMessage != null)
+				throw new InvalidCharacterException(result.ErrorMessage);
+
+			return result.Value;
+		}
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string to romaji.
+		/// </summary>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertToRomaji(out string value) =>
+			@this.TryConvertToRomaji(unrecognisedCharacterPolicy: default, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string to romaji.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, out string value) =>
+			@this.TryConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool: null, out value);
+
+		/// <summary>
+		/// Tries to convert a kana (hiragana or katakana) string to romaji.
+		/// </summary>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <param name="stringBuilderPool">String builder pool that is useful when many strings are converted in a loop.</param>
+		/// <param name="value">Romaji string after conversion.</param>
+		public bool TryConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool, out string value)
+		{
+			var result = new StringTextContainer(@this)
+				.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilderPool);
+
+			value = result.Value;
+
+			if (unrecognisedCharacterPolicy == UnrecognisedCharacterPolicy.Append)
+				return result.ErrorMessage == null && value != @this;
+
+			return result.ErrorMessage == null;
+		}
+	}
+
+	extension(ITextContainer @this)
+	{
+		private ConversionResult ConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+		{
+			if (@this.IsEmpty)
+				return ConversionResult.FromValue(string.Empty);
+
+			var capacity = @this.Length * 2;
+			var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
+			stringBuilder.Capacity = capacity;
+
+			try
+			{
+				var errorMessage = @this.AppendConvertToRomaji(unrecognisedCharacterPolicy, stringBuilder);
+				return ConversionResult.Create(stringBuilder, errorMessage);
+			}
+			finally
+			{
+				stringBuilderPool?.Return(stringBuilder);
+			}
+		}
+
+		private string? AppendConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		{
+			if (@this.IsEmpty)
+				return null;
+
+			var isSokuon = false;
 			for (var i = 0; i < @this.Length; i++)
 			{
 				string? romaji;
@@ -290,7 +432,7 @@ internal static class ToRomajiTextContainerEx
 					case 'ー':
 						var vowelIndex = stringBuilder.Length - 1;
 						if (vowelIndex < 0)
-							return ConversionResult.FromError("Chōonpu (長音符) cannot be the first character");
+							return "Chōonpu (長音符) cannot be the first character";
 
 						char vowelChar;
 						switch (stringBuilder[vowelIndex])
@@ -303,7 +445,7 @@ internal static class ToRomajiTextContainerEx
 								vowelChar = stringBuilder[vowelIndex];
 								break;
 							default:
-								return ConversionResult.FromError($"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"");
+								return $"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"";
 						}
 
 						stringBuilder.Append(vowelChar);
@@ -320,7 +462,7 @@ internal static class ToRomajiTextContainerEx
 								stringBuilder.Append(@this[i]);
 								continue;
 							default:
-								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+								return $"Invalid kana character \"{@this[i]}\" in \"{@this}\"";
 						}
 					}
 				}
@@ -341,7 +483,7 @@ internal static class ToRomajiTextContainerEx
 						case 'u':
 						case 'e':
 						case 'o':
-							return ConversionResult.FromError($"Sokuon (促音) cannot precede a letter \"{romaji[0]}\"");
+							return $"Sokuon (促音) cannot precede a letter \"{romaji[0]}\"";
 						default:
 							sokuonChar = romaji[0];
 							break;
@@ -356,7 +498,7 @@ internal static class ToRomajiTextContainerEx
 				Youon:
 				var consonantIndex = stringBuilder.Length - 2;
 				if (consonantIndex < 0)
-					return ConversionResult.FromError($"Yōon (拗音) \"{youon}\" cannot be the first character");
+					return $"Yōon (拗音) \"{youon}\" cannot be the first character";
 
 				var youonChar = youon.Value.GetChar();
 				switch (stringBuilder[consonantIndex])
@@ -383,13 +525,13 @@ internal static class ToRomajiTextContainerEx
 						goto case 'k';
 					}
 					default:
-						return ConversionResult.FromError($"Unrecognised yōon (拗音) combination in \"{@this}\"");
+						return $"Unrecognised yōon (拗音) combination in \"{@this}\"";
 				}
 
 				YouonSpecial:
 				var youonSpecialIndex = stringBuilder.Length - 1;
 				if (youonSpecialIndex < 0)
-					return ConversionResult.FromError($"Yōon (拗音) \"{youon}\" cannot be the first character");
+					return $"Yōon (拗音) \"{youon}\" cannot be the first character";
 
 				char? youonVowelChar;
 				switch (stringBuilder[youonSpecialIndex])
@@ -422,18 +564,14 @@ internal static class ToRomajiTextContainerEx
 					}
 				}
 
-				return ConversionResult.FromError($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
+				return $"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"";
 
 				VowelYouon:
 				stringBuilder[youonSpecialIndex] = youonVowelChar.Value;
 				stringBuilder.Append(youon.Value.GetChar());
 			}
 
-			return ConversionResult.FromValue(stringBuilder.ToString());
-		}
-		finally
-		{
-			stringBuilderPool?.Return(stringBuilder);
+			return null;
 		}
 	}
 }

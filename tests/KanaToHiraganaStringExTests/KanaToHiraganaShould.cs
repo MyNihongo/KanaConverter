@@ -221,4 +221,21 @@ public sealed class KanaToHiraganaShould
 			.Should()
 			.Be(expected);
 	}
+	
+	[Fact]
+	public void UseStringBuilderPool()
+	{
+		var stringBuilderPool = new DefaultObjectPoolProvider()
+			.CreateStringBuilderPool();
+
+		const string expected = "あいうえおん",
+			input = "アイウエオン";
+
+		var result = input
+			.KanaToHiragana(stringBuilderPool: stringBuilderPool);
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }

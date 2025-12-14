@@ -14,4 +14,9 @@ internal sealed class StringBuilderTextContainer : ITextContainer
 	public int Length => _stringBuilder.Length;
 
 	public bool IsEmpty => _stringBuilder.Length == 0;
+
+	public override string ToString()
+	{
+		return _stringBuilder.ToString();
+	}
 }
