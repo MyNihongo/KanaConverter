@@ -6,7 +6,7 @@ internal sealed class StringTextContainer : ITextContainer
 
 	public StringTextContainer(string? text)
 	{
-		_text = text ??  string.Empty;
+		_text = text ?? string.Empty;
 	}
 
 	public char this[int index] => _text[index];
@@ -14,4 +14,9 @@ internal sealed class StringTextContainer : ITextContainer
 	public int Length => _text.Length;
 
 	public bool IsEmpty => string.IsNullOrEmpty(_text);
+
+	public override string ToString()
+	{
+		return _text;
+	}
 }

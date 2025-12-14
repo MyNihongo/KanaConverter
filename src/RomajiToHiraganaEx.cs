@@ -127,7 +127,7 @@ public static class RomajiToHiraganaEx
 
 			try
 			{
-				var errorMessage = @this.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilder);
+				var errorMessage = @this.AppendConvertToHiragana(unrecognisedCharacterPolicy, stringBuilder);
 				return ConversionResult.Create(stringBuilder, errorMessage);
 			}
 			finally
@@ -137,7 +137,7 @@ public static class RomajiToHiraganaEx
 		}
 
 		/// <returns>Error message</returns>
-		private string? ConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		private string? AppendConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
 		{
 			if (@this.IsEmpty)
 				return null;

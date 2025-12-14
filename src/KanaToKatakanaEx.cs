@@ -125,7 +125,7 @@ public static class KanaToKatakanaEx
 
 			try
 			{
-				var errorMessage = @this.ConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilder);
+				var errorMessage = @this.AppendConvertKanaToKatakana(unrecognisedCharacterPolicy, stringBuilder);
 				return ConversionResult.Create(stringBuilder, errorMessage);
 			}
 			finally
@@ -135,7 +135,7 @@ public static class KanaToKatakanaEx
 		}
 
 		/// <returns>Error message</returns>
-		private string? ConvertKanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		private string? AppendConvertKanaToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
 		{
 			if (@this.IsEmpty)
 				return null;

@@ -125,7 +125,7 @@ public static class ToRomajiEx
 
 			try
 			{
-				var errorMessage = @this.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilder);
+				var errorMessage = @this.AppendConvertToRomaji(unrecognisedCharacterPolicy, stringBuilder);
 				return ConversionResult.Create(stringBuilder, errorMessage);
 			}
 			finally
@@ -134,7 +134,7 @@ public static class ToRomajiEx
 			}
 		}
 
-		private string? ConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		private string? AppendConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
 		{
 			if (@this.IsEmpty)
 				return null;

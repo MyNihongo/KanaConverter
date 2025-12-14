@@ -127,7 +127,7 @@ public static class RomajiToKatakanaEx
 
 			try
 			{
-				var errorMessage = @this.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilder);
+				var errorMessage = @this.AppendConvertToKatakana(unrecognisedCharacterPolicy, stringBuilder);
 				return ConversionResult.Create(stringBuilder, errorMessage);
 			}
 			finally
@@ -136,7 +136,7 @@ public static class RomajiToKatakanaEx
 			}
 		}
 
-		private string? ConvertToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		private string? AppendConvertToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
 		{
 			if (@this.IsEmpty)
 				return null;
