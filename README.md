@@ -13,6 +13,7 @@ var katakana = "katakana".ToKatakana(); // result "カタカナ"
 var kanaToHiragana = "ひらがな・カタカナ".KanaToHiragana(UnrecognisedCharacterPolicy.Append); // result "ひらがな・かたかな"
 var kanaToKatakana = "ひらがな・カタカナ".KanaToKatakana(UnrecognisedCharacterPolicy.Append); // result "ヒラガナ・カタカナ"
 ```
+
 ### StringBuilder with `Microsoft.Extensions.ObjectPool`
 ```cs
 using Microsoft.Extensions.ObjectPool;
@@ -24,6 +25,18 @@ for (var i = 0; i < 1_000_000; i++)
 {
 	var romaji = "ひらがな・カタカナ".ToRomaji(stringBuilderPool: stringBuilderPool);
 }
+```
+
+### Appending to a `StringBuilder`
+```cs
+var result = new StringBuilder()
+	.Append("some text and ")
+	.AppendToHiragana("hiragana")
+	.Append(" and ")
+	.AppendToKatakana("katakana")
+	.Append(" and ")
+	.AppendToRomaji("ひらがな・カタカナ")
+	.ToString(); // result "some text and ひらがな and カタカナ and hiraganakatakana"
 ```
 
 ## Handling unrecognised characters
