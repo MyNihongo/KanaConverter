@@ -114,19 +114,34 @@ public static class RomajiToKatakanaEx
 		}
 	}
 
-	private static ConversionResult ConvertToKatakana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	extension(ITextContainer @this)
 	{
-		if (@this.IsEmpty)
-			return ConversionResult.FromValue(string.Empty);
-
-		var capacity = @this.Length / 2;
-		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
-		stringBuilder.Capacity = capacity;
-
-		try
+		private ConversionResult ConvertToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 		{
-			int charBuilder = 0, stepMultiplier = 2;
+			if (@this.IsEmpty)
+				return ConversionResult.FromValue(string.Empty);
 
+			var capacity = @this.Length / 2;
+			var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
+			stringBuilder.Capacity = capacity;
+
+			try
+			{
+				var errorMessage = @this.ConvertToKatakana(unrecognisedCharacterPolicy, stringBuilder);
+				return ConversionResult.Create(stringBuilder, errorMessage);
+			}
+			finally
+			{
+				stringBuilderPool?.Return(stringBuilder);
+			}
+		}
+
+		private string? ConvertToKatakana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		{
+			if (@this.IsEmpty)
+				return null;
+
+			int charBuilder = 0, stepMultiplier = 2;
 			for (int i = 0, lastIndex = @this.Length - 1; i < @this.Length; i++)
 			{
 				int stepOffset;
@@ -474,7 +489,7 @@ public static class RomajiToKatakanaEx
 								stringBuilder.Append(@this[i]);
 								continue;
 							default:
-								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+								return $"Invalid kana character \"{@this[i]}\" in \"{@this}\"";
 						}
 					}
 				}
@@ -492,11 +507,7 @@ public static class RomajiToKatakanaEx
 				stepMultiplier = 2;
 			}
 
-			return ConversionResult.FromValue(stringBuilder.ToString());
-		}
-		finally
-		{
-			stringBuilderPool?.Return(stringBuilder);
+			return null;
 		}
 	}
 

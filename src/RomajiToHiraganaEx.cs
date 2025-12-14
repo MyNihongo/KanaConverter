@@ -114,17 +114,34 @@ public static class RomajiToHiraganaEx
 		}
 	}
 
-	private static ConversionResult ConvertToHiragana(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	extension(ITextContainer @this)
 	{
-		if (@this.IsEmpty)
-			return ConversionResult.FromValue(string.Empty);
-
-		var capacity = @this.Length / 2;
-		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
-		stringBuilder.Capacity = capacity;
-
-		try
+		private ConversionResult ConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 		{
+			if (@this.IsEmpty)
+				return ConversionResult.FromValue(string.Empty);
+
+			var capacity = @this.Length / 2;
+			var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
+			stringBuilder.Capacity = capacity;
+
+			try
+			{
+				var errorMessage = @this.ConvertToHiragana(unrecognisedCharacterPolicy, stringBuilder);
+				return ConversionResult.Create(stringBuilder, errorMessage);
+			}
+			finally
+			{
+				stringBuilderPool?.Return(stringBuilder);
+			}
+		}
+
+		/// <returns>Error message</returns>
+		private string? ConvertToHiragana(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		{
+			if (@this.IsEmpty)
+				return null;
+
 			int charBuilder = 0, stepMultiplier = 2;
 
 			for (int i = 0, lastIndex = @this.Length - 1; i < @this.Length; i++)
@@ -474,7 +491,7 @@ public static class RomajiToHiraganaEx
 								stringBuilder.Append(@this[i]);
 								continue;
 							default:
-								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+								return $"Invalid kana character \"{@this[i]}\" in \"{@this}\"";
 						}
 					}
 				}
@@ -492,11 +509,7 @@ public static class RomajiToHiraganaEx
 				stepMultiplier = 2;
 			}
 
-			return ConversionResult.FromValue(stringBuilder.ToString());
-		}
-		finally
-		{
-			stringBuilderPool?.Return(stringBuilder);
+			return null;
 		}
 	}
 

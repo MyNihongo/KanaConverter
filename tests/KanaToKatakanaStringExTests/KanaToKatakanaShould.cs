@@ -221,4 +221,21 @@ public sealed class KanaToKatakanaShould
 			.Should()
 			.Be(expected);
 	}
+
+	[Fact]
+	public void UseStringBuilderPool()
+	{
+		var stringBuilderPool = new DefaultObjectPoolProvider()
+			.CreateStringBuilderPool();
+
+		const string input = "あいうえおん",
+			expected = "アイウエオン";
+
+		var result = input
+			.KanaToKatakana(stringBuilderPool: stringBuilderPool);
+
+		result
+			.Should()
+			.Be(expected);
+	}
 }

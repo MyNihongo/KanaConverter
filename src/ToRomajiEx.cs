@@ -112,19 +112,34 @@ public static class ToRomajiEx
 		}
 	}
 
-	private static ConversionResult ConvertToRomaji(this ITextContainer @this, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
+	extension(ITextContainer @this)
 	{
-		if (@this.IsEmpty)
-			return ConversionResult.FromValue(string.Empty);
-
-		var capacity = @this.Length * 2;
-		var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
-		stringBuilder.Capacity = capacity;
-
-		var isSokuon = false;
-
-		try
+		private ConversionResult ConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, ObjectPool<StringBuilder>? stringBuilderPool)
 		{
+			if (@this.IsEmpty)
+				return ConversionResult.FromValue(string.Empty);
+
+			var capacity = @this.Length * 2;
+			var stringBuilder = stringBuilderPool?.Get() ?? new StringBuilder(capacity);
+			stringBuilder.Capacity = capacity;
+
+			try
+			{
+				var errorMessage = @this.ConvertToRomaji(unrecognisedCharacterPolicy, stringBuilder);
+				return ConversionResult.Create(stringBuilder, errorMessage);
+			}
+			finally
+			{
+				stringBuilderPool?.Return(stringBuilder);
+			}
+		}
+
+		private string? ConvertToRomaji(UnrecognisedCharacterPolicy unrecognisedCharacterPolicy, StringBuilder stringBuilder)
+		{
+			if (@this.IsEmpty)
+				return null;
+
+			var isSokuon = false;
 			for (var i = 0; i < @this.Length; i++)
 			{
 				string? romaji;
@@ -400,7 +415,7 @@ public static class ToRomajiEx
 					case 'ー':
 						var vowelIndex = stringBuilder.Length - 1;
 						if (vowelIndex < 0)
-							return ConversionResult.FromError("Chōonpu (長音符) cannot be the first character");
+							return "Chōonpu (長音符) cannot be the first character";
 
 						char vowelChar;
 						switch (stringBuilder[vowelIndex])
@@ -413,7 +428,7 @@ public static class ToRomajiEx
 								vowelChar = stringBuilder[vowelIndex];
 								break;
 							default:
-								return ConversionResult.FromError($"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"");
+								return $"Chōonpu (長音符) cannot extend a consonant in \"{@this}\"";
 						}
 
 						stringBuilder.Append(vowelChar);
@@ -430,7 +445,7 @@ public static class ToRomajiEx
 								stringBuilder.Append(@this[i]);
 								continue;
 							default:
-								return ConversionResult.FromError($"Invalid kana character \"{@this[i]}\" in \"{@this}\"");
+								return $"Invalid kana character \"{@this[i]}\" in \"{@this}\"";
 						}
 					}
 				}
@@ -451,7 +466,7 @@ public static class ToRomajiEx
 						case 'u':
 						case 'e':
 						case 'o':
-							return ConversionResult.FromError($"Sokuon (促音) cannot precede a letter \"{romaji[0]}\"");
+							return $"Sokuon (促音) cannot precede a letter \"{romaji[0]}\"";
 						default:
 							sokuonChar = romaji[0];
 							break;
@@ -466,7 +481,7 @@ public static class ToRomajiEx
 				Youon:
 				var consonantIndex = stringBuilder.Length - 2;
 				if (consonantIndex < 0)
-					return ConversionResult.FromError($"Yōon (拗音) \"{youon}\" cannot be the first character");
+					return $"Yōon (拗音) \"{youon}\" cannot be the first character";
 
 				var youonChar = youon.Value.GetChar();
 				switch (stringBuilder[consonantIndex])
@@ -493,13 +508,13 @@ public static class ToRomajiEx
 						goto case 'k';
 					}
 					default:
-						return ConversionResult.FromError($"Unrecognised yōon (拗音) combination in \"{@this}\"");
+						return $"Unrecognised yōon (拗音) combination in \"{@this}\"";
 				}
 
 				YouonSpecial:
 				var youonSpecialIndex = stringBuilder.Length - 1;
 				if (youonSpecialIndex < 0)
-					return ConversionResult.FromError($"Yōon (拗音) \"{youon}\" cannot be the first character");
+					return $"Yōon (拗音) \"{youon}\" cannot be the first character";
 
 				char? youonVowelChar;
 				switch (stringBuilder[youonSpecialIndex])
@@ -532,18 +547,14 @@ public static class ToRomajiEx
 					}
 				}
 
-				return ConversionResult.FromError($"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"");
+				return $"Special yōon (拗音) cannot follow \"{stringBuilder[youonSpecialIndex]}\"";
 
 				VowelYouon:
 				stringBuilder[youonSpecialIndex] = youonVowelChar.Value;
 				stringBuilder.Append(youon.Value.GetChar());
 			}
 
-			return ConversionResult.FromValue(stringBuilder.ToString());
-		}
-		finally
-		{
-			stringBuilderPool?.Return(stringBuilder);
+			return null;
 		}
 	}
 }
