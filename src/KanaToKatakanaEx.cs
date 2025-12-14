@@ -68,7 +68,7 @@ public static class KanaToKatakanaEx
 				.AppendConvertKanaToKatakana(unrecognisedCharacterPolicy, @this);
 
 			if (!string.IsNullOrEmpty(errorMessage))
-				throw new InvalidCharacterException(errorMessage);
+				throw new InvalidCharacterException(errorMessage!);
 
 			return @this;
 		}

@@ -68,7 +68,7 @@ public static class KanaToHiraganaEx
 				.AppendConvertKanaToHiragana(unrecognisedCharacterPolicy, @this);
 
 			if (!string.IsNullOrEmpty(errorMessage))
-				throw new InvalidCharacterException(errorMessage);
+				throw new InvalidCharacterException(errorMessage!);
 
 			return @this;
 		}

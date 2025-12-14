@@ -57,6 +57,23 @@ public static class RomajiToKatakanaEx
 
 			return result.ErrorMessage == null;
 		}
+
+		/// <summary>
+		/// Converts a romaji string to katakana and appends it to the string builder.
+		/// </summary>
+		/// <param name="value">Value to convert to katakana.</param>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <returns>String builder instance</returns>
+		public StringBuilder AppendToKatakana(string? value, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default)
+		{
+			var errorMessage = new StringTextContainer(value)
+				.AppendConvertToKatakana(unrecognisedCharacterPolicy, @this);
+
+			if (!string.IsNullOrEmpty(errorMessage))
+				throw new InvalidCharacterException(errorMessage!);
+
+			return @this;
+		}
 	}
 
 	/// <param name="this">Romaji string to be converted to katakana.</param>

@@ -70,7 +70,7 @@ public static class RomajiToHiraganaEx
 				.AppendConvertToHiragana(unrecognisedCharacterPolicy, @this);
 
 			if (!string.IsNullOrEmpty(errorMessage))
-				throw new InvalidCharacterException(errorMessage);
+				throw new InvalidCharacterException(errorMessage!);
 
 			return @this;
 		}
