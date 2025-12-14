@@ -1,5 +1,8 @@
 ﻿namespace MyNihongo.KanaConverter;
 
+/// <summary>
+/// This model is created for try-convert methods so that expensive operations of throwing and catching exceptions are avoided.
+/// </summary>
 internal readonly ref struct ConversionResult
 {
 	private ConversionResult(string value, string? errorMessage)
