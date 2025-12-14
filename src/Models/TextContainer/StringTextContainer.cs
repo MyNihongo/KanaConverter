@@ -4,9 +4,9 @@ internal sealed class StringTextContainer : ITextContainer
 {
 	private readonly string _text;
 
-	public StringTextContainer(string? text)
+	public StringTextContainer(string text)
 	{
-		_text = text ?? string.Empty;
+		_text = text;
 	}
 
 	public char this[int index] => _text[index];
