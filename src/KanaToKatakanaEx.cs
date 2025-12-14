@@ -59,7 +59,7 @@ public static class KanaToKatakanaEx
 		/// <summary>
 		/// Converts a kana (hiragana or katakana) string to katakana and appends it to the string builder.
 		/// </summary>
-		/// <param name="value">Value to convert to hiragana.</param>
+		/// <param name="value">Value to convert to katakana.</param>
 		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
 		/// <returns>String builder instance</returns>
 		public StringBuilder AppendKanaToKatakana(string? value, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default)

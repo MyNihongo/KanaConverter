@@ -57,6 +57,23 @@ public static class RomajiToHiraganaEx
 
 			return result.ErrorMessage == null;
 		}
+
+		/// <summary>
+		/// Converts a romaji string to hiragana and appends it to the string builder.
+		/// </summary>
+		/// <param name="value">Value to convert to hiragana.</param>
+		/// <param name="unrecognisedCharacterPolicy">Behaviour how unrecognised characters are treated.</param>
+		/// <returns>String builder instance</returns>
+		public StringBuilder AppendToHiragana(string? value, UnrecognisedCharacterPolicy unrecognisedCharacterPolicy = default)
+		{
+			var errorMessage = new StringTextContainer(value)
+				.AppendConvertToHiragana(unrecognisedCharacterPolicy, @this);
+
+			if (!string.IsNullOrEmpty(errorMessage))
+				throw new InvalidCharacterException(errorMessage);
+
+			return @this;
+		}
 	}
 
 	/// <param name="this">Romaji string to be converted to hiragana.</param>
